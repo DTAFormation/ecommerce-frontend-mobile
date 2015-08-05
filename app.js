@@ -1,4 +1,5 @@
 angular.module('ecMobileApp', [
+    'ui.bootstrap',
     'ui.utils',
     'ngRoute',
     'ngAnimate',
