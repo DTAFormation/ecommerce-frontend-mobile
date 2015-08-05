@@ -5,8 +5,8 @@ Application mobile
 Le projet est réalisé en suivant la méthodologie Scrum :
 * [Le Backlog du produit](https://github.com/DTAFormation/ecommerce-frontend-mobile/wiki/Backlog-Produit)
 * [La définition du DONE](https://github.com/DTAFormation/ecommerce-frontend-mobile/wiki/D%C3%A9finition-du-DONE)
-* [Sprint 1](https://github.com/DTAFormation/ecommerce-frontend-mobile/wiki/Sprint-1)
-* [Sprint 2](https://github.com/DTAFormation/ecommerce-frontend-mobile/wiki/Sprint-2)
+* [Sprint 1](https://github.com/DTAFormation/ecommerce-frontend-mobile/wiki/Sprint-1)  : du 05/08 au 11/08
+* [Sprint 2](https://github.com/DTAFormation/ecommerce-frontend-mobile/wiki/Sprint-2)  : du 21/08 au 28/08
 
 ## Prérequis
 * Installer NodeJS et NPM
