@@ -7,7 +7,7 @@ angular.module('ecMobileApp.home', [
 // Configuration du module 'home'
 angular.module('ecMobileApp.home').config(function($routeProvider) {
 
-    // TODO Définir les routes spécifiques au module 'home' ici
+
 });
 
 // Contrôleur principal du module 'home'
