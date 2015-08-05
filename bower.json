@@ -14,7 +14,11 @@
     "angular-resource": "~1.2",
     "angular-cookies": "~1.2",
     "angular-mocks": "~1.2",
+
     "angular-ui-utils": "~0.1",
     "ngstorage": "~0.3.7"
+  },
+  "resolutions": {
+    "angular": "~1.2"
   }
 }
