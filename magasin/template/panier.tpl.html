@@ -1,18 +1,25 @@
 <div class="container-fluid">
 	<h1>Mon panier</h1>
+	<div>
+		<p>Total du panier {{ panierCtrl.totalPrix }} €</p>
+	</div>
 	<table class="table table-bordered">
 		<tbody>
-			<!-- <tr ng-repeat="produit in panierCtrl.panier | orderBy : 'id'">
+			<tr ng-repeat="produit in panierCtrl.panier | orderBy : 'id'">
 				<td class="text-center">
 					<div class="miniatureContainer" style="float:left;margin-right:5px;">
-						<img src="{{produit.image}}"/>
+						<img ng-src="{{produit.image}}"/>
 					</div>
 					<h4>{{produit.libelle}}</h4>
-					<h4>{{produit.prix}}</h4>
-					<button class="btn btn-primary" ng-click="panierCtrl.detailProduit(produit.id)">Ajouter au panier</button>
+					<h4>{{produit.prix}} €</h4>
+					<div class="btn-group">
+						<button class="btn btn-default" ng-click="panierCtrl.diminuerQuantite(produit.id)">-</button>
+						<span class="btn">{{produit.quantite}}</span>
+						<button class="btn btn-default" ng-click="panierCtrl.augmenterQuantite(produit.id)">+</button>
+					</div>
 				</td>
-			</tr> -->
-			<tr>
+			</tr>
+			<!-- <tr>
 				<td class="text-center">
 					<div class="miniatureContainer" style="float:left;margin-right:5px;">
 						<img src="http://lorempixel.com/120/120"/>
@@ -94,7 +101,7 @@
 					<h4>595F</h4>
 					<button class="btn btn-primary">Ajouter au panier</button>
 				</td>
-			</tr>
+			</tr> -->
 		</tbody>
 	</table>
 
