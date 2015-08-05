@@ -3,7 +3,8 @@ angular.module('ecMobileApp', [
     'ngRoute',
     'ngAnimate',
     'ecMobileApp.shared',
-    'ecMobileApp.home'
+    'ecMobileApp.home',
+    'ecMobileApp.magasin'
 ]);
 
 angular.module('ecMobileApp').config(function($routeProvider) {
@@ -11,7 +12,7 @@ angular.module('ecMobileApp').config(function($routeProvider) {
     // Ici, les routes générales de l'application
     // Pas de route spécifique ici !
     // Elles doivent être déclarées dans des sous-modules (comme 'home')
-    $routeProvider.otherwise({redirectTo:'/home'});
+    $routeProvider.otherwise({redirectTo:'/magasin'});
 });
 
 angular.module('ecMobileApp').run(function($rootScope) {
