@@ -3,7 +3,8 @@ angular.module('ecMobileApp', [
     'ngRoute',
     'ngAnimate',
     'ecMobileApp.shared',
-    'ecMobileApp.home'
+    'ecMobileApp.home',
+    'ecMobileApp.magasin'
 ]);
 
 angular.module('ecMobileApp').config(function($routeProvider) {
