@@ -34,8 +34,7 @@ angular.module('ecMobileApp.magasin').controller('magasinCtrl', function(userSer
 
 	function getProduits (){
 		magasinService.getProduits().then(function (result){
-			console.log("magasinCtrl : " + result);
-			//magasinCtrl.listProduits = result.data;
+			magasinCtrl.listProduits = result;
 		});
 	}
 
@@ -48,7 +47,7 @@ angular.module('ecMobileApp.magasin').controller('magasinCtrl', function(userSer
 
     
 	magasinCtrl.detailsProduit = function(idProduit){
-		$location.path("/detailsProduit/" +idProduit)
+		$location.path("/detailsProduit/" +idProduit);
 	};
 
 	function getDetailsProduit (){
@@ -69,14 +68,8 @@ angular.module('ecMobileApp.magasin').controller('panierCtrl', function(userServ
 	panierCtrl.totalPrix = 0;
 
 	function getPanier (){
-		/*panierService.getPanier().then(function (result){
-			//panierCtrl.panier = result.data;
-
-		});*/
-		//panierCtrl.panier = [{id : 1, libelle : "Produit 1", image : "http://lorempixel.com/120/120", prix : 500, quantite : 3}, {id : 2, libelle : "Produit 2", image : "http://lorempixel.com/120/120", prix : 500, quantite : 3}, {id : 3, libelle : "Produit 3", image : "http://lorempixel.com/120/120", prix : 500, quantite : 3}];;
 		panierService.getPanier().then(function (result){
 			panierCtrl.panier = result;
-			console.log(panierCtrl.panier);
 			updateTotalPanier();
 		});
 	}
@@ -116,7 +109,7 @@ angular.module('ecMobileApp.magasin').controller('panierCtrl', function(userServ
 
     panierCtrl.removeFromPanier = function(idProduit) {
         panierService.removeFromPanier(idProduit);
-        updateTotalPanier();
+        getPanier();
     };
 
 });

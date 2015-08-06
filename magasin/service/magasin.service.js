@@ -2,15 +2,14 @@ angular.module('ecMobileApp.magasin')
 
 .factory('magasinService', function ($http, $localStorage) {
 
-	var apiRestUrl = "";
+	var apiRestUrl = "bouchons/produits";
 
 	return {
 
 		getProduits : function (){
-			console.log("magasin service getProduits");
-			return $http.get("" + "/produits")
+			return $http.get(apiRestUrl + "/all.json")
 			.then(function (result){
-				return result;
+				return result.data;
 			});
 		},
 
