@@ -17,6 +17,15 @@ angular.module('ecMobileApp.shared').factory('panierService', function($localSto
             }
             $localStorage.panier.push(itemPanier);
             return;
+        },
+
+        removeFromPanier: function(idProduit) {
+            for (var i = 0; i < $localStorage.panier.length; i++) {
+                if ($localStorage.panier[i].idProduit === idProduit) {
+                    $localStorage.panier.splice(i, 1);
+                    return;
+                }
+            }
         }
     };
 

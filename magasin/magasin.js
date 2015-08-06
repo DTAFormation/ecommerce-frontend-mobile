@@ -45,6 +45,7 @@ angular.module('ecMobileApp.magasin').controller('magasinCtrl', function(userSer
         panierService.addToPanier(idProduit, 1);
     };
 
+
     
 	magasinCtrl.detailsProduit = function(idProduit){
 		$location.path("/detailsProduit/" +idProduit)
@@ -56,6 +57,7 @@ angular.module('ecMobileApp.magasin').controller('magasinCtrl', function(userSer
 			//magasinCtrl.detailsProduit = result.data;
 		});
 	}
+
 
 });
 
@@ -105,5 +107,10 @@ angular.module('ecMobileApp.magasin').controller('panierCtrl', function(userServ
 		}
 		updateTotalPanier();
 	};
+
+    panierCtrl.removeFromPanier = function(idProduit) {
+        panierService.removeFromPanier(idProduit);
+        updateTotalPanier();
+    };
 
 });

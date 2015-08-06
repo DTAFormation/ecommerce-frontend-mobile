@@ -29,4 +29,14 @@ describe("Test du panierService", function() {
         expect($localStorage.panier[1].quantite).toEqual(1);
     }));
 
+    it("Supprime un produit du panier", inject(function(panierService, $localStorage) {
+        var produit = {
+            idProduit: 1,
+            quantite: 1
+        };
+        $localStorage.panier=[produit];
+        panierService.removeFromPanier(1);
+        expect($localStorage.panier).toEqual([]);
+    }));
+
 });
