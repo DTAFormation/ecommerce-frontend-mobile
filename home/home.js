@@ -8,8 +8,6 @@ angular.module('ecMobileApp.home', [
 angular.module('ecMobileApp.home').config(function($routeProvider) {
 
 
-
-=======
     // TODO Définir les routes spécifiques au module 'home' ici
     $routeProvider
     .when("/",{

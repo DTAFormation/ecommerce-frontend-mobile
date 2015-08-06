@@ -5,9 +5,8 @@ angular.module('ecMobileApp', [
     'ngAnimate',
     'ecMobileApp.shared',
     'ecMobileApp.home',
-    'ecMobileApp.compteClient'
+    'ecMobileApp.compteClient',
     'ecMobileApp.magasin'
-
 ]);
 
 angular.module('ecMobileApp').config(function($routeProvider) {
