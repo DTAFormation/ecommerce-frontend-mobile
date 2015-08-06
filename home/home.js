@@ -11,7 +11,7 @@ angular.module('ecMobileApp.home').config(function($routeProvider) {
     $routeProvider
     .when("/",{
             templateUrl :'/home/template/home.tpl.html',
-            controller : "HomeController",
+            controller : "homeCtrl",
             controllerAs : "homeCtrl"
         })
         .when("/connexion",{
@@ -22,10 +22,6 @@ angular.module('ecMobileApp.home').config(function($routeProvider) {
             templateUrl :"/home/template/CreationCompte.html",
             controller : "CreationController",
             controllerAs : "creationCtrl"})
-        .when("/panier",{
-            templateUrl :"/home/template/panier.html",
-            controller : "PanierController",
-            controllerAs : "panierCtrl"})
         .otherwise({redirectTo:'/home'});
 });
 

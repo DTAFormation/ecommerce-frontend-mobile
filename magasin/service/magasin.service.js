@@ -21,6 +21,14 @@ angular.module('ecMobileApp.magasin')
 			.then(function (result){
 				return result;
 			});*/
+		},
+
+		getDetailsProduit : function(){
+			console.log("magasin service getDetailsProduit");
+			return $http.get(""+"/detailsProduit")
+			.then(function (result){
+				return result;
+			});
 		}
 
 	};
