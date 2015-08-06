@@ -7,6 +7,7 @@ angular.module('ecMobileApp.home', [
 // Configuration du module 'home'
 angular.module('ecMobileApp.home').config(function($routeProvider) {
 
+
     // TODO Définir les routes spécifiques au module 'home' ici
     $routeProvider
     .when("/",{
@@ -23,6 +24,7 @@ angular.module('ecMobileApp.home').config(function($routeProvider) {
             controller : "CreationController",
             controllerAs : "creationCtrl"})
         .otherwise({redirectTo:'/home'});
+
 });
 
 // Contrôleur principal du module 'home'

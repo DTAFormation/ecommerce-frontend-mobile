@@ -1,0 +1,46 @@
+
+<!-- formulaire de création d'un nouveau compte -->
+<form name="newCompteForm" ng-submit="cpteCliCtrl.newCpte(newCompteForm)" novalidate>
+
+  <!-- champ Nom du client : not nul, max 40 -->
+	<p>
+		<label>Nom: </label>
+		<input name="name" type="text" ng-model="newcpteCliCtrl.cpteCli.nom" required ng-maxlength="40">
+		<span class="error" ng-show="newCompteForm.name.$error.required && newCompteForm.$dirty" ng.hide="newCompteForm.name.$valid || newCompteForm.$pristine">Le nom est obligatoire</span>
+		<span class="error" ng-show="newCompteForm.name.$error.maxlength && newCompteForm.$dirty" ng.hide="newCompteForm.name.$valid || newCompteForm.$pristine">Le nom doit faire moins de 40 caractères</span>
+	</p>
+
+  <!-- champ Prénom du client : not nul, max 40 -->
+  <p>
+		<label>Prenom: </label>
+		<input name="firstname" type="text" ng-model="newcpteCliCtrl.cpteCli.prenom" ng-maxlength="40" required >
+		<span class="error" ng-show="newCompteForm.firstname.$error.required && newCompteForm.$dirty" ng.hide="newCompteForm.firstname.$valid || newCompteForm.$pristine">Le prenom est obligatoire</span>
+		<span class="error" ng-show="newCompteForm.firstname.$error.maxlength && newCompteForm.$dirty" ng.hide="newCompteForm.firstname.$valid || newCompteForm.$pristine">Le prenom doit faire moins de 40 caractères</span>
+	</p>
+
+  <!-- champ login du client : not nul, email -->
+	<p>
+		<label>Identifiant: </label>
+		<input name="login" type="email" ng-model="newcpteCliCtrl.cpteCli.login" required>
+    <span class="error" ng-show="newCompteForm.login.$error.required && newCompteForm.$dirty" ng.hide="newCompteForm.login.$valid || newCompteForm.$pristine">L'identifiant (email) est obligatoire</span>
+	</p>
+
+  <!-- champ password du client : not nul, password -->
+	<p>
+		<label>Mot de Passe: </label>
+		<input name="password" type="password" ng-model="newcpteCliCtrl.cpteCli.password" ng-minlength="6" required>
+    <span class="error" ng-show="newCompteForm.password.$error.minlength" ng.hide="newCompteForm.password.$valid || newCompteForm.$pristine">Le mot de passe doit faire plus de 6 caractères</span>
+		<span class="error" ng-show="newCompteForm.password.$error.required && newCompteForm.$dirty" ng.hide="newCompteForm.password.$valid || newCompteForm.$pristine">Le mot de passe est obligatoire</span>
+	</p>
+
+  <!-- champ pour la confirmation du password du client : not nul, password -->
+	<p>
+		<label>Confirmer mot de Passe: </label>
+		<input name="confirmPassword" placeholder="tata" type="password" ng-model="newcpteCliCtrl.cpteCli.confirmPassword" ui-validate="{same : true }">
+    <!--<span class="error" ng-show="newCompteForm.confirmPassword.$invalid && newCompteForm.$dirty" ng.hide="newCompteForm.confirmPassword.$valid || newCompteForm.$pristine">Les mots de passes ne correspondent pas</span>-->
+		<span ng-show='newCompteForm.confirmPassword.$error.same'> les mots de passe ne sont pas identiques </span>
+	</p>
+
+  <!-- bouton de soumission -->
+	<input type="submit" value="Créer un compte">
+</form>
