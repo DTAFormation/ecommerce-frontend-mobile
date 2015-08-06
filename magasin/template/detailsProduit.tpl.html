@@ -1,11 +1,13 @@
 <div class="container">
 <h1>{{magasinCtrl.detailsProduit.libelle}}</h1>
 	<div class="row">
-		<div class="col-md-8">{{magasinCtrl.detailsProduit.image}}</div>
-  		<div class="col-md-4">
-  			<label>Prix : {{magasinCtrl.detailsProduit.prix}}</label>
-  			<label>Description : {{magasinCtrl.detailsProduit.cracteristique}}</label>
-  			<label>Quantité disponible :{{magasinCtrl.detailsProduit.quantite}} </label>
+		<div class="col-md-5">{{magasinCtrl.detailsProduit.image}}
+			<img src="http://lorempixel.com/400/200"/><br>
+		</div>
+  		<div class="col-md-3">
+  			<label>Prix : {{magasinCtrl.detailsProduit.prix}}</label><br>
+  			<label>Description : {{magasinCtrl.detailsProduit.cracteristique}}</label><br>
+  			<label>Quantité disponible :{{magasinCtrl.detailsProduit.quantite}} </label><br>
   			<button class="btn btn-primary" ng-click="magasinCtrl.addToPanier(magasinCtrl.detailsProduit.id)">Ajouter au panier</button>
   		</div>
 	</div>
