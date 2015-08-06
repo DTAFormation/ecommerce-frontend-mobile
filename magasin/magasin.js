@@ -32,13 +32,13 @@ angular.module('ecMobileApp.magasin').controller('magasinCtrl', function(userSer
 
     var magasinCtrl = this;
 
-	magasinCtrl.getProduits = function(){
+	function getProduits (){
 		magasinService.getProduits().then(function (result){
 			magasinCtrl.listProduits = result;
 		});
 	}
 
-	magasinCtrl.getProduits();
+	getProduits();
 
     magasinCtrl.addToPanier = function(idProduit) {
         panierService.addToPanier(idProduit, 1);
