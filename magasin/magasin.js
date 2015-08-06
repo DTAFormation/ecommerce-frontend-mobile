@@ -18,12 +18,17 @@ angular.module('ecMobileApp.magasin').config(function($routeProvider) {
 		templateUrl: "/magasin/template/panier.tpl.html",
 		controller: "panierCtrl",
 		controllerAs: "panierCtrl"
+	})
+	.when("/detailsProduit/:id", {
+		templateUrl: "/magasin/template/detailsProduit.tpl.html",
+		controller: "magasinCtrl",
+		controllerAs: "magasinCtrl"
 	});
 });
 
 // Contrôleur principal du module 'magasin'
 // Usage de la syntaxe 'controller as', pas besoin du '$scope'
-angular.module('ecMobileApp.magasin').controller('magasinCtrl', function(userService, magasinService, panierService) {
+angular.module('ecMobileApp.magasin').controller('magasinCtrl', function(userService, magasinService, panierService,$routeParams) {
 
     var magasinCtrl = this;
 
@@ -40,14 +45,18 @@ angular.module('ecMobileApp.magasin').controller('magasinCtrl', function(userSer
         panierService.addToPanier(idProduit, 1);
     };
 
-    function getDetailsProduit (){
-		magasinService.getDetailsProduit().then(function (result){
+    
+	magasinCtrl.detailsProduit = function(idProduit){
+		$location.path("/detailsProduit/" +idProduit)
+	};
+
+	function getDetailsProduit (){
+		magasinService.getDetailsProduit($routeParams.id).then(function (result){
 			console.log("magasinCtrl : " + result);
 			//magasinCtrl.detailsProduit = result.data;
 		});
 	}
 
-	getProduits();
 });
 
 

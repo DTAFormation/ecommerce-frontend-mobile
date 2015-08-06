@@ -23,7 +23,7 @@ angular.module('ecMobileApp.home').config(function($routeProvider) {
             templateUrl :"/home/template/CreationCompte.html",
             controller : "CreationController",
             controllerAs : "creationCtrl"})
-        .otherwise({redirectTo:'/home'});
+        .otherwise({redirectTo:'/'});
 
 });
 

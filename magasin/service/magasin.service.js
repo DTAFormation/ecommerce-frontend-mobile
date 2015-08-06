@@ -23,9 +23,9 @@ angular.module('ecMobileApp.magasin')
 			});*/
 		},
 
-		getDetailsProduit : function(){
+		getDetailsProduit : function(id){
 			console.log("magasin service getDetailsProduit");
-			return $http.get(""+"/detailsProduit")
+			return $http.get(""+"/detailsProduit/"+id)
 			.then(function (result){
 				return result;
 			});
