@@ -12,7 +12,7 @@ angular.module('ecMobileApp.home').config(function($routeProvider) {
     $routeProvider
     .when("/",{
             templateUrl :'/home/template/home.tpl.html',
-            controller : "HomeController",
+            controller : "homeCtrl",
             controllerAs : "homeCtrl"
         })
         .when("/connexion",{
