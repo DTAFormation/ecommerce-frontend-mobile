@@ -9,6 +9,7 @@ angular.module('ecMobileApp.magasin')
 		getProduits : function (){
 			return $http.get(apiRestUrl + "/all.json")
 			.then(function (result){
+				console.log(result.data)
 				return result.data;
 			});
 		},
