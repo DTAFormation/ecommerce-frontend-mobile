@@ -29,6 +29,21 @@ module.exports = function (grunt) {
         tasks: [] //all the tasks are run dynamically during the watch event handler
       }
     },
+    copy: {
+        main:{
+            files: [{
+                expand: true,
+                src: ['**/*.js',
+                    '**/*.html',
+                    '**/*.css',
+                    '!**/node_modules/**',
+                    '!**/*-spec.js',
+                    '!**/Gruntfile.js',
+                    '!**/angular-mocks/*.*'],
+                dest: 'dist'
+            }]
+        }
+    },
     jshint: {
       main: {
         options: {
@@ -80,6 +95,7 @@ module.exports = function (grunt) {
 
   grunt.registerTask('serve', ['dom_munger:read','jshint','connect', 'watch']);
   grunt.registerTask('test',['dom_munger:read','karma:all_tests']);
+  grunt.registerTask('cp',['clean','copy']);
 
   grunt.event.on('watch', function(action, filepath) {
     //https://github.com/gruntjs/grunt-contrib-watch/issues/156
@@ -147,5 +163,3 @@ var createFolderGlobs = function(fileTypePatterns) {
           })
           .concat(fileTypePatterns);
 };
-
-console.log(createFolderGlobs('*.js'));
