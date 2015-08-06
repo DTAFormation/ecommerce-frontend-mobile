@@ -51,14 +51,17 @@ angular.module('ecMobileApp.magasin').controller('magasinCtrl', function(userSer
 	};
 
 	//TODO : vérifier retour des données depuis le service
-	function getDetailsProduit (){
+
+	magasinCtrl.getDetailsProduit = function(){
 		magasinService.getDetailsProduit($routeParams.id).then(function (result){
-			console.log("magasinCtrl : " + result);
-			//magasinCtrl.detailsProduit = result.data;
-		});
-	}
+			console.log("dans magasin.js getDetailsProduit : "+$routeParams.id);
+			console.log(result);
+			magasinCtrl.detailsProduit = result;
+		});	
+	};
 
-
+	magasinCtrl.getDetailsProduit();
+	console.log("Dans magasisCtrl après le get :"+magasinCtrl.detailsProduit);
 });
 
 
