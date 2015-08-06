@@ -50,6 +50,7 @@ angular.module('ecMobileApp.magasin').controller('magasinCtrl', function(userSer
 		$location.path("/detailsProduit/" +idProduit);
 	};
 
+	//TODO : vérifier retour des données depuis le service
 	function getDetailsProduit (){
 		magasinService.getDetailsProduit($routeParams.id).then(function (result){
 			console.log("magasinCtrl : " + result);

@@ -13,6 +13,7 @@ angular.module('ecMobileApp.magasin')
 			});
 		},
 
+		/*TODO : Tester avec un bouchon le renvoie du get et la transmission de result*/	
 		getDetailsProduit : function(id){
 			console.log("magasin service getDetailsProduit");
 			return $http.get(""+"/detailsProduit/"+id)
