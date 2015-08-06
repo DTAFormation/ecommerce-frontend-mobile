@@ -21,7 +21,19 @@ describe("Test du magasinService", function() {
 			expect(result[1].prix).toBe(mockProduits[1].prix);
 			expect(result[1].image).toBe(mockProduits[1].image);
 		});
+		$httpBackend.flush();
+	}));
 
+	it("Afficher détail d'un produit", inject(function(magasinService, $httpBackend){
+
+		$httpBackend.expectGET('bouchons/produits/all.json').respond(200, mockProduits);
+
+		magasinService.getDetailsProduit(1).then(function(result){
+			expect(result.id).toBe(mockProduits[0].id);
+			expect(result.libelle).toBe(mockProduits[0].prix);
+			expect(result.prix).toBe(mockProduits[0].prix);
+			expect(result.image).toBe(mockProduits[0].image);
+		});
 		$httpBackend.flush();
 	}));
 

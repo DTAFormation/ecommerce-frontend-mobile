@@ -36,7 +36,7 @@ angular.module('ecMobileApp.magasin').controller('magasinCtrl', function(userSer
 		magasinService.getProduits().then(function (result){
 			magasinCtrl.listProduits = result;
 		});
-	};
+	}
 
 	getProduits();
 
