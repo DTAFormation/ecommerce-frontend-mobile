@@ -28,7 +28,7 @@ angular.module('ecMobileApp.magasin').config(function($routeProvider) {
 
 // Contrôleur principal du module 'magasin'
 // Usage de la syntaxe 'controller as', pas besoin du '$scope'
-angular.module('ecMobileApp.magasin').controller('magasinCtrl', function(userService, magasinService, panierService,$routeParams) {
+angular.module('ecMobileApp.magasin').controller('magasinCtrl', function(userService, magasinService, panierService,$routeParams,$location) {
 
     var magasinCtrl = this;
 
