@@ -39,6 +39,8 @@
   <script src="compteClient/compteClient.js"></script>
   <script src="magasin/magasin.js"></script>
   <script src="magasin/service/magasin.service.js"></script>
+  <script src="connexion/connexion.js"></script>
+  <script src="connexion/controller/connexionController.js"></script>
   <script src="app.js"></script>
   <!-- Add New Component JS Above -->
   <header>
@@ -50,8 +52,12 @@
         <div class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
             <li><a href="#/magasin">Magasin</a></li>
-            <li><a href="#/connexion">Connexion</a></li>
-            <li><a href="#/CreationCompte">Création Compte</a></li>
+            <li ng-show="!ecMobileCtrl.isConnected()"><a href="#/connexion">Connexion</a></li>
+            <li ng-show="!ecMobileCtrl.isConnected()"><a href="#/CreationCompte">Création Compte</a></li>
+            <li ng-show="ecMobileCtrl.isConnected()">
+                <a href="#/">Comptes</a>
+                <!-- Ajouter ul gestion comptes ect-->
+            </li>
             <li><a href="#/panier">Panier</a></li>
           </ul>
         </div>

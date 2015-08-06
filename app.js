@@ -6,7 +6,8 @@ angular.module('ecMobileApp', [
     'ecMobileApp.shared',
     'ecMobileApp.home',
     'ecMobileApp.compteClient',
-    'ecMobileApp.magasin'
+    'ecMobileApp.magasin',
+    'ecMobileApp.connexion'
 ]);
 
 angular.module('ecMobileApp').config(function($routeProvider) {
@@ -21,6 +22,15 @@ angular.module('ecMobileApp').run(function($rootScope) {
 });
 
 // Contrôleur qui pilote globalement l'application
-angular.module('ecMobileApp').controller("ecMobileCtrl", function() {
+angular.module('ecMobileApp').controller("ecMobileCtrl", function(userService) {
     this.title = "ECommerce Mobile";
+
+    this.isConnected=function(){
+        return userService.isConnected();
+    }
+
+    this.getInfosUser=function(){
+        return userService.getInfosUser();
+    }
+
 });
