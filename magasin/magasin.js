@@ -28,17 +28,17 @@ angular.module('ecMobileApp.magasin').config(function($routeProvider) {
 
 // Contrôleur principal du module 'magasin'
 // Usage de la syntaxe 'controller as', pas besoin du '$scope'
-angular.module('ecMobileApp.magasin').controller('magasinCtrl', function(userService, magasinService, panierService,$routeParams,$location) {
+angular.module('ecMobileApp.magasin').controller('magasinCtrl', function(userService, magasinService, panierService, $routeParams, $location) {
 
     var magasinCtrl = this;
 
-	function getProduits (){
+	magasinCtrl.getProduits = function(){
 		magasinService.getProduits().then(function (result){
 			magasinCtrl.listProduits = result;
 		});
-	}
+	};
 
-	getProduits();
+	magasinCtrl.getProduits();
 
     magasinCtrl.addToPanier = function(idProduit) {
         panierService.addToPanier(idProduit, 1);
@@ -50,6 +50,7 @@ angular.module('ecMobileApp.magasin').controller('magasinCtrl', function(userSer
 		$location.path("/detailsProduit/" +idProduit);
 	};
 
+	//TODO : vérifier retour des données depuis le service
 	function getDetailsProduit (){
 		magasinService.getDetailsProduit($routeParams.id).then(function (result){
 			console.log("magasinCtrl : " + result);

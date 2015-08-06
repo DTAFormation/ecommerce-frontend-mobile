@@ -11,6 +11,7 @@ angular.module('ecMobileApp.shared').factory('panierService', function ($http, $
             if (!$localStorage.panier) {
                 $localStorage.panier = [];
             }
+            //TODO(priorite 10) Mettre foreach ou filtre
             for (var i = 0; i < $localStorage.panier.length; i++) {
                 if ($localStorage.panier[i].idProduit === idProduit) {
                     $localStorage.panier[i].quantite += quantite;
@@ -35,19 +36,31 @@ angular.module('ecMobileApp.shared').factory('panierService', function ($http, $
             var idProduits = "";
             var panierFormate = new Map();
 
-            for(var i=0; i < $localStorage.panier.length; i++){
-                idProduits = idProduits + $localStorage.panier[i].idProduit;
-                if(i+1< $localStorage.panier.length){
+            // panier en base -> [{"idProduit" : 1, "quantite" : 3}, {"idProduit" : 2, "quantite": 5}]
+
+            // résultat de la requete de base 
+            // liste des produits -> [{id:1, libelle:"Produit 1", prix:150, image:"http://lorempixel.com/120/120" },{id:1, libelle:"Produit 1", prix:150, image:"http://lorempixel.com/120/120" }]
+
+            // resultat attendu 
+            // liste des produits quantifiée -> [{id:1, libelle:"Produit 1", prix:150, image:"http://lorempixel.com/120/120", quantite:3},{id:1, libelle:"Produit 1", prix:150, image:"http://lorempixel.com/120/120", quantite:5}]
+
+
+            // voir pour remplacer la concaténation par un array.reduce
+            $localStorage.panier.forEach(function (produit, index, array){
+                idProduits = idProduits + produit.idProduit;
+                if(index+1 < array.length){
                     idProduits = idProduits + "&";
                 }
-                panierFormate.set(JSON.stringify($localStorage.panier[i].idProduit), $localStorage.panier[i].quantite);
-            }
+                panierFormate.set(JSON.stringify(produit.idProduit), produit.quantite);
+            });
+
+            // panier formaté -> [{"1", 3}, {"2", 5}]
 
             return $http.get("bouchons/produits/produitByIds" + idProduits + ".json")
             .then(function (result){
-                for(var i=0; i<result.data.length; i++){
-                    result.data[i].quantite = panierFormate.get(JSON.stringify(result.data[i].id));
-                }
+                result.data.forEach(function (produit, index, array){
+                    produit.quantite = panierFormate.get(JSON.stringify(produit.id));
+                });
                 return result.data;
             });
         }
