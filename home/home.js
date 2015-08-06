@@ -14,16 +14,18 @@ angular.module('ecMobileApp.home').config(function($routeProvider) {
             templateUrl :'/home/template/home.tpl.html',
             controller : "homeCtrl",
             controllerAs : "homeCtrl"
-        })
-        .when("/connexion",{
-            templateUrl :"/home/template/connexion.tpl.html",
-            controller : "ConnexionController",
-            controllerAs : "connexCtrl"})
-        .when("/CreationCompte",{
-            templateUrl :"/home/template/CreationCompte.html",
-            controller : "CreationController",
-            controllerAs : "creationCtrl"})
-        .otherwise({redirectTo:'/'});
+    })
+    .when("/connexion",{
+        templateUrl :"/home/template/connexion.tpl.html",
+        controller : "ConnexionController",
+        controllerAs : "connexCtrl"
+    })
+    .when("/CreationCompte",{
+        templateUrl :"/home/template/CreationCompte.html",
+        controller : "CreationController",
+        controllerAs : "creationCtrl"
+    })
+    .otherwise({redirectTo:'/'});
 
 });
 
