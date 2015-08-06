@@ -12,15 +12,6 @@ angular.module('ecMobileApp.magasin')
 			.then(function (result){
 				return result;
 			});
-		},
-
-		getPanier : function (){
-			console.log("magasinService getPanier");
-			/*var listProduits = $localStorage.panier;
-			return $http.get("" + "/produits")
-			.then(function (result){
-				return result;
-			});*/
 		}
 
 	};

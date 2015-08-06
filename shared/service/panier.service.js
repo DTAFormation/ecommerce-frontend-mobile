@@ -1,4 +1,6 @@
-angular.module('ecMobileApp.shared').factory('panierService', function($localStorage) {
+angular.module('ecMobileApp.shared').factory('panierService', function ($http, $localStorage) {
+
+    var apiRestUrl = "";
 
     return {
         addToPanier: function(idProduit, quantite) {
@@ -17,6 +19,28 @@ angular.module('ecMobileApp.shared').factory('panierService', function($localSto
             }
             $localStorage.panier.push(itemPanier);
             return;
+        },
+
+        getPanier: function (){
+            var panierService = this;
+            var idProduits = "";
+            var panierFormate = new Map();
+
+            for(var i=0; i < $localStorage.panier.length; i++){
+                idProduits = idProduits + $localStorage.panier[i].idProduit;
+                if(i+1< $localStorage.panier.length){
+                    idProduits = idProduits + "&";
+                }
+                panierFormate.set(JSON.stringify($localStorage.panier[i].idProduit), $localStorage.panier[i].quantite);
+            }
+
+            return $http.get("bouchons/produits/produitByIds" + idProduits + ".json")
+            .then(function (result){
+                for(var i=0; i<result.data.length; i++){
+                    result.data[i].quantite = panierFormate.get(JSON.stringify(result.data[i].id));
+                }
+                return result.data;
+            });
         }
     };
 

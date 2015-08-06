@@ -53,8 +53,12 @@ angular.module('ecMobileApp.magasin').controller('panierCtrl', function(userServ
 			//panierCtrl.panier = result.data;
 
 		});*/
-		panierCtrl.panier = [{id : 1, libelle : "Produit 1", image : "http://lorempixel.com/120/120", prix : 500, quantite : 3}, {id : 2, libelle : "Produit 2", image : "http://lorempixel.com/120/120", prix : 500, quantite : 4}, {id : 3, libelle : "Produit 3", image : "http://lorempixel.com/120/120", prix : 500, quantite : 2}];
-		updateTotalPanier();
+		//panierCtrl.panier = [{id : 1, libelle : "Produit 1", image : "http://lorempixel.com/120/120", prix : 500, quantite : 3}, {id : 2, libelle : "Produit 2", image : "http://lorempixel.com/120/120", prix : 500, quantite : 3}, {id : 3, libelle : "Produit 3", image : "http://lorempixel.com/120/120", prix : 500, quantite : 3}];;
+		panierService.getPanier().then(function (result){
+			panierCtrl.panier = result;
+			console.log(panierCtrl.panier);
+			updateTotalPanier();
+		});
 	}
 
 	getPanier();
@@ -71,6 +75,7 @@ angular.module('ecMobileApp.magasin').controller('panierCtrl', function(userServ
 			if(panierCtrl.panier[i].id === id_produit){
 				if(panierCtrl.panier[i].quantite > 0){
 					panierCtrl.panier[i].quantite -= 1;
+					panierService.addToPanier(panierCtrl.panier[i].id, -1);
 				}
 				break;
 			}
@@ -82,6 +87,7 @@ angular.module('ecMobileApp.magasin').controller('panierCtrl', function(userServ
 		for(var i = 0; i < panierCtrl.panier.length; i++){
 			if(panierCtrl.panier[i].id === id_produit){
 				panierCtrl.panier[i].quantite += 1;
+				panierService.addToPanier(panierCtrl.panier[i].id, 1);
 				break;
 			}
 		}
