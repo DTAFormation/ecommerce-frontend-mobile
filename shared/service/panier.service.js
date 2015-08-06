@@ -11,6 +11,7 @@ angular.module('ecMobileApp.shared').factory('panierService', function ($http, $
             if (!$localStorage.panier) {
                 $localStorage.panier = [];
             }
+            //TODO(priorite 10) Mettre foreach ou filtre
             for (var i = 0; i < $localStorage.panier.length; i++) {
                 if ($localStorage.panier[i].idProduit === idProduit) {
                     $localStorage.panier[i].quantite += quantite;
