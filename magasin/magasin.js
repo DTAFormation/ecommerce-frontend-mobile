@@ -88,4 +88,8 @@ angular.module('ecMobileApp.magasin').controller('panierCtrl', function(userServ
 		updateTotalPanier();
 	};
 
+    panierCtrl.removeFromPanier = function(idProduit) {
+        panierService.removeFromPanier(idProduit);
+    };
+
 });
