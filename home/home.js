@@ -15,11 +15,6 @@ angular.module('ecMobileApp.home').config(function($routeProvider) {
             controller : "homeCtrl",
             controllerAs : "homeCtrl"
     })
-    .when("/connexion",{
-        templateUrl :"/home/template/connexion.tpl.html",
-        controller : "ConnexionController",
-        controllerAs : "connexCtrl"
-    })
     .when("/CreationCompte",{
         templateUrl :"/home/template/CreationCompte.html",
         controller : "CreationController",
@@ -35,6 +30,5 @@ angular.module('ecMobileApp.home').controller('homeCtrl', function(userService) 
 
     var self = this;
 
-    // ...
 
 });
