@@ -12,7 +12,6 @@ angular.module('ecMobileApp.magasin')
 				console.log(result.data)
 				return result.data;
 			});
-			//return "monculsurlacommode";
 		},
 
 		getDetailsProduit : function(id){
