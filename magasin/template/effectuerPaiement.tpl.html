@@ -1,0 +1,46 @@
+<div class="container">
+	<h1>Récapitulatif</h1>
+	<table class="table table-bordered">
+		<thead>
+			<tr>
+				<td>Produit</td>
+				<td>prix / produit</td>
+				<td>Quantité</td>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="produit in payerCtrl.panier | orderBy : 'id'">
+				<td>{{produit.libelle}}</td>
+				<td>{{produit.prix}}</td>
+				<td>{{produit.quantite}}</td>
+			</tr>
+		</tbody>
+	</table>
+	<label ng-model ="payerCtrl.commande.prixTotal" name="prixTotal" value="payerCtrl.totalPrix" >Prix total : {{payerCtrl.totalPrix}} euros </label>	
+	<h1>Paiement</h1>
+	<ul>
+		<li>
+			<h3>Paiement par chèque :</h3><br>
+			<Adresse>
+				<strong>Adresse d'envoie : </strong>
+				<p>DTA Ingénierie</p>
+				<p>4 rue Edith Piaf</p>
+				<p>44800 Saint Herblain</p>
+			</Adresse>
+		</li>
+		<li><h3>Paiement par CB :</h3>
+			<br> 
+			<fieldset>
+				<legend>Données de paiement</legend>
+				<form ng-submit="payerCtrl.save(PayerForm)" name="PayerForm" novalidate>
+					<label>Type de carte : </label><img src="/images/type_carte.png"><br><br>
+					<label>Numéro de carte : </label><input type ="text"  ng-model ="payerCtrl.commande.numero" name="numero"><br><br>
+					<label>Date de fin de validité : </label><input type ="number" min="1" max="12" ng-model ="payerCtrl.commande.date_validite.month" name="month">  <input type ="number"  min="2015" max="2025" ng-model ="payerCtrl.commande.date_validite.year" name="year"><br><br>
+					<label>Cryptogramme visuel : </label><input type="number" min="100" max="999" ng-model ="payerCtrl.commande.crypto" name="numero"> <a ng-click="payerCtrl.open()">plus d'information</a><br><br>
+					<button class="btn btn-warning" ng-click="payerCtrl.annuler()">Annuler le paiement</button>  <button class="btn btn-success" type = "submit">Valider</button>
+				</form>
+			</fieldset>
+		</li>
+	</ul>
+	
+</div>
