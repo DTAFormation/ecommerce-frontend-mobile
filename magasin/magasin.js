@@ -57,14 +57,14 @@ angular.module('ecMobileApp.magasin').controller('magasinCtrl', function(userSer
 
 	magasinCtrl.getDetailsProduit = function(){
 		magasinService.getDetailsProduit($routeParams.id).then(function (result){
-			console.log("dans magasin.js getDetailsProduit : "+$routeParams.id);
-			console.log(result);
+		//	console.log("dans magasin.js getDetailsProduit : "+$routeParams.id);
+			//console.log(result);
 			magasinCtrl.detailsProduit = result;
 		});
 	};
 
 	magasinCtrl.getDetailsProduit();
-	console.log("Dans magasisCtrl après le get :"+magasinCtrl.detailsProduit);
+	//console.log("Dans magasisCtrl après le get :"+magasinCtrl.detailsProduit);
 });
 
 
