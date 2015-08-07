@@ -1,0 +1,111 @@
+<div class="container-fluid">
+	<h1>Mon panier</h1>
+	<div class="text-right">
+		<h4>Total du panier {{ panierCtrl.totalPrix }} €</h4>
+	</div>
+	<table class="table table-bordered">
+		<tbody>
+			<tr ng-repeat="produit in panierCtrl.panier | orderBy : 'id'">
+				<td class="text-center">
+					<div class="miniatureContainer" style="float:left;margin-right:5px;">
+						<img ng-src="{{produit.image}}"/>
+					</div>
+					<button class="btn btn-danger" style="float:right;margin-right:5px;">
+						<span class="glyphicon glyphicon-remove" aria-hidden="true" ng-click="panierCtrl.removeFromPanier(produit.id)"></span>
+					</button>
+					<h4>{{produit.libelle}}</h4>
+					<h4>{{produit.prix}} €</h4>
+					<div class="btn-group">
+						<button class="btn btn-default" ng-click="panierCtrl.diminuerQuantite(produit.id)">-</button>
+						<span class="btn">{{produit.quantite}}</span>
+						<button class="btn btn-default" ng-click="panierCtrl.augmenterQuantite(produit.id)">+</button>
+					</div>
+				</td>
+			</tr>
+			<!-- <tr>
+				<td class="text-center">
+					<div class="miniatureContainer" style="float:left;margin-right:5px;">
+						<img src="http://lorempixel.com/120/120"/>
+					</div>
+					<h4>Produit 1</h4>
+					<h4>595F</h4>
+					<div class="btn-group">
+						<button class="btn btn-default" ng-click="panierCtrl.diminuerQuantite()">-</button>
+						<span class="btn">{{panierCtrl.quantite}}</span>
+						<button class="btn btn-default" ng-click="panierCtrl.augmenterQuantite()">+</button>
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td class="text-center">
+					<div class="miniatureContainer" style="float:left;margin-right:5px;">
+						<img src="http://lorempixel.com/120/120"/>
+					</div>
+					<h4>Produit 2</h4>
+					<h4>595F</h4>
+					<button class="btn btn-primary">Ajouter au panier</button>
+				</td>
+			</tr>
+			<tr>
+				<td class="text-center">
+					<div class="miniatureContainer" style="float:left;margin-right:5px;">
+						<img src="http://lorempixel.com/120/120"/>
+					</div>
+					<h4>Produit 3</h4>
+					<h4>595F</h4>
+					<button class="btn btn-primary">Ajouter au panier</button>
+				</td>
+			</tr>
+			<tr>
+				<td class="text-center">
+					<div class="miniatureContainer" style="float:left;margin-right:5px;">
+						<img src="http://lorempixel.com/120/120"/>
+					</div>
+					<h4>Produit 4</h4>
+					<h4>595F</h4>
+					<button class="btn btn-primary">Ajouter au panier</button>
+				</td>
+			</tr>
+			<tr>
+				<td class="text-center">
+					<div class="miniatureContainer" style="float:left;margin-right:5px;">
+						<img src="http://lorempixel.com/120/120"/>
+					</div>
+					<h4>Produit 5</h4>
+					<button class="btn btn-primary">Ajouter au panier</button>
+				</td>
+			</tr>
+			<tr>
+				<td class="text-center">
+					<div class="miniatureContainer" style="float:left;margin-right:5px;">
+						<img src="http://lorempixel.com/120/120"/>
+					</div>
+					<h4>Produit 6</h4>
+					<h4>595F</h4>
+					<button class="btn btn-primary">Ajouter au panier</button>
+				</td>
+			</tr>
+			<tr>
+				<td class="text-center">
+					<div class="miniatureContainer" style="float:left;margin-right:5px;">
+						<img src="http://lorempixel.com/120/120"/>
+					</div>
+					<h4>Produit 7</h4>
+					<h4>595F</h4>
+					<button class="btn btn-primary">Ajouter au panier</button>
+				</td>
+			</tr>
+			<tr>
+				<td class="text-center">
+					<div class="miniatureContainer" style="float:left;margin-right:5px;">
+						<img src="http://lorempixel.com/120/120"/>
+					</div>
+					<h4>Produit 8</h4>
+					<h4>595F</h4>
+					<button class="btn btn-primary">Ajouter au panier</button>
+				</td>
+			</tr> -->
+		</tbody>
+	</table>
+
+</div>

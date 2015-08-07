@@ -1,0 +1,18 @@
+<div class="container-fluid">
+	<h1>Liste des produits</h1>
+	<table class="table table-bordered">
+		<tbody>
+			<tr ng-repeat="produit in magasinCtrl.listProduits | orderBy : 'id'">
+				<td class="text-center">
+					<div class="miniatureContainer" style="float:left;margin-right:5px;">
+						<img ng-src="{{produit.image}}"/>
+					</div>
+					<h4>{{produit.libelle}}</h4>
+					<h4>{{produit.prix}} €</h4>
+					<button class="btn btn-primary" ng-click="magasinCtrl.addToPanier(produit.id)">Ajouter au panier</button>
+					<button class="btn btn-warning" ng-click="magasinCtrl.detailsProduit(produit.id)">Voir détails</button>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
