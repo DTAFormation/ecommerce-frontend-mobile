@@ -3,7 +3,7 @@ angular.module('ecMobileApp.magasin')
 .factory('magasinService', function ($http, $localStorage) {
 
 	var apiRestUrl = "bouchons/produits";
-	var api = "http://localhost:3000/0"
+	var api = "http://localhost:3000/0";
 	var detailsProduit=[];
 
 	return {
