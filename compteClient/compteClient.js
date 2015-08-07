@@ -11,14 +11,7 @@ angular.module('ecMobileApp.compteClient', [
 angular.module('ecMobileApp.compteClient').config(function($routeProvider) {
 
   $routeProvider
-
-    // consultation du compte d'un client
-    .when ("/compteClient", {
-      templateUrl: "/template/compteClient.html",
-      controller: "compteClientCtrl",
-      controllerAs: "cpteCliCtrl"
-    })
-
+  
     // routage vers la page de création de compte
     .when ("/compteClient/new", {
       templateUrl: "compteClient/template/newCompteClient.html",
@@ -41,25 +34,66 @@ angular.module('ecMobileApp.compteClient').controller('compteClientCtrl', functi
 });
 
 // controller pour la création d'un nouveau compte Client
-angular.module('ecMobileApp.compteClient').controller('newCompteClientCtrl', function(userService) {
+angular.module('ecMobileApp.compteClient').controller('newCompteClientCtrl', function(userService,$http, $location, $q) {
     var newcpteCliCtrl = this;
 
+    newcpteCliCtrl.asyncValidation = true;
+
+    var apiRestUrl= "http://localhost:3000/test";
+
+    var infoPanel="";
+
     // Initialisation du nouveau compte client
-    var cpteCli;
+    //  newcpteCliCtrl.cpteCli;
 
-    // fonctions de validation avec angular UI
+    // fonctions de validation avec angular UI, vérification de la non existance de la donnée sur le serveur.
+    newcpteCliCtrl.doesNotExist = function(value) {
+      console.log("validationn asynchrone");
 
-      // vérification du mot de passe de manière synchrone
-      newcpteCliCtrl.equality = function (value , reference) {
-        return angular.equals(value,reference);
+      var verif = function(value){
 
+        return $q(function(resolve, reject) {
+          $http.get(apiRestUrl+"/"+value)
+            .then(function(response){
+                console.log("page trouvée");
+                reject(false);
+            },function(response){
+                console.log("page non trouvée");
+                resolve(true);
+            });
+        });
       };
 
-      // vérification de la non existance de la donnée sur le serveur.
+      return verif(value);
+    };
 
     // récupération et traitement du formulaire
     newcpteCliCtrl.newCpte = function (form){
 
+      console.log("form is invalid: "+form.$invalid);
+        if (form.$invalid)
+        {
+          console.log("isInvalid");
+          return;
+        }
+        var compteClient = {
+          nom : null,
+          prenom : null,
+          login : null,
+          password : null
+        };
+
+        compteClient.nom = newcpteCliCtrl.cpteCli.nom;
+        compteClient.prenom = newcpteCliCtrl.cpteCli.prenom;
+        compteClient.login = newcpteCliCtrl.cpteCli.login;
+        compteClient.password = newcpteCliCtrl.cpteCli.password;
+         //= angular.copy(newcpteCliCtrl.cpteCli);
+
+        $http.post(apiRestUrl,compteClient)
+        .then(function(){
+          $location.path("/home");
+        });
+        console.log(compteClient);
     };
 
 });

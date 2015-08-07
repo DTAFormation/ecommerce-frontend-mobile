@@ -12,7 +12,7 @@ angular.module('ecMobileApp.shared').factory('panierService', function ($http, $
                 $localStorage.panier = [];
             }
             //TODO(priorite 10) Mettre foreach ou filtre
-            for (var i = 0; i < $localStorage.panier.length; i++) {
+            for (var i = 0; i < $localStorage.panier.length; i++) {     // On ajoute la quantité au produit s'il est déjà dans le panier
                 if ($localStorage.panier[i].idProduit === idProduit) {
                     $localStorage.panier[i].quantite += quantite;
                     return;
@@ -38,10 +38,10 @@ angular.module('ecMobileApp.shared').factory('panierService', function ($http, $
 
             // panier en base -> [{"idProduit" : 1, "quantite" : 3}, {"idProduit" : 2, "quantite": 5}]
 
-            // résultat de la requete de base 
+            // résultat de la requete de base
             // liste des produits -> [{id:1, libelle:"Produit 1", prix:150, image:"http://lorempixel.com/120/120" },{id:1, libelle:"Produit 1", prix:150, image:"http://lorempixel.com/120/120" }]
 
-            // resultat attendu 
+            // resultat attendu
             // liste des produits quantifiée -> [{id:1, libelle:"Produit 1", prix:150, image:"http://lorempixel.com/120/120", quantite:3},{id:1, libelle:"Produit 1", prix:150, image:"http://lorempixel.com/120/120", quantite:5}]
 
 

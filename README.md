@@ -1,6 +1,8 @@
 # ecommerce-frontend-mobile
 Application mobile
 
+Application auto déployée : http://dtaformation.github.io/ecommerce-frontend-mobile/deploy/
+
 ##Suivi du Projet
 Le projet est réalisé en suivant la méthodologie Scrum :
 * [Le Backlog du produit](https://github.com/DTAFormation/ecommerce-frontend-mobile/wiki/Backlog-Produit)
