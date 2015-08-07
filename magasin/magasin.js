@@ -32,8 +32,11 @@ angular.module('ecMobileApp.magasin').controller('magasinCtrl', function(userSer
 
     var magasinCtrl = this;
 
+    magasinCtrl.listProduits = [];
+
 	magasinCtrl.getProduits = function(){
 		magasinService.getProduits().then(function (result){
+			//console.log("magasinCtrl.listProduits = result; " + result);
 			magasinCtrl.listProduits = result;
 		});
 	};
@@ -68,14 +71,14 @@ angular.module('ecMobileApp.magasin').controller('panierCtrl', function(userServ
 
 	panierCtrl.totalPrix = 0;
 
-	function getPanier (){
+	panierCtrl.getPanier = function(){
 		panierService.getPanier().then(function (result){
 			panierCtrl.panier = result;
 			updateTotalPanier();
 		});
-	}
+	};
 
-	getPanier();
+	panierCtrl.getPanier();
 
 	function updateTotalPanier(){
 		panierCtrl.totalPrix = 0;
@@ -110,7 +113,7 @@ angular.module('ecMobileApp.magasin').controller('panierCtrl', function(userServ
 
     panierCtrl.removeFromPanier = function(idProduit) {
         panierService.removeFromPanier(idProduit);
-        getPanier();
+        panierCtrl.getPanier();
     };
 
 });
