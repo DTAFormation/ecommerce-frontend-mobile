@@ -56,6 +56,35 @@
       ],
       "type_paiement": "CB",
       "id": 2
+    },
+    {
+      "paiement": {
+        "numero": "snipo",
+        "date_validite": {
+          "month": 6,
+          "year": 2018
+        },
+        "crypto": 105
+      },
+      "prix_total": 600,
+      "panier": [
+        {
+          "id": 1,
+          "libelle": "Produit 1",
+          "prix": 150,
+          "image": "http://lorempixel.com/120/120",
+          "quantite": 2
+        },
+        {
+          "id": 2,
+          "libelle": "Produit 2",
+          "prix": 150,
+          "image": "http://lorempixel.com/120/120",
+          "quantite": 2
+        }
+      ],
+      "type_paiement": "CB",
+      "id": 3
     }
   ]
 }
