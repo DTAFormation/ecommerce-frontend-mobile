@@ -62,11 +62,14 @@ angular.module('ecMobileApp.magasin').controller('magasinCtrl', function(userSer
 
 	magasinCtrl.getDetailsProduit = function(){
 		magasinService.getDetailsProduit($routeParams.id).then(function (result){
+		//	console.log("dans magasin.js getDetailsProduit : "+$routeParams.id);
+			//console.log(result);
 			magasinCtrl.detailsProduit = result;
 		});
 	};
 
 	magasinCtrl.getDetailsProduit();
+	//console.log("Dans magasisCtrl après le get :"+magasinCtrl.detailsProduit);
 });
 
 
@@ -124,7 +127,7 @@ angular.module('ecMobileApp.magasin').controller('panierCtrl', function(userServ
     panierCtrl.effectuerPaiement = function(totalPrix){
     	payerService.setTotalPrix(totalPrix);
 		$location.path("/effectuerPaiement");
-		
+
 	};
 });
 
@@ -164,7 +167,7 @@ angular.module('ecMobileApp.magasin').controller('payerCtrl', function(userServi
 	payerCtrl.animationsEnabled = true;
 
 	payerCtrl.open = function(size){
-		
+
 		var modalInstance = $modal.open({
 			animation : payerCtrl.animationsEnabled,
 			templateUrl : '/magasin/template/modal.html',
