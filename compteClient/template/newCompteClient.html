@@ -29,8 +29,8 @@
 		<div class="form-group">
 			<label class="col-sm-2 control-label">Identifiant: </label>
 			<div class="col-sm-10">
-				<input class="form-control input-sm" name="login" placeholder="email" type="email" ng-model="newcpteCliCtrl.cpteCli.login" required ui-validate-async="{alreadyExists: 'newcpteCliCtrl.doesNotExist($modelValue)' }"> <!--attention à changer en ui-validate-async-->
-				<span ng-show="newCompteForm.login.$error.alreadyExists">invalide</span>
+				<input class="form-control input-sm" name="login" placeholder="email" type="email" ng-model="newcpteCliCtrl.cpteCli.login" required ui-validate-async="{alreadyExists: 'newcpteCliCtrl.doesNotExist($modelValue)' }" ng-model-options="{ debounce : { 'default' : 3000 } }">
+				<span ng-show="newCompteForm.login.$error.alreadyExists">cet email est déjà utilisé</span>
 				<span ng-show="newCompteForm.login.$error.email && newCompteForm.$dirty" ng.hide="newCompteForm.login.$valid || newCompteForm.$pristine">email invalide</span>
 				<span ng-show="newCompteForm.login.$error.required && newCompteForm.$dirty" ng.hide="newCompteForm.login.$valid || newCompteForm.$pristine">Champ obligatoire</span>
 				<span ng-show="newCompteForm.login.$pending">Verifying email on server...</span>
@@ -59,6 +59,7 @@
 			<br>
 			<input type="submit" value="Créer un compte" class="btn btn-primary">
 		</div>
+
 	</form>
 
 </div>
