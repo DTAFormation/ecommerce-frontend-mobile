@@ -29,18 +29,16 @@ angular.module('ecMobileApp.compteClient').controller('compteClientCtrl', functi
 });
 
 // controller pour la création d'un nouveau compte Client
-angular.module('ecMobileApp.compteClient').controller('newCompteClientCtrl', function($http, $location, $q, $modal) {
+angular.module('ecMobileApp.compteClient').controller('newCompteClientCtrl', function(compteClientService, $location, $q, $modal) {
     var newcpteCliCtrl = this;
 
     newcpteCliCtrl.asyncValidation = true;
-
-    var apiRestUrl= "http://localhost:3000/test";
 
     // fonctions de validation avec angular UI, vérification de la non existance de la donnée sur le serveur fonction asynchrone avec $q.
     newcpteCliCtrl.doesNotExist = function(value) {
 
         return $q(function(resolve, reject) {
-          $http.get(apiRestUrl+"/"+value)
+          compteClientService.getlogin(value)
             .then(function(response){
                 reject(false);
             },function(response){
@@ -71,9 +69,7 @@ angular.module('ecMobileApp.compteClient').controller('newCompteClientCtrl', fun
 
         newcpteCliCtrl.cpteCli=null;
 
-        $http.post(apiRestUrl,compteClient)
-          .then(function(response){
-
+        compteClientService.postClient(compteClient).then(function(response){
               newcpteCliCtrl.open("votre compte à bien été créé");
               $location.path("/connexion");
             },function(response) {
