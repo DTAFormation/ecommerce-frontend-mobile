@@ -32,7 +32,7 @@ angular.module('ecMobileApp.magasin').controller('magasinCtrl', function(userSer
 
     var magasinCtrl = this;
 
-	magasinCtrl.getProduits = function(){
+	magasinCtrl.getProduits=function  (){
 		magasinService.getProduits().then(function (result){
 			magasinCtrl.listProduits = result;
 		});
