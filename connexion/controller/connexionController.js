@@ -12,9 +12,13 @@ angular.module('ecMobileApp.connexion')
 			//if(form.$invalid) return;
 			
 			userService.login(userData.userLogin,userData.mdp)
-				.then(function(){
-					connexCtrl.msg="Connexion réussie, "+userService.getInfosUser().prenom+
-					" "+userService.getInfosUser().nom+" . Redirection vers la page d'accueil.";
+				.then(function(result){
+					if(result.response===200){
+						connexCtrl.msg="Connexion réussie, "+userService.getInfosUser().prenom+
+						" "+userService.getInfosUser().nom+" . Redirection vers la page d'accueil.";
+					}else{
+						connexCtrl.msg="Echec de la connexion.";
+					}
 				});
 		};
 
