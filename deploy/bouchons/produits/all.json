@@ -1,0 +1,34 @@
+[
+	{
+		"id":1,
+		"libelle":"Produit 1",
+		"prix":150,
+		"image":"http://lorempixel.com/120/120"
+	},
+	{
+		"id":2,
+		"libelle":"Produit 2",
+		"prix":150,
+		"image":"http://lorempixel.com/120/120"
+	},{
+		"id":3,
+		"libelle":"Produit 3",
+		"prix":150,
+		"image":"http://lorempixel.com/120/120"
+	},{
+		"id":4,
+		"libelle":"Produit 4",
+		"prix":150,
+		"image":"http://lorempixel.com/120/120"
+	},{
+		"id":5,
+		"libelle":"Produit 5",
+		"prix":150,
+		"image":"http://lorempixel.com/120/120"
+	},{
+		"id":6,
+		"libelle":"Produit 6",
+		"prix":150,
+		"image":"http://lorempixel.com/120/120"
+	}
+]
