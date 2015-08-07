@@ -125,9 +125,8 @@ angular.module('ecMobileApp.magasin').controller('panierCtrl', function(userServ
     };
 
     panierCtrl.effectuerPaiement = function(totalPrix){
-    	payerService.setTotalPrix(totalPrix);
+		payerService.setTotalPrix(totalPrix);
 		$location.path("/effectuerPaiement");
-
 	};
 });
 
