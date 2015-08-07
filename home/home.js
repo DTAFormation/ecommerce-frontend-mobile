@@ -30,5 +30,4 @@ angular.module('ecMobileApp.home').controller('homeCtrl', function(userService) 
 
     var self = this;
 
-
 });
