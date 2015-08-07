@@ -1,26 +1,39 @@
 angular.module('ecMobileApp.connexion')
-.controller('connexionController', function(userService){
+.controller('connexionController', function(userService, $location, $modal){
 	var connexCtrl=this;
 	connexCtrl.msg="";
-	var userData={
-		userLogin:"",
-		mdp:""
-	};
+
 	console.log("Connexion controller");
 	connexCtrl.connexion=function(form){
-			console.log("Connexion controller connexion method");
-			//if(form.$invalid) return;
+	console.log("Connexion controller connexion method");
 			
-			userService.login(userData.userLogin,userData.mdp)
-				.then(function(result){
-					if(result.response===200){
-						connexCtrl.msg="Connexion réussie, "+userService.getInfosUser().prenom+
-						" "+userService.getInfosUser().nom+" . Redirection vers la page d'accueil.";
+			
+	userService.login(connexCtrl.userData.login,connexCtrl.userData.password)
+				.then(function(){
+					if(userService.isConnected()){
+						connexCtrl.open("Connexion réussie, "+userService.getInfosUser().prenom+
+						" "+userService.getInfosUser().nom+" . Redirection vers la page d'accueil.");
+						//connexCtrl.msg="Connexion réussie, "+userService.getInfosUser().prenom+
+						//" "+userService.getInfosUser().nom+" . Redirection vers la page d'accueil.";
+						$location.path("/");
 					}else{
-						connexCtrl.msg="Echec de la connexion.";
+						connexCtrl.open("Echec de la connexion");
 					}
-				});
-		};
-
+			});
+	};
+ 	
+   connexCtrl.open = function (string) {
+       var modalInstance = $modal.open({
+       animation: true,
+       templateUrl: "connexion/template/connexionModal.tpl.html",
+       controller: "modalInstanceConnexionCtrl",
+       controllerAs: "mdlInstConnexCtrl",
+       resolve: {
+         info: function () {
+           return string;
+         }
+       }
+     });
+   };
 
 });

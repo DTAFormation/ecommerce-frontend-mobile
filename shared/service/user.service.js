@@ -11,11 +11,13 @@ angular.module('ecMobileApp.shared').service('userService', function($http, $q) 
         return connected;
     };
 
-    this.login = function(login, password) {
+    this.login = function(plogin, ppassword) {
         var userData={
-            userLogin:login,
-            userPwd:password
+            "login":plogin,
+            "password":ppassword
         };
+        
+
         return $http.post(urlLogin,userData)
             .then(function(result){
                 //Vérification de la connexion doit se faire côté serveur
