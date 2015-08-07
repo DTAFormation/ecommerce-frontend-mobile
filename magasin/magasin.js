@@ -10,17 +10,17 @@ angular.module('ecMobileApp.magasin').config(function($routeProvider) {
 
 	$routeProvider
 	.when("/magasin", {
-		templateUrl: "/magasin/template/magasin.tpl.html",
+		templateUrl: "magasin/template/magasin.tpl.html",
 		controller: "magasinCtrl",
 		controllerAs: "magasinCtrl"
 	})
 	.when("/panier", {
-		templateUrl: "/magasin/template/panier.tpl.html",
+		templateUrl: "magasin/template/panier.tpl.html",
 		controller: "panierCtrl",
 		controllerAs: "panierCtrl"
 	})
 	.when("/detailsProduit/:id", {
-		templateUrl: "/magasin/template/detailsProduit.tpl.html",
+		templateUrl: "magasin/template/detailsProduit.tpl.html",
 		controller: "magasinCtrl",
 		controllerAs: "magasinCtrl"
 	});
@@ -45,20 +45,23 @@ angular.module('ecMobileApp.magasin').controller('magasinCtrl', function(userSer
     };
 
 
-    
+
 	magasinCtrl.detailsProduit = function(idProduit){
 		$location.path("/detailsProduit/" +idProduit);
 	};
 
 	//TODO : vérifier retour des données depuis le service
-	function getDetailsProduit (){
+
+	magasinCtrl.getDetailsProduit = function(){
 		magasinService.getDetailsProduit($routeParams.id).then(function (result){
-			console.log("magasinCtrl : " + result);
-			//magasinCtrl.detailsProduit = result.data;
+			console.log("dans magasin.js getDetailsProduit : "+$routeParams.id);
+			console.log(result);
+			magasinCtrl.detailsProduit = result;
 		});
-	}
+	};
 
-
+	magasinCtrl.getDetailsProduit();
+	console.log("Dans magasisCtrl après le get :"+magasinCtrl.detailsProduit);
 });
 
 
