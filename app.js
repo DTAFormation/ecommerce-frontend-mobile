@@ -10,9 +10,9 @@ angular.module('ecMobileApp', [
     'ecMobileApp.connexion'
 ]);
 
-angular.module('ecMobileApp').config(function($routeProvider) {
+angular.module('ecMobileApp').config(function($routeProvider, $locationProvider) {
 
-
+    $locationProvider.html5Mode([true,false]);
     $routeProvider.otherwise({redirectTo:'/magasin'});
 
 });
