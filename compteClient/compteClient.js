@@ -11,14 +11,7 @@ angular.module('ecMobileApp.compteClient', [
 angular.module('ecMobileApp.compteClient').config(function($routeProvider) {
 
   $routeProvider
-
-    // consultation du compte d'un client
-    .when ("/compteClient", {
-      templateUrl: "/template/compteClient.html",
-      controller: "compteClientCtrl",
-      controllerAs: "cpteCliCtrl"
-    })
-
+  
     // routage vers la page de création de compte
     .when ("/compteClient/new", {
       templateUrl: "compteClient/template/newCompteClient.html",
