@@ -5,7 +5,7 @@ angular.module('ecMobileApp.shared').service('userService', function($http, $q) 
     var connected = false;
     var urlLogin="http://localhost:8080/ecommerce-backend/api/personne/connect";
     var msg="";
-
+    var url = "http://localhost:3000/connexion"
 
     this.isConnected = function() {
         return connected;
@@ -18,7 +18,7 @@ angular.module('ecMobileApp.shared').service('userService', function($http, $q) 
         };
         
 
-        return $http.post(urlLogin,userData)
+        return $http.post(url,userData)
             .then(function(result){
                 //Vérification de la connexion doit se faire côté serveur
                 console.log("Connexion service réussi");
