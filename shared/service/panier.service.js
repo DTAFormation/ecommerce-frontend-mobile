@@ -52,7 +52,6 @@ angular.module('ecMobileApp.shared').factory('panierService', function ($http, $
                 }
             }
         },
-
         getPanier: function (){
             var panierService = this;
             var idProduits = "";

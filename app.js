@@ -8,7 +8,7 @@ angular.module('ecMobileApp', [
     'ecMobileApp.compteClient',
     'ecMobileApp.magasin',
     'ecMobileApp.connexion'
-]);
+    ]);
 
 angular.module('ecMobileApp').config(function($routeProvider, $locationProvider) {
 
@@ -22,8 +22,9 @@ angular.module('ecMobileApp').run(function($rootScope) {
 });
 
 // Contrôleur qui pilote globalement l'application
-angular.module('ecMobileApp').controller("ecMobileCtrl", function(userService) {
+angular.module('ecMobileApp').controller("ecMobileCtrl", function(userService,panierService,$localStorage) {
     this.title = "ECommerce Mobile";
+    this.quantiteTotale = 0;
 
     this.isConnected=function(){
         return userService.isConnected();
@@ -37,4 +38,11 @@ angular.module('ecMobileApp').controller("ecMobileCtrl", function(userService) {
         userService.logout();
     };
 
+
+     this.CalculQte = function(){
+        for(var i = 0; i < $localStorage.panier.length; i++){
+            this.quantiteTotale = this.quantiteTotale + $localStorage.panier[i].quantite;
+        }
+    };
+    this.CalculQte();
 });
