@@ -79,6 +79,7 @@ angular.module('ecMobileApp.magasin').controller('panierCtrl', function(userServ
 
 	panierCtrl.totalPrix = 0;
 
+
 	function getPanier (){
 		panierService.getPanier().then(function (result){
 			panierCtrl.panier = result;
@@ -138,7 +139,7 @@ angular.module('ecMobileApp.magasin').controller('payerCtrl', function(userServi
 	var payerCtrl = this;
 	payerCtrl.totalPrix = payerService.getTotalPrix();
 	var typeCard = "CB";
-	var typeCheque = "Chèque"
+	var typeCheque = "Chèque";
 
 	function getPanier (){
 		panierService.getPanier().then(function (result){
