@@ -5,9 +5,8 @@ angular.module('ecMobileApp.connexion')
 
 	console.log("Connexion controller");
 	connexCtrl.connexion=function(form){
-	console.log("Connexion controller connexion method");
-			
-			
+	console.log("Connexion controller connexion method");	
+
 	userService.login(connexCtrl.userData.login,connexCtrl.userData.password)
 				.then(function(){
 					if(userService.isConnected()){
@@ -23,7 +22,8 @@ angular.module('ecMobileApp.connexion')
 					}
 				});
 	};
-   connexCtrl.open = function (string) {
+
+	connexCtrl.open = function (string) {
        var modalInstance = $modal.open({
        animation: true,
        templateUrl: "connexion/template/connexionModal.tpl.html",
@@ -36,5 +36,4 @@ angular.module('ecMobileApp.connexion')
        }
      });
    };
-
 });

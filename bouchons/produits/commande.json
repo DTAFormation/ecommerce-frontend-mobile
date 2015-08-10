@@ -1,0 +1,90 @@
+{
+  "test": [
+    {
+      "panier": 1350,
+      "type_paiement": [
+        {
+          "id": 1,
+          "libelle": "Produit 1",
+          "prix": 150,
+          "image": "http://lorempixel.com/120/120",
+          "quantite": 7
+        },
+        {
+          "id": 2,
+          "libelle": "Produit 2",
+          "prix": 150,
+          "image": "http://lorempixel.com/120/120",
+          "quantite": 2
+        }
+      ],
+      "paiement": {
+        "numero": "numero1",
+        "date_validite": {
+          "month": 4,
+          "year": 2016
+        },
+        "crypto": 104
+      },
+      "id": 1
+    },
+    {
+      "paiement": {
+        "numero": "nuemr7863",
+        "date_validite": {
+          "month": 3,
+          "year": 2022
+        },
+        "crypto": 103
+      },
+      "prix_total": 1350,
+      "panier": [
+        {
+          "id": 1,
+          "libelle": "Produit 1",
+          "prix": 150,
+          "image": "http://lorempixel.com/120/120",
+          "quantite": 7
+        },
+        {
+          "id": 2,
+          "libelle": "Produit 2",
+          "prix": 150,
+          "image": "http://lorempixel.com/120/120",
+          "quantite": 2
+        }
+      ],
+      "type_paiement": "CB",
+      "id": 2
+    },
+    {
+      "paiement": {
+        "numero": "snipo",
+        "date_validite": {
+          "month": 6,
+          "year": 2018
+        },
+        "crypto": 105
+      },
+      "prix_total": 600,
+      "panier": [
+        {
+          "id": 1,
+          "libelle": "Produit 1",
+          "prix": 150,
+          "image": "http://lorempixel.com/120/120",
+          "quantite": 2
+        },
+        {
+          "id": 2,
+          "libelle": "Produit 2",
+          "prix": 150,
+          "image": "http://lorempixel.com/120/120",
+          "quantite": 2
+        }
+      ],
+      "type_paiement": "CB",
+      "id": 3
+    }
+  ]
+}
