@@ -3,6 +3,7 @@
 	<table class="table table-bordered">
 		<thead>
 			<tr>
+				<td></td>
 				<td>Produit</td>
 				<td>prix / produit</td>
 				<td>Quantité</td>
@@ -10,6 +11,7 @@
 		</thead>
 		<tbody>
 			<tr ng-repeat="produit in payerCtrl.panier | orderBy : 'id'">
+				<td><img src="{{produit.image}}"></td>
 				<td>{{produit.libelle}}</td>
 				<td>{{produit.prix}}</td>
 				<td>{{produit.quantite}}</td>

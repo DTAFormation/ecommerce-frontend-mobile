@@ -1,6 +1,7 @@
 angular.module('ecMobileApp.shared').factory('panierService', function ($http, $localStorage) {
 
     var apiRestUrl = "";
+    var quantiteTotale = 0;
 
     return {
         addToPanier: function(idProduit, quantite) {
@@ -54,6 +55,17 @@ angular.module('ecMobileApp.shared').factory('panierService', function ($http, $
                 });
                 return result.data;
             });
+        },
+
+        CalculQte : function(){
+            if($localStorage.panier){
+            Object.keys($localStorage.panier).forEach(function(key){
+                quantiteTotale = quantiteTotale + Object.getOwnPropertyDescriptor($localStorage.panier, key).value;
+            });     
+        }
+        console.log("return quantiteTotale"+quantiteTotale);
+        return quantiteTotale;
+
         }
     };
 

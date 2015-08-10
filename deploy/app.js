@@ -40,6 +40,7 @@ angular.module('ecMobileApp').run(function($rootScope, $location, userService) {
 // Contrôleur qui pilote globalement l'application
 angular.module('ecMobileApp').controller("ecMobileCtrl", function(userService,panierService,$localStorage) {
     var ecMobileCtrl = this;
+    var quantiteTotale =0;
 
     ecMobileCtrl.title = "ECommerce Mobile";
     ecMobileCtrl.quantiteTotale = 0;
@@ -52,13 +53,8 @@ angular.module('ecMobileApp').controller("ecMobileCtrl", function(userService,pa
         userService.logout();
     };
 
-
     ecMobileCtrl.CalculQte = function(){
-        if($localStorage.panier){
-            Object.keys($localStorage.panier).forEach(function(key){
-                ecMobileCtrl.quantiteTotale = ecMobileCtrl.quantiteTotale + Object.getOwnPropertyDescriptor($localStorage.panier, key).value;
-            });     
-        }
+        ecMobileCtrl.quantiteTotale  = panierService.CalculQte();
     };
 
     ecMobileCtrl.CalculQte();
