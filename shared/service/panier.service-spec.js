@@ -21,12 +21,7 @@ describe("Test du panierService", function() {
 
         panierService.addToPanier(1,1);
         panierService.addToPanier(1,1);
-        
-        // anciens tests
-        expect($localStorage.panier[0].idProduit).toEqual(1);
-        expect($localStorage.panier[0].quantite).toEqual(2);
 
-        // nouveaux tests
         expect($localStorage.panier).toEqual({"1":2});
         expect(Object.keys($localStorage.panier).length).toEqual(1);
         expect(Object.keys($localStorage.panier)).toEqual(["1"]);
