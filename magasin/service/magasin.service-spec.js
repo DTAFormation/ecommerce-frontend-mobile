@@ -24,7 +24,7 @@ describe("Test du magasinService", function() {
 		$httpBackend.flush();
 	}));
 
-<<<<<<< HEAD
+
 	var mockProduit1 = [{id : 1, 
 		libelle:"Produit 1",
 		prix:150,
@@ -55,7 +55,7 @@ describe("Test du magasinService", function() {
 
 		
 	}));
-=======
+
 	// it("Afficher détail d'un produit", inject(function(magasinService, $httpBackend){
 	//
 	// 	$httpBackend.expectGET('bouchons/produits/all.json').respond(200, mockProduits);
@@ -68,7 +68,7 @@ describe("Test du magasinService", function() {
 	// 	});
 	// 	$httpBackend.flush();
 	// }));
->>>>>>> master
+
 
 	
 	

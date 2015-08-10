@@ -8,24 +8,24 @@ angular.module('ecMobileApp', [
     'ecMobileApp.compteClient',
     'ecMobileApp.magasin',
     'ecMobileApp.connexion'
-<<<<<<< HEAD
 ]);
 
 angular.module('ecMobileApp').config(function($routeProvider) {
-    $routeProvider.when('/secure', {
-        auth: function(user){
-            return user;
-        }
-    })
-    .otherwise({redirectTo:'/magasin'});
+    $routeProvider.otherwise({redirectTo:'/magasin'});
 
 });
 
-angular.module('ecMobileApp').run(function($rootScope, $location) {
+angular.module('ecMobileApp').run(function($rootScope, $location, userService) {
     // register listener to watch route changes
-    /*$rootScope.$on( "$routeChangeStart", function(event, next, current) {
-        if($next.templateUrl===""){
-            if ( $rootScope.loggedUser == null ) {
+    $rootScope.$on( "$routeChangeStart", function(event, next, current) {
+        //console.log("routeChange");
+        var url=next.$$route.originalPath;
+        //console.log("url "+url);
+        var regExp=new RegExp("/secure/*");
+        if(regExp.test(url)){
+            //console.log("reg exp match");
+            //if ( $rootScope.loggedUser == null ) {
+            if ( !userService.isConnected() ) {
                 // no logged user, we should be going to #login
                 if ( next.templateUrl === "connexion/template/connexion.tpl.html" ) {
                 // already going to #login, no redirect needed
@@ -35,14 +35,14 @@ angular.module('ecMobileApp').run(function($rootScope, $location) {
                 }
             }
         }
-    });*/
-    $rootScope.$on('$routeChangeStart', function (ev, next, curr) {
+    });
+    /*$rootScope.$on('$routeChangeStart', function (ev, next, curr) {
         if (next.$$route) {
             var user = $rootScope.user;
             var auth = next.$$route.auth;
             if (auth && !auth(user)) { $location.path('/'); }
         }
-    });
+    });*/
 });
 
 
@@ -70,5 +70,5 @@ angular.module('ecMobileApp').controller("ecMobileCtrl", function(userService,pa
             this.quantiteTotale = this.quantiteTotale + $localStorage.panier[i].quantite;
         }
     };
-    this.CalculQte();
+    //this.CalculQte();
 });
