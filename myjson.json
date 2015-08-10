@@ -1,1 +1,98 @@
-[{"login" :"root",  "mdp":"", "nom":"root","prenom":"root"}]
+{
+  "connexion": [
+    {
+      "login": "root",
+      "mdp": "",
+      "nom": "root",
+      "prenom": "root"
+    },
+    {
+      "login": "root",
+      "id": "7ef9ca3e-d043-44f4-8d5d-258f96a017c4"
+    },
+    {
+      "login": "root",
+      "id": "0372a0d5-d1cd-4c88-893b-5cf4cbbadc40"
+    },
+    {
+      "login": "root",
+      "id": "90ee7edb-6e42-432e-b1a5-268012ab7425"
+    },
+    {
+      "login": "root",
+      "id": "d9a7af80-8148-4055-98ab-a1e13e0ae93c"
+    },
+    {
+      "login": "root",
+      "id": "3a7432f2-9151-4db3-8946-542bb4f7ffe8"
+    },
+    {
+      "login": "root",
+      "id": "5500b30d-987e-4a16-886c-5cac314b36d9"
+    },
+    {
+      "login": "root",
+      "id": "52a48477-0cb0-4421-9d51-67e6b42c63e7"
+    },
+    {
+      "login": "root",
+      "id": "dec3c061-454f-448a-8ac1-055b91487206"
+    },
+    {
+      "login": "root",
+      "id": "cac09328-c9db-4f26-b1a2-6fda1492ca97"
+    },
+    {
+      "login": "root",
+      "id": "b28571c6-6948-43b2-bc0e-976bb5d9e2d6"
+    },
+    {
+      "login": "root",
+      "id": "6823a137-7780-4bf6-88b4-8dcb7fee4580"
+    },
+    {
+      "login": "root",
+      "id": "11a8e6f5-8205-4919-a1c1-d9b4a4c972bc"
+    },
+    {
+      "login": "root",
+      "id": "35619e37-7c20-4919-b249-4bcf556c805f"
+    },
+    {
+      "login": "root",
+      "id": "6f684ce9-a382-4c94-847f-f87115f15a20"
+    },
+    {
+      "login": "root",
+      "id": "aff9e157-c560-46bc-a60d-06d9ad2fc419"
+    },
+    {
+      "login": "root",
+      "id": "a8e5c75b-cccc-46fe-b841-6c2a7fb3e84d"
+    }
+  ],
+  "commande": [
+    {
+      "user_id": "d9a7af80-8148-4055-98ab-a1e13e0ae93c",
+      "prix_total": 1050,
+      "panier": [
+        {
+          "id": 1,
+          "libelle": "Produit 1",
+          "prix": 150,
+          "image": "http://lorempixel.com/120/120",
+          "quantite": 2
+        },
+        {
+          "id": 2,
+          "libelle": "Produit 2",
+          "prix": 150,
+          "image": "http://lorempixel.com/120/120",
+          "quantite": 5
+        }
+      ],
+      "type_paiement": "Chèque",
+      "id": 1
+    }
+  ]
+}

@@ -108,6 +108,7 @@
 		</tbody>
 	</table>
 	
-	<button class="btn btn-success" ng-click="panierCtrl.effectuerPaiement(panierCtrl.totalPrix)">Payer</button>
+	<button ng-show="panierCtrl.isConnected()" class="btn btn-success" ng-click="panierCtrl.effectuerPaiement(panierCtrl.totalPrix)">Payer</button>
+	{{panierCtrl.quantiteTotale}}
 </div>
 </div>
