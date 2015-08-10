@@ -73,7 +73,7 @@ angular.module('ecMobileApp.magasin').controller('magasinCtrl', function(userSer
 });
 
 
-angular.module('ecMobileApp.magasin').controller('panierCtrl', function(userService, panierService,payerService,$location) {
+angular.module('ecMobileApp.magasin').controller('panierCtrl', function(userService, panierService,payerService,$location,$route) {
 
 	var panierCtrl = this;
 
@@ -125,7 +125,7 @@ angular.module('ecMobileApp.magasin').controller('panierCtrl', function(userServ
 
     panierCtrl.effectuerPaiement = function(totalPrix){
 		payerService.setTotalPrix(totalPrix);
-		$location.path("/effectuerPaiement");
+		$location.path("/secure/effectuerPaiement");
 	};
 
 	this.isConnected=function(){

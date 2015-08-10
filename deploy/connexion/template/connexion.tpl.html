@@ -1,8 +1,10 @@
 <div class="container">
-	<form ng-submit="connexCtrl.connexion(connexionForm)" name="connexionForm" novalidate>
-		Login* : <input class="form-control input-sm" type="text" name="loginConnexion" required ng-model="connexCtrl.userData.login"><br>
-	  	Mot de passe: <input class="form-control input-sm" type="text" name="mdpConnexion" required ng-model="connexCtrl.userData.password"><br>
-	  	{{connexCtrl.msg}}
-	  	<input type="submit" value="Connexion">
-	</form>
+	<div class="form-group">
+		<form ng-submit="connexCtrl.connexion(connexionForm)" name="connexionForm" novalidate>
+			Login* : <input class="form-control input-sm" type="text" name="loginConnexion" required ng-model="connexCtrl.userData.login">
+		  	Mot de passe: <input class="form-control input-sm" type="password" name="mdpConnexion" required ng-model="connexCtrl.userData.password">
+		  	{{connexCtrl.msg}}
+		  	<input type="submit" value="Connexion">
+		</form>
+	</div>
 </div>
