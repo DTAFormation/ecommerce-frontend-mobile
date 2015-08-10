@@ -80,49 +80,47 @@ angular.module('ecMobileApp.magasin').controller('panierCtrl', function(userServ
 	panierCtrl.totalPrix = 0;
 
 
-	function getPanier (){
+	panierCtrl.getPanier = function(){
 		panierService.getPanier().then(function (result){
 			panierCtrl.panier = result;
-			updateTotalPanier();
+			panierCtrl.updateTotalPanier();
 		});
-	}
-
-	getPanier();
-
-	function updateTotalPanier(){
-		panierCtrl.totalPrix = 0;
-		for(var i = 0; i < panierCtrl.panier.length; i++){
-			panierCtrl.totalPrix = panierCtrl.totalPrix + (panierCtrl.panier[i].prix * panierCtrl.panier[i].quantite);
-		}
-	}
-
-	panierCtrl.diminuerQuantite = function (id_produit){
-		for(var i = 0; i < panierCtrl.panier.length; i++){
-			if(panierCtrl.panier[i].id === id_produit){
-				if(panierCtrl.panier[i].quantite > 0){
-					panierCtrl.panier[i].quantite -= 1;
-					panierService.addToPanier(panierCtrl.panier[i].id, -1);
-				}
-				break;
-			}
-		}
-		updateTotalPanier();
 	};
 
-	panierCtrl.augmenterQuantite = function (id_produit){
-		for(var i = 0; i < panierCtrl.panier.length; i++){
-			if(panierCtrl.panier[i].id === id_produit){
-				panierCtrl.panier[i].quantite += 1;
-				panierService.addToPanier(panierCtrl.panier[i].id, 1);
-				break;
+	panierCtrl.getPanier();
+
+	panierCtrl.updateTotalPanier = function(){
+		panierCtrl.totalPrix = 0;
+		panierCtrl.panier.forEach(function(produit){
+			panierCtrl.totalPrix = panierCtrl.totalPrix + (produit.prix * produit.quantite);
+		});
+	};
+
+	panierCtrl.diminuerQuantite = function(id_produit){
+		panierCtrl.panier.forEach(function(produit){
+			if(produit.id === id_produit){
+				if(produit.quantite > 0){
+					produit.quantite -= 1;
+					panierService.addToPanier(produit.id, -1);
+				}
 			}
-		}
-		updateTotalPanier();
+		});
+		panierCtrl.updateTotalPanier();
+	};
+
+	panierCtrl.augmenterQuantite = function(id_produit){
+		panierCtrl.panier.forEach(function(produit){
+			if(produit.id === id_produit){
+				produit.quantite += 1;
+				panierService.addToPanier(produit.id, 1);
+			}
+		});
+		panierCtrl.updateTotalPanier();
 	};
 
     panierCtrl.removeFromPanier = function(idProduit) {
         panierService.removeFromPanier(idProduit);
-        getPanier();
+        panierCtrl.getPanier();
     };
 
     panierCtrl.effectuerPaiement = function(totalPrix){
