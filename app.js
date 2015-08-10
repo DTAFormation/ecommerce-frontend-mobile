@@ -11,20 +11,17 @@ angular.module('ecMobileApp', [
 ]);
 
 angular.module('ecMobileApp').config(function($routeProvider) {
-    $routeProvider.otherwise({redirectTo:'/magasin'});
 
+    $routeProvider.otherwise({redirectTo:'/magasin'});
 });
 
 angular.module('ecMobileApp').run(function($rootScope, $location, userService) {
     // register listener to watch route changes
-    $rootScope.$on( "$routeChangeStart", function(event, next, current) {
-        //console.log("routeChange");
+    $rootScope.$on("$routeChangeStart", function(event, next, current) {
+    
         var url=next.$$route.originalPath;
-        //console.log("url "+url);
         var regExp=new RegExp("/secure/*");
         if(regExp.test(url)){
-            //console.log("reg exp match");
-            //if ( $rootScope.loggedUser == null ) {
             if ( !userService.isConnected() ) {
                 // no logged user, we should be going to #login
                 if ( next.templateUrl === "connexion/template/connexion.tpl.html" ) {
@@ -36,13 +33,6 @@ angular.module('ecMobileApp').run(function($rootScope, $location, userService) {
             }
         }
     });
-    /*$rootScope.$on('$routeChangeStart', function (ev, next, curr) {
-        if (next.$$route) {
-            var user = $rootScope.user;
-            var auth = next.$$route.auth;
-            if (auth && !auth(user)) { $location.path('/'); }
-        }
-    });*/
 });
 
 
@@ -56,9 +46,6 @@ angular.module('ecMobileApp').controller("ecMobileCtrl", function(userService,pa
         return userService.isConnected();
     };
 
-    this.getInfosUser=function(){
-        return userService.getInfosUser();
-    };
 
     this.logout=function(){
         userService.logout();
