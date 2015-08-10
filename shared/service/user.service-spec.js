@@ -16,11 +16,11 @@ describe('userServiceTest', function() {
 				expect(postdata.login).toBe(mockUser[0].login);
 				expect(postdata.password).toBe(mockUser[0].password);
 				expect(postdata.id).toBe(mockUser[0].id);
+				expect(userService.isConnected()).toBe(true);
+
 		}).respond(200, true);
 		
-		/*var modalConnexionCtrl=$controller("modalInstanceConnectionCtrl");
-		modalConnexionCtrl.mdlInstConnexCtrl.info="hop";
-		spyOn(modalConnexionCtrl,'open');*/
+		/**/
 
 
 	}));
