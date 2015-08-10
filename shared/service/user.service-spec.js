@@ -6,8 +6,7 @@ describe('userServiceTest', function() {
         module("ecMobileApp.shared");
     });
 
-    it("Connecte un utilisateur", inject(function(userService, $httpBackend, $q, $controller){
-		//var userConnect={login:"truc",password:"machin"};
+    it("Connecte un utilisateur", inject(function(userService, $httpBackend, $controller){
 		
 		$httpBackend.when('POST', 'http://localhost:8080/ecommerce-backend/api/personne/connect',
 			function(postdata){
@@ -19,10 +18,6 @@ describe('userServiceTest', function() {
 				expect(userService.isConnected()).toBe(true);
 
 		}).respond(200, true);
-		
-		/**/
-
-
 	}));
 
 });

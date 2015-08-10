@@ -43,17 +43,7 @@ describe("Test du magasinService", function() {
 			expect(result.id===2).toBe(false);
 			expect(result.libelle==="Produit 2").toBe(false);
 		});
-
-		/*var service=magasinService;
-		spyOn(service,'getDetailsProduit');*/
-		
-
-		
 		$httpBackend.flush();
-		//expect(service.getDetailsProduit).toHaveBeenCalled();
-
-
-		
 	}));
 
 	// it("Afficher détail d'un produit", inject(function(magasinService, $httpBackend){

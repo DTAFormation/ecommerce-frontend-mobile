@@ -2,7 +2,7 @@ angular.module('ecMobileApp.shared').service('userService', function($http, $loc
     var that=this;
 
     var connected = false;
-    var urlLogin="http://localhost:8080/ecommerce-backend/api/personne/connect";
+    var urlLogin="http://localhost:8080/ecommerce-backend/api/user/connect";
 
     this.isConnected = function() {
         if($localStorage.infosUser){
