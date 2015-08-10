@@ -38,11 +38,8 @@ angular.module('ecMobileApp').controller("ecMobileCtrl", function(userService,pa
         userService.logout();
     };
 
-
-     this.CalculQte = function(){
-        for(var i = 0; i < $localStorage.panier.length; i++){
-            this.quantiteTotale = this.quantiteTotale + $localStorage.panier[i].quantite;
-        }
+    this.CalculQte = function(){
+        this.quantiteTotale = panierService.CalculQte();
     };
     this.CalculQte();
 });

@@ -1,6 +1,6 @@
 angular.module('ecMobileApp.magasin')
 
-.factory('payerService', function ($http, $localStorage) {
+.factory('payerService', function ($http) {
 	var apiRestUrl = "http://localhost:3000/commande";
 	var totalPrix = 0;
 	return {
