@@ -13,7 +13,7 @@ describe("Test des controllers du module magasin", function() {
 	});  
 
 
-	it("magasinCtrl : Récupérer tous les produits", inject(function($controller, $httpBackend, magasinService/*, mockUtils*/) {
+	it("magasinCtrl : Récupérer tous les produits", inject(function($controller, magasinService/*, mockUtils*/) {
 		   
 		/* var magasinCtrl = $controller("magasinCtrl", { magasinService: {
 			getProduits : function(){ 
@@ -33,9 +33,17 @@ describe("Test des controllers du module magasin", function() {
 		expect(magasinCtrl.listProduits[1]).toEqual({id : 2, libelle : "Produit 2", prix : 150, image : "http://lorempixel.com/120/120"});
 	}));
 
-	/*it("panierCtrl : Récupérer tous les produits du panier", inject(function($controller, $localStorage){
+	/*it("panierCtrl : Récupérer tous les produits du panier", inject(function($controller, $localStorage, panierService){
+		$localStorage.panier = {"1" : 2, "2" : 2};
+
+		mockPromisePanier = {
+					then : function(fn){
+						
+					}
+		};
+
+		spyOn(panierService, "getPanier").and.returnValue(mockPromise);
 		var panierCtrl = $controller("panierCtrl");
-		panierCtrl.panier = [];
 		panierCtrl.getPanier();
 		console.log(panierCtrl.panier);
 		for(var i=0; i<panierCtrl.panier.length ; i++){
