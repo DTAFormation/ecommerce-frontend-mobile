@@ -70,5 +70,5 @@ angular.module('ecMobileApp').controller("ecMobileCtrl", function(userService,pa
             this.quantiteTotale = this.quantiteTotale + $localStorage.panier[i].quantite;
         }
     };
-    //this.CalculQte();
+    this.CalculQte();
 });
