@@ -1,5 +1,5 @@
 angular.module('ecMobileApp.connexion')
-.controller('connexionController', function(userService, $location, $modal){
+.controller('connexionController', function(userService, $location, $modal, $rootScope){
 	var connexCtrl=this;
 	connexCtrl.msg="";
 
@@ -8,20 +8,22 @@ angular.module('ecMobileApp.connexion')
 	console.log("Connexion controller connexion method");	
 
 	userService.login(connexCtrl.userData.login,connexCtrl.userData.password)
-		.then(function(){
-			if(userService.isConnected()){
-				connexCtrl.open("Connexion réussie, "+userService.getInfosUser().prenom+
-				" "+userService.getInfosUser().nom+" . Redirection vers la page d'accueil.");
-				//connexCtrl.msg="Connexion réussie, "+userService.getInfosUser().prenom+
-				//" "+userService.getInfosUser().nom+" . Redirection vers la page d'accueil.";
-				$location.path("/");
-			}else{
-				connexCtrl.open("Echec de la connexion");
-			}
-		});
+				.then(function(){
+					if(userService.isConnected()){
+						connexCtrl.open("Connexion réussie, "+userService.getInfosUser().prenom+
+						" "+userService.getInfosUser().nom+" . Redirection vers la page d'accueil.");
+						//connexCtrl.msg="Connexion réussie, "+userService.getInfosUser().prenom+
+						//" "+userService.getInfosUser().nom+" . Redirection vers la page d'accueil.";
+						$rootScope.loggedUser=userService.getInfosUser();
+						$location.path("/");
+						
+					}else{
+						connexCtrl.open("Echec de la connexion");
+					}
+				});
 	};
 
-   connexCtrl.open = function (string) {
+	connexCtrl.open = function (string) {
        var modalInstance = $modal.open({
        animation: true,
        templateUrl: "connexion/template/connexionModal.tpl.html",
@@ -34,5 +36,4 @@ angular.module('ecMobileApp.connexion')
        }
      });
    };
-
 });

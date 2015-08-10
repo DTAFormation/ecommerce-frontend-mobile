@@ -24,6 +24,38 @@ describe("Test du magasinService", function() {
 		$httpBackend.flush();
 	}));
 
+
+	var mockProduit1 = [{id : 1, 
+		libelle:"Produit 1",
+		prix:150,
+		image:"http://lorempixel.com/120/120" }];
+
+	it("Afficher détail d'un produit", inject(function(magasinService, $httpBackend){
+
+		$httpBackend.expectGET('bouchons/produits/produit1.json').respond(200, mockProduit1);
+
+		magasinService.getDetailsProduit(1).then(function(result){
+			expect(result.id).toBe(mockProduit1[0].id);
+			expect(result.libelle).toBe(mockProduit1[0].libelle);
+			expect(result.prix).toBe(mockProduit1[0].prix);
+			expect(result.image).toBe(mockProduit1[0].image);
+
+			expect(result.id===2).toBe(false);
+			expect(result.libelle==="Produit 2").toBe(false);
+		});
+
+		/*var service=magasinService;
+		spyOn(service,'getDetailsProduit');*/
+		
+
+		
+		$httpBackend.flush();
+		//expect(service.getDetailsProduit).toHaveBeenCalled();
+
+
+		
+	}));
+
 	// it("Afficher détail d'un produit", inject(function(magasinService, $httpBackend){
 	//
 	// 	$httpBackend.expectGET('bouchons/produits/all.json').respond(200, mockProduits);
@@ -36,5 +68,9 @@ describe("Test du magasinService", function() {
 	// 	});
 	// 	$httpBackend.flush();
 	// }));
+
+
+	
+	
 
 });
