@@ -6,5 +6,5 @@ angular.module('ecMobileApp.connexion')
 
 	 mdlInstConnexCtrl.ok = function () {
 	   $modalInstance.close();
- 	};
+	};
 });

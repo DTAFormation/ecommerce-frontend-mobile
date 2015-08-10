@@ -1,6 +1,6 @@
 angular.module('ecMobileApp.shared').service('userService', function($http, $q) {
     var that=this;
-    that.infosUser=[];
+    that.infosUser={};
 
     var connected = false;
     var urlLogin="http://localhost:8080/ecommerce-backend/api/personne/connect";
@@ -24,8 +24,9 @@ angular.module('ecMobileApp.shared').service('userService', function($http, $q) 
                 console.log("Connexion service réussi");
                 connected=true;
                 that.infosUser=result.data;
+
                 })
-            .catch(function(result){
+            .catch(function(){
                 console.log("Echec post connexion");
             });
     };
