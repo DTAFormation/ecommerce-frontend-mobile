@@ -32,6 +32,10 @@ angular.module('ecMobileApp').run(function($rootScope, $location, userService) {
                 }
             }
         }
+        var regExp2=new RegExp("/connexion");
+        if(regExp2.test(url) && userService.isConnected()){
+            $location.path("/");
+        }
     });
 });
 
