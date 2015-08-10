@@ -1,13 +1,13 @@
-angular.module('ecMobileApp.shared').service('userService', function($http, $q) {
+angular.module('ecMobileApp.shared').service('userService', function($http, $localStorage) {
     var that=this;
-    that.infosUser=[];
 
     var connected = false;
     var urlLogin="http://localhost:8080/ecommerce-backend/api/personne/connect";
-    var msg="";
-    var url = "http://localhost:3000/connexion";
 
     this.isConnected = function() {
+        if($localStorage.infosUser){
+            connected=true;
+        }
         return connected;
     };
 
@@ -17,24 +17,22 @@ angular.module('ecMobileApp.shared').service('userService', function($http, $q) 
             "password":ppassword
         };
         
-
-        return $http.post(url,userData)
+        return $http.post(urlLogin,userData)
             .then(function(result){
-                //Vérification de la connexion doit se faire côté serveur
-                console.log("Connexion service réussi");
                 connected=true;
-                that.infosUser=result.data;
-                })
-            .catch(function(result){
-                console.log("Echec post connexion");
+                if(!$localStorage.infosUser){
+                    $localStorage.infosUser={};
+                }
+                $localStorage.infosUser=result.data;
+            })
+            .catch(function(){
+
             });
     };
 
     this.logout = function() {
         connected=false;
+        delete $localStorage.infosUser;
     };
 
-    this.getInfosUser=function(){
-        return that.infosUser;
-    };
 });

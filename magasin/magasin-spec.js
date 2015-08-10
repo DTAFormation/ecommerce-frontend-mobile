@@ -3,9 +3,28 @@ describe("Test des controllers du module magasin", function() {
 	var mockProduits = [{id : 1, libelle : "Produit 1", prix : 150, image : "http://lorempixel.com/120/120"}, {id : 2, libelle : "Produit 2", prix : 150, image : "http://lorempixel.com/120/120"}];
 
 	var mockPromise =  {
-					then : function(fn) {
-						fn(mockProduits);
-					}};
+		then : function(fn) {
+			fn(mockProduits);
+		}
+	};
+
+	var mockPanier = [{id : 1, libelle : "Produit 1", prix : 150, image : "http://lorempixel.com/120/120", quantite : 2}, {id : 2, libelle : "Produit 2", prix : 150, image : "http://lorempixel.com/120/120", quantite : 2}];
+
+	var mockLocalStorage = {"1" : 2, "2" : 2};
+
+	var mockPromisePanier = {
+		then : function(fn){
+			fn(mockPanier);
+		}
+	};
+
+	var mockRemovedPanier = [{id : 1, libelle : "Produit 1", prix : 150, image : "http://lorempixel.com/120/120", quantite : 2}];
+
+	var mockPromiseRemovedPanier = {
+		then : function(fn){
+			fn(mockRemovedPanier);
+		}
+	};
 
     beforeEach(function() {
 		module("ecMobileApp.magasin");
@@ -13,17 +32,7 @@ describe("Test des controllers du module magasin", function() {
 	});  
 
 
-	it("magasinCtrl : Récupérer tous les produits", inject(function($controller, $httpBackend, magasinService/*, mockUtils*/) {
-		   
-		/* var magasinCtrl = $controller("magasinCtrl", { magasinService: {
-			getProduits : function(){ 
-				return {
-					then : function(fn) {
-						fn(mockProduits);
-					}
-				};
-			}
-		}}); */
+	it("magasinCtrl : Récupérer tous les produits", inject(function($controller, magasinService/*, mockUtils*/) {
 
 		//spyOn(magasinService, "getProduits").and.returnValue(mockUtils.mockPromiseProduits);
 		spyOn(magasinService, "getProduits").and.returnValue(mockPromise);
@@ -33,15 +42,51 @@ describe("Test des controllers du module magasin", function() {
 		expect(magasinCtrl.listProduits[1]).toEqual({id : 2, libelle : "Produit 2", prix : 150, image : "http://lorempixel.com/120/120"});
 	}));
 
-	/*it("panierCtrl : Récupérer tous les produits du panier", inject(function($controller, $localStorage){
+	it("panierCtrl : Récupérer tous les produits du panier", inject(function($controller, $localStorage, panierService){
+
+		$localStorage.panier2 = mockLocalStorage;
+		$localStorage.panier = [];
+
 		var panierCtrl = $controller("panierCtrl");
-		panierCtrl.panier = [];
+		spyOn(panierService, "getPanier").and.returnValue(mockPromisePanier);
+		var totalPrix = 0;
 		panierCtrl.getPanier();
-		console.log(panierCtrl.panier);
-		for(var i=0; i<panierCtrl.panier.length ; i++){
-			expect($localStorage.panier[i].idProduit).toEqual(panierCtrl.panier[i].id);
-			expect($localStorage.panier[i].quantite).toEqual(panierCtrl.panier[i].quantite);
-		}
-	}));*/
+		expect(panierCtrl.panier.length).toEqual(Object.keys($localStorage.panier2).length);
+		panierCtrl.panier.forEach(function (produit, index, array){
+			expect(produit.quantite).toEqual(Object.getOwnPropertyDescriptor($localStorage.panier2, JSON.stringify(produit.id)).value);
+			totalPrix += produit.quantite * produit.prix;
+		});
+		expect(panierCtrl.totalPrix).toEqual(totalPrix);
+	}));
+
+	it("panierCtrl : Modifier la quantité d'un produit du panier", inject(function($controller, $localStorage, panierService){
+
+		$localStorage.panier2 = mockLocalStorage;
+		$localStorage.panier = [];
+
+		var panierCtrl = $controller("panierCtrl");
+		spyOn(panierService, "getPanier").and.returnValue(mockPromisePanier);
+		panierCtrl.getPanier();
+		var ancienTotalPrix = panierCtrl.totalPrix;
+		var ancienneQuantite1 = panierCtrl.panier[0].quantite;
+		var ancienneQuantite2 = panierCtrl.panier[1].quantite;
+		panierCtrl.augmenterQuantite(1);
+		panierCtrl.diminuerQuantite(2);
+		expect(panierCtrl.panier[0].quantite).toEqual(ancienneQuantite1 + 1);
+		expect(panierCtrl.panier[1].quantite).toEqual(ancienneQuantite2 - 1);
+		expect(panierCtrl.totalPrix).toEqual(ancienTotalPrix + panierCtrl.panier[0].prix - panierCtrl.panier[1].prix);
+	}));
+
+	it("panierCtrl : Retirer un produit du panier", inject(function($controller, $localStorage, panierService){
+
+		$localStorage.panier2 = mockLocalStorage;
+		$localStorage.panier = [];
+
+		var panierCtrl = $controller("panierCtrl");
+		spyOn(panierService, "getPanier").and.returnValue(mockPromiseRemovedPanier);
+		panierCtrl.removeFromPanier(2);
+		expect(panierCtrl.panier.length).toEqual(mockPanier.length - 1);
+		expect(panierCtrl.totalPrix).toEqual(mockRemovedPanier[0].prix * mockRemovedPanier[0].quantite);
+	}));
 
 });
