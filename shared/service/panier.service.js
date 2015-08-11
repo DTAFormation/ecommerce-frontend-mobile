@@ -1,6 +1,6 @@
 angular.module('ecMobileApp.shared').factory('panierService', function ($http, $localStorage,$rootScope) {
 
-    var apiRestUrl = "http://localhost:8082/ecommerce-backend/api";
+    var apiRestUrl = "http://5.196.89.85:9080/ec-backend/api";
     var quantiteTotale = 0;
 
     return {
