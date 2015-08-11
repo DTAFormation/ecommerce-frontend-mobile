@@ -25,7 +25,7 @@ angular.module('ecMobileApp.magasin').config(function($routeProvider) {
 		controllerAs: "magasinCtrl"
 	})
 	.when("/secure/effectuerPaiement", {
-		templateUrl: "/magasin/template/effectuerPaiement.tpl.html",
+		templateUrl: "magasin/template/effectuerPaiement.tpl.html",
 		controller: "payerCtrl",
 		controllerAs: "payerCtrl"
 	});
@@ -62,14 +62,11 @@ angular.module('ecMobileApp.magasin').controller('magasinCtrl', function(userSer
 
 	magasinCtrl.getDetailsProduit = function(){
 		magasinService.getDetailsProduit($routeParams.id).then(function (result){
-		//	console.log("dans magasin.js getDetailsProduit : "+$routeParams.id);
-			//console.log(result);
-			magasinCtrl.detailsProduit = result;
+			magasinCtrl.produitSelectionne = result;
 		});
 	};
 
 	magasinCtrl.getDetailsProduit();
-	//console.log("Dans magasisCtrl après le get :"+magasinCtrl.detailsProduit);
 });
 
 
