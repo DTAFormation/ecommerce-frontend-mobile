@@ -8,7 +8,7 @@
 			<tr ng-repeat="produit in panierCtrl.panier | orderBy : 'id'">
 				<td class="text-center">
 					<div class="miniatureContainer">
-						<img ng-src="{{produit.image}}"/>
+						<img ng-src="{{produit.image}}" class="imgMini"/>
 					</div>
 					<button class="btn btn-danger removeButton">
 						<span class="glyphicon glyphicon-remove" aria-hidden="true" ng-click="panierCtrl.removeFromPanier(produit.id)"></span>

@@ -56,7 +56,7 @@ describe("Test du panierService", function() {
 
         $localStorage.panier = {"1" : 3, "2" : 4};
 
-        $httpBackend.expectGET('bouchons/produits/produitByIds1&2.json').respond(200, mockProduits);
+        $httpBackend.expectGET('http://5.196.89.85:9080/ec-backend/api/produit/byIds/1,2').respond(200, mockProduits);
 
         panierService.getPanier().then(function (result){
             expect(result.length).toBe(mockProduits.length);
