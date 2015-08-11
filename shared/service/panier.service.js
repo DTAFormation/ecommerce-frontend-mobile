@@ -40,15 +40,14 @@ angular.module('ecMobileApp.shared').factory('panierService', function ($http, $
             }
 
             // Objectif -> passer du panier { "1" : 2, "2" : 3 } à "1&2&3" pour envoyer une liste d'id en paramètre de requete
-            // voir pour remplacer la concaténation par un array.reduce
-            Object.keys($localStorage.panier).forEach(function (key, index, array){
-                idProduits = idProduits + key;
-                if(index+1 < array.length){
-                    idProduits = idProduits + "&";
-                }
+            var ids = [];
+            Object.keys($localStorage.panier).forEach(function (key){
+                ids.push(key);
             });
 
-            return $http.get("bouchons/produits/produitByIds" + idProduits + ".json")
+            console.log("http://localhost:8082/ecommerce-backend/api/produit?ids=" + ids + "");
+
+            return $http.get(apiRestUrl + "/produit?ids=" + ids)
             .then(function (result){
                 result.data.forEach(function (produit, index, array){
                     produit.quantite = Object.getOwnPropertyDescriptor($localStorage.panier, JSON.stringify(produit.id)).value;

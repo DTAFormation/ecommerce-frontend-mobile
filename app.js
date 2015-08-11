@@ -12,7 +12,7 @@ angular.module('ecMobileApp', [
 
 angular.module('ecMobileApp').config(function($routeProvider) {
 
-    $routeProvider.otherwise({redirectTo:'/magasin'});
+    $routeProvider.otherwise({redirectTo:'/'});
 });
 
 angular.module('ecMobileApp').run(function($rootScope, $location, userService,/*$scope*/ panierService) {
