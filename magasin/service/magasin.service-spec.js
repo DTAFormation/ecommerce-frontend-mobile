@@ -8,7 +8,7 @@ describe("Test du magasinService", function() {
 
 	it("Récupérer tous les produits", inject(function(magasinService, $httpBackend) {
 
-		$httpBackend.expectGET('bouchons/produits/all.json').respond(200, mockProduits);
+		$httpBackend.expectGET('http://localhost:8080/ecommerce-backend/api/produit').respond(200, mockProduits);
 
 		magasinService.getProduits().then(function (result){
 			expect(result.length).toBe(mockProduits.length);
@@ -32,7 +32,7 @@ describe("Test du magasinService", function() {
 
 	it("Afficher détail d'un produit", inject(function(magasinService, $httpBackend){
 
-		$httpBackend.expectGET('http://localhost:3000/magasin/'+mockProduit1[0].id).respond(200, mockProduit1);
+		$httpBackend.expectGET('http://localhost:8080/ecommerce-backend/api/produit/'+mockProduit1[0].id).respond(200, mockProduit1);
 
 		magasinService.getDetailsProduit(1).then(function(result){
 			expect(result.id).toBe(mockProduit1[0].id);

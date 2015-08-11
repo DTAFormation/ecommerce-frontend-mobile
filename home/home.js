@@ -26,8 +26,18 @@ angular.module('ecMobileApp.home').config(function($routeProvider) {
 
 // Contrôleur principal du module 'home'
 // Usage de la syntaxe 'controller as', pas besoin du '$scope'
-angular.module('ecMobileApp.home').controller('homeCtrl', function(userService) {
+angular.module('ecMobileApp.home').controller('homeCtrl', function($scope) {
 
-    var self = this;
-
+   /* var self = this;
+   self.myInterval = 5000;
+  self.noWrapSlides = false;
+  var slides = self.slides = [];
+  self.addSlide = function() {
+    slides.push({
+      image: 'http://lorempixel.com/400/200/'
+    });
+  };
+  for (var i=0; i<4; i++) {
+    self.addSlide();
+  }*/
 });
