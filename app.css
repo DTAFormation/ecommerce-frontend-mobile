@@ -1,0 +1,20 @@
+body{
+	padding-bottom: 50px;
+}
+
+.myFooter{
+	position: fixed;
+	bottom: 0;
+	width: 100%;
+	text-align: center;
+}
+
+.miniatureContainer{
+	float:left;
+	margin-right:5px;
+}
+
+.removeButton{
+	float:right;
+	margin-right:5px;
+}

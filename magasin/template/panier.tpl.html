@@ -1,4 +1,4 @@
-<div class="container-fluid">
+<div class="container">
 	<h2>Mon panier</h2>
 	<div class="text-right">
 		<h4>Total du panier {{ panierCtrl.totalPrix }} €</h4>
@@ -7,10 +7,10 @@
 		<tbody>
 			<tr ng-repeat="produit in panierCtrl.panier | orderBy : 'id'">
 				<td class="text-center">
-					<div class="miniatureContainer" style="float:left;margin-right:5px;">
+					<div class="miniatureContainer">
 						<img ng-src="{{produit.image}}"/>
 					</div>
-					<button class="btn btn-danger" style="float:right;margin-right:5px;">
+					<button class="btn btn-danger removeButton">
 						<span class="glyphicon glyphicon-remove" aria-hidden="true" ng-click="panierCtrl.removeFromPanier(produit.id)"></span>
 					</button>
 					<h4>{{produit.libelle}}</h4>
