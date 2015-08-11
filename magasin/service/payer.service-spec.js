@@ -10,7 +10,7 @@ describe("Test du payerService", function() {
 
 	
 	it("Poster la commande avec paiement CB", inject(function(payerService, $httpBackend,$controller) {
-		$httpBackend.expect("POST","http://localhost:3000/commande",mockPaiement).respond(200);
+		$httpBackend.expect("POST","http://5.196.89.85:9080/ec-backend/api/client/"+mockPaiement[0].user_id+"/commande",mockPaiement).respond(200);
 
 		var user = {id:"1",login:"root",mdp:"",nom:"root",prenom:"root"};
 		var commande ={ numero: "numero1",date_validite: {month: 4,year: 2016},crypto: 103};
@@ -30,7 +30,7 @@ describe("Test du payerService", function() {
 	}));
 
 	it("Poster la commande avec paiement Chèque", inject(function(payerService, $httpBackend,$controller) {
-		$httpBackend.expect("POST","http://localhost:3000/commande",mockPaiement2).respond(200);
+		$httpBackend.expect("POST","http://5.196.89.85:9080/ec-backend/api/client/"+mockPaiement2[0].user_id+"/commande",mockPaiement2).respond(200);
 
 		var user = {id:"1",login:"root",mdp:"",nom:"root",prenom:"root"};
 		var prix = 300;

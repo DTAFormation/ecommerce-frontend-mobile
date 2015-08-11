@@ -179,12 +179,9 @@ angular.module('ecMobileApp.magasin').controller('payerCtrl', function(userServi
 		var modalInstance = $modal.open({
 			animation : payerCtrl.animationsEnabled,
 			templateUrl : '/magasin/template/modal.html',
-			controller : 'modalCtrl',
-			controllerAs : 'modalCtrl',
+			controller : 'modal2Ctrl',
+			controllerAs : 'modal2Ctrl',
 			size: size
-		});
-		modalInstance.result.then(function(){
-			$log.info('Modal dismissed at : ' + new Date());
 		});
 	};
 
@@ -196,5 +193,12 @@ angular.module('ecMobileApp.magasin').controller('modalCtrl', function( userServ
 		$modalInstance.close();
 		$location.path("/");
 
+	};
+});
+
+angular.module('ecMobileApp.magasin').controller('modal2Ctrl', function( userService,payerService,$modalInstance,$location) {
+	var modal2Ctrl = this;
+	modal2Ctrl.ok = function(){
+		$modalInstance.close();
 	};
 });
