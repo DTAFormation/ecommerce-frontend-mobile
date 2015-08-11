@@ -10,7 +10,7 @@ angular.module('ecMobileApp.compteClient')
     };
 
     cpteCliService.postClient = function(compteCLient){
-      return $http.post(apiRestUrl+"/user"+,compteCLient);
+      return $http.post(apiRestUrl+"/user"+compteCLient);
     };
 
 
