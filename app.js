@@ -15,7 +15,7 @@ angular.module('ecMobileApp').config(function($routeProvider) {
     $routeProvider.otherwise({redirectTo:'/magasin'});
 });
 
-angular.module('ecMobileApp').run(function($rootScope, $location, userService) {
+angular.module('ecMobileApp').run(function($rootScope, $location, userService,/*$scope*/ panierService) {
     // register listener to watch route changes
     $rootScope.$on("$routeChangeStart", function(event, next, current) {
     
@@ -37,6 +37,9 @@ angular.module('ecMobileApp').run(function($rootScope, $location, userService) {
             $location.path("/");
         }
     });
+   /* $rootScope.$on("MyEvent",function(event){
+        $scope.quantiteTotale = panierService.CalculQte();
+    });*/
 });
 
 
@@ -56,7 +59,6 @@ angular.module('ecMobileApp').controller("ecMobileCtrl", function(userService,pa
     ecMobileCtrl.logout=function(){
         userService.logout();
     };
-
     ecMobileCtrl.CalculQte = function(){
         ecMobileCtrl.quantiteTotale  = panierService.CalculQte();
     };

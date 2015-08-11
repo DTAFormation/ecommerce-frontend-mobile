@@ -32,7 +32,7 @@ describe("Test du magasinService", function() {
 
 	it("Afficher détail d'un produit", inject(function(magasinService, $httpBackend){
 
-		$httpBackend.expectGET('bouchons/produits/produit1.json').respond(200, mockProduit1);
+		$httpBackend.expectGET('http://localhost:3000/magasin/'+mockProduit1[0].id).respond(200, mockProduit1);
 
 		magasinService.getDetailsProduit(1).then(function(result){
 			expect(result.id).toBe(mockProduit1[0].id);
