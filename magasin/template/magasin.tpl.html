@@ -1,11 +1,11 @@
-<div class="container-fluid">
+<div class="container">
 	<h2>Liste des produits</h2>
 	<table class="table table-bordered">
 		<tbody>
 			<tr ng-repeat="produit in magasinCtrl.listProduits | orderBy : 'id'">
 				<td class="text-center">
-					<div class="miniatureContainer" style="float:left;margin-right:5px;">
-						<img ng-src="{{produit.image}}"/>
+					<div class="miniatureContainer">
+						<img ng-src="{{produit.image}}" class="imgMini"/>
 					</div>
 					<h4>{{produit.libelle}}</h4>
 					<h4>{{produit.prix}} €</h4>
