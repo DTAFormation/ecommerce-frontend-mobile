@@ -45,11 +45,9 @@ angular.module('ecMobileApp.shared').factory('panierService', function ($http, $
                 ids.push(key);
             });
 
-            console.log("http://localhost:8082/ecommerce-backend/api/produit?ids=" + ids + "");
-
-            return $http.get(apiRestUrl + "/produit?ids=" + ids)
+            return $http.get(apiRestUrl + "/produit/byIds/" + ids)
             .then(function (result){
-                result.data.forEach(function (produit, index, array){
+                result.data.forEach(function (produit){
                     produit.quantite = Object.getOwnPropertyDescriptor($localStorage.panier, JSON.stringify(produit.id)).value;
                 });
                 return result.data;
@@ -58,12 +56,12 @@ angular.module('ecMobileApp.shared').factory('panierService', function ($http, $
 
         CalculQte : function(){
 
-             if($localStorage.panier){
-                    Object.keys($localStorage.panier).forEach(function(key){
-                        quantiteTotale = quantiteTotale + Object.getOwnPropertyDescriptor($localStorage.panier, key).value;
-                    });     
-                }
-                return quantiteTotale;
+            if($localStorage.panier){
+                Object.keys($localStorage.panier).forEach(function(key){
+                    quantiteTotale = quantiteTotale + Object.getOwnPropertyDescriptor($localStorage.panier, key).value;
+                });     
+            }
+            return quantiteTotale;
 /*
             $rootScope.$emit("MyEvent",function(event){
                 if($localStorage.panier){
