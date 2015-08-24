@@ -11,6 +11,7 @@
     "grunt-contrib-watch": "~0.6",
     "grunt-dom-munger": "~3.4",
     "grunt-karma": "~0.8.3",
+    "grunt-protractor-runner": "^2.1.0",
     "jasmine-core": "^2.3.4",
     "karma": "~0.12.6",
     "karma-chrome-launcher": "~0.1.3",
