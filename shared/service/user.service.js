@@ -35,4 +35,8 @@ angular.module('ecMobileApp.shared').service('userService', function($http, $loc
         delete $localStorage.infosUser;
     };
 
+    this.getInfoUser = function(){
+        return $localStorage.infosUser;
+    };
+
 });
