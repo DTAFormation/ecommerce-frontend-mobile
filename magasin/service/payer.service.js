@@ -23,5 +23,5 @@ angular.module('ecMobileApp.magasin')
 			var commande_total = {"user_id":user.id,"prix_total": prix,"panier":panier,"type_paiement":typeCheque};
 					return $http.post(apiRestUrl,commande_total);
 		}
-		};
+	};
 });

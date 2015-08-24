@@ -1,5 +1,6 @@
 describe("Test du magasinService", function() {
 
+	var apiUrl = 'http://5.196.89.85:9080/ec-backend/api/produit';
 	var mockProduits = [{id : 1, libelle : "Produit 1", prix : 150, image : "http://lorempixel.com/120/120"}, {id : 2, libelle : "Produit 2", prix : 150, image : "http://lorempixel.com/120/120"}];
 
     beforeEach(function() {
@@ -8,7 +9,7 @@ describe("Test du magasinService", function() {
 
 	it("Récupérer tous les produits", inject(function(magasinService, $httpBackend) {
 
-		$httpBackend.expectGET('http://localhost:8080/ecommerce-backend/api/produit').respond(200, mockProduits);
+		$httpBackend.expectGET(apiUrl).respond(200, mockProduits);
 
 		magasinService.getProduits().then(function (result){
 			expect(result.length).toBe(mockProduits.length);
@@ -32,9 +33,10 @@ describe("Test du magasinService", function() {
 
 	it("Afficher détail d'un produit", inject(function(magasinService, $httpBackend){
 
-		$httpBackend.expectGET('http://localhost:8080/ecommerce-backend/api/produit/'+mockProduit1[0].id).respond(200, mockProduit1);
+		$httpBackend.expectGET(apiUrl+'/'+mockProduit1[0].id).respond(200, mockProduit1);
 
-		magasinService.getDetailsProduit(1).then(function(result){
+		magasinService.getDetailsProduit(1)
+		.then(function(result){
 			expect(result.id).toBe(mockProduit1[0].id);
 			expect(result.libelle).toBe(mockProduit1[0].libelle);
 			expect(result.prix).toBe(mockProduit1[0].prix);
