@@ -23,6 +23,7 @@ angular.module('ecMobileApp.shared').service('userService', function($http, $loc
                 if(!$localStorage.infosUser){
                     $localStorage.infosUser={};
                 }
+                console.log(result);
                 $localStorage.infosUser=result.data;
             })
             .catch(function(){
@@ -34,5 +35,7 @@ angular.module('ecMobileApp.shared').service('userService', function($http, $loc
         connected=false;
         delete $localStorage.infosUser;
     };
+
+
 
 });

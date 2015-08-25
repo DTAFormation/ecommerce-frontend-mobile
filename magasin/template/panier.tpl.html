@@ -25,6 +25,8 @@
 		</tbody>
 	</table>
 	
-	<button ng-show="panierCtrl.isConnected()" class="btn btn-success" ng-click="panierCtrl.effectuerPaiement(panierCtrl.totalPrix)">Payer</button>
+	<button ng-disabled="!panierCtrl.isConnected()" class="btn btn-success" ng-click="panierCtrl.effectuerPaiement(panierCtrl.totalPrix)">Payer</button>
+	<p class="messagePaiementNonConnecte" ng-show="!panierCtrl.isConnected()">Veuillez vous connecter pour payer</p>
+
 	{{panierCtrl.quantiteTotale}}
 </div>

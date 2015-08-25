@@ -1,0 +1,153 @@
+0 info it worked if it ends with ok
+1 verbose cli [ 'node', '/usr/bin/npm', 'install' ]
+2 info using npm@2.13.2
+3 info using node@v0.12.7
+4 verbose readDependencies loading dependencies from /home/ben/FormationDTA/COURS/PROJET-ECommerce/ecommerce-frontend-mobile/ecommerce-frontend-mobile/package.json
+5 warn package.json ecMobile@0.0.0 No repository field.
+6 warn package.json ecMobile@0.0.0 No license field.
+7 verbose install where, deps [ '/home/ben/FormationDTA/COURS/PROJET-ECommerce/ecommerce-frontend-mobile/ecommerce-frontend-mobile',
+7 verbose install   [ 'grunt',
+7 verbose install     'grunt-contrib-clean',
+7 verbose install     'grunt-contrib-connect',
+7 verbose install     'grunt-contrib-jshint',
+7 verbose install     'grunt-contrib-less',
+7 verbose install     'grunt-contrib-copy',
+7 verbose install     'grunt-contrib-watch',
+7 verbose install     'grunt-dom-munger',
+7 verbose install     'grunt-karma',
+7 verbose install     'jasmine-core',
+7 verbose install     'karma',
+7 verbose install     'karma-chrome-launcher',
+7 verbose install     'karma-firefox-launcher',
+7 verbose install     'karma-jasmine',
+7 verbose install     'karma-mocha-reporter',
+7 verbose install     'karma-phantomjs-launcher',
+7 verbose install     'load-grunt-tasks' ] ]
+8 verbose install where, peers [ '/home/ben/FormationDTA/COURS/PROJET-ECommerce/ecommerce-frontend-mobile/ecommerce-frontend-mobile',
+8 verbose install   [] ]
+9 verbose installManyTop reading for lifecycle /home/ben/FormationDTA/COURS/PROJET-ECommerce/ecommerce-frontend-mobile/ecommerce-frontend-mobile/package.json
+10 info preinstall ecMobile@0.0.0
+11 verbose installManyTop reading scoped package data from /home/ben/FormationDTA/COURS/PROJET-ECommerce/ecommerce-frontend-mobile/ecommerce-frontend-mobile/node_modules/grunt/package.json
+12 verbose installManyTop reading scoped package data from /home/ben/FormationDTA/COURS/PROJET-ECommerce/ecommerce-frontend-mobile/ecommerce-frontend-mobile/node_modules/grunt-cli/package.json
+13 verbose installManyTop reading scoped package data from /home/ben/FormationDTA/COURS/PROJET-ECommerce/ecommerce-frontend-mobile/ecommerce-frontend-mobile/node_modules/grunt-contrib-clean/package.json
+14 verbose installManyTop reading scoped package data from /home/ben/FormationDTA/COURS/PROJET-ECommerce/ecommerce-frontend-mobile/ecommerce-frontend-mobile/node_modules/grunt-contrib-connect/package.json
+15 verbose installManyTop reading scoped package data from /home/ben/FormationDTA/COURS/PROJET-ECommerce/ecommerce-frontend-mobile/ecommerce-frontend-mobile/node_modules/grunt-contrib-copy/package.json
+16 verbose installManyTop reading scoped package data from /home/ben/FormationDTA/COURS/PROJET-ECommerce/ecommerce-frontend-mobile/ecommerce-frontend-mobile/node_modules/grunt-contrib-jshint/package.json
+17 verbose installManyTop reading scoped package data from /home/ben/FormationDTA/COURS/PROJET-ECommerce/ecommerce-frontend-mobile/ecommerce-frontend-mobile/node_modules/grunt-contrib-less/package.json
+18 verbose installManyTop reading scoped package data from /home/ben/FormationDTA/COURS/PROJET-ECommerce/ecommerce-frontend-mobile/ecommerce-frontend-mobile/node_modules/grunt-contrib-watch/package.json
+19 verbose installManyTop reading scoped package data from /home/ben/FormationDTA/COURS/PROJET-ECommerce/ecommerce-frontend-mobile/ecommerce-frontend-mobile/node_modules/grunt-dom-munger/package.json
+20 verbose installManyTop reading scoped package data from /home/ben/FormationDTA/COURS/PROJET-ECommerce/ecommerce-frontend-mobile/ecommerce-frontend-mobile/node_modules/grunt-karma/package.json
+21 verbose installManyTop reading scoped package data from /home/ben/FormationDTA/COURS/PROJET-ECommerce/ecommerce-frontend-mobile/ecommerce-frontend-mobile/node_modules/jasmine-core/package.json
+22 verbose installManyTop reading scoped package data from /home/ben/FormationDTA/COURS/PROJET-ECommerce/ecommerce-frontend-mobile/ecommerce-frontend-mobile/node_modules/karma/package.json
+23 verbose installManyTop reading scoped package data from /home/ben/FormationDTA/COURS/PROJET-ECommerce/ecommerce-frontend-mobile/ecommerce-frontend-mobile/node_modules/karma-chrome-launcher/package.json
+24 verbose installManyTop reading scoped package data from /home/ben/FormationDTA/COURS/PROJET-ECommerce/ecommerce-frontend-mobile/ecommerce-frontend-mobile/node_modules/karma-firefox-launcher/package.json
+25 verbose installManyTop reading scoped package data from /home/ben/FormationDTA/COURS/PROJET-ECommerce/ecommerce-frontend-mobile/ecommerce-frontend-mobile/node_modules/karma-jasmine/package.json
+26 verbose installManyTop reading scoped package data from /home/ben/FormationDTA/COURS/PROJET-ECommerce/ecommerce-frontend-mobile/ecommerce-frontend-mobile/node_modules/karma-mocha-reporter/package.json
+27 verbose installManyTop reading scoped package data from /home/ben/FormationDTA/COURS/PROJET-ECommerce/ecommerce-frontend-mobile/ecommerce-frontend-mobile/node_modules/karma-phantomjs-launcher/package.json
+28 verbose installManyTop reading scoped package data from /home/ben/FormationDTA/COURS/PROJET-ECommerce/ecommerce-frontend-mobile/ecommerce-frontend-mobile/node_modules/load-grunt-tasks/package.json
+29 info package.json grunt-cli@0.1.13 No license field.
+30 info package.json karma-phantomjs-launcher@0.1.4 No README data
+31 info package.json grunt@0.4.5 No license field.
+32 info package.json grunt-contrib-clean@0.5.0 No license field.
+33 info package.json grunt-contrib-connect@0.6.0 No license field.
+34 info package.json grunt-contrib-jshint@0.9.2 No license field.
+35 info package.json grunt-contrib-less@0.8.3 No license field.
+36 info package.json grunt-contrib-watch@0.6.1 No license field.
+37 info package.json grunt-dom-munger@3.4.0 No license field.
+38 info package.json karma-mocha-reporter@0.2.8 license should be a valid SPDX license expression
+39 verbose readDependencies loading dependencies from /home/ben/FormationDTA/COURS/PROJET-ECommerce/ecommerce-frontend-mobile/ecommerce-frontend-mobile/package.json
+40 verbose targetResolver reading package data from /home/ben/FormationDTA/COURS/PROJET-ECommerce/ecommerce-frontend-mobile/ecommerce-frontend-mobile/node_modules/grunt/package.json
+41 verbose targetResolver reading package data from /home/ben/FormationDTA/COURS/PROJET-ECommerce/ecommerce-frontend-mobile/ecommerce-frontend-mobile/node_modules/grunt-cli/package.json
+42 verbose targetResolver reading package data from /home/ben/FormationDTA/COURS/PROJET-ECommerce/ecommerce-frontend-mobile/ecommerce-frontend-mobile/node_modules/grunt-contrib-clean/package.json
+43 verbose targetResolver reading package data from /home/ben/FormationDTA/COURS/PROJET-ECommerce/ecommerce-frontend-mobile/ecommerce-frontend-mobile/node_modules/grunt-contrib-connect/package.json
+44 verbose targetResolver reading package data from /home/ben/FormationDTA/COURS/PROJET-ECommerce/ecommerce-frontend-mobile/ecommerce-frontend-mobile/node_modules/grunt-contrib-copy/package.json
+45 verbose targetResolver reading package data from /home/ben/FormationDTA/COURS/PROJET-ECommerce/ecommerce-frontend-mobile/ecommerce-frontend-mobile/node_modules/grunt-contrib-jshint/package.json
+46 verbose targetResolver reading package data from /home/ben/FormationDTA/COURS/PROJET-ECommerce/ecommerce-frontend-mobile/ecommerce-frontend-mobile/node_modules/grunt-contrib-less/package.json
+47 verbose targetResolver reading package data from /home/ben/FormationDTA/COURS/PROJET-ECommerce/ecommerce-frontend-mobile/ecommerce-frontend-mobile/node_modules/grunt-contrib-watch/package.json
+48 verbose targetResolver reading package data from /home/ben/FormationDTA/COURS/PROJET-ECommerce/ecommerce-frontend-mobile/ecommerce-frontend-mobile/node_modules/grunt-dom-munger/package.json
+49 verbose targetResolver reading package data from /home/ben/FormationDTA/COURS/PROJET-ECommerce/ecommerce-frontend-mobile/ecommerce-frontend-mobile/node_modules/grunt-karma/package.json
+50 verbose targetResolver reading package data from /home/ben/FormationDTA/COURS/PROJET-ECommerce/ecommerce-frontend-mobile/ecommerce-frontend-mobile/node_modules/jasmine-core/package.json
+51 verbose targetResolver reading package data from /home/ben/FormationDTA/COURS/PROJET-ECommerce/ecommerce-frontend-mobile/ecommerce-frontend-mobile/node_modules/karma/package.json
+52 verbose targetResolver reading package data from /home/ben/FormationDTA/COURS/PROJET-ECommerce/ecommerce-frontend-mobile/ecommerce-frontend-mobile/node_modules/karma-chrome-launcher/package.json
+53 verbose targetResolver reading package data from /home/ben/FormationDTA/COURS/PROJET-ECommerce/ecommerce-frontend-mobile/ecommerce-frontend-mobile/node_modules/karma-firefox-launcher/package.json
+54 verbose targetResolver reading package data from /home/ben/FormationDTA/COURS/PROJET-ECommerce/ecommerce-frontend-mobile/ecommerce-frontend-mobile/node_modules/karma-jasmine/package.json
+55 verbose targetResolver reading package data from /home/ben/FormationDTA/COURS/PROJET-ECommerce/ecommerce-frontend-mobile/ecommerce-frontend-mobile/node_modules/karma-mocha-reporter/package.json
+56 verbose targetResolver reading package data from /home/ben/FormationDTA/COURS/PROJET-ECommerce/ecommerce-frontend-mobile/ecommerce-frontend-mobile/node_modules/karma-phantomjs-launcher/package.json
+57 verbose targetResolver reading package data from /home/ben/FormationDTA/COURS/PROJET-ECommerce/ecommerce-frontend-mobile/ecommerce-frontend-mobile/node_modules/load-grunt-tasks/package.json
+58 verbose targetResolver reading package data from /home/ben/FormationDTA/COURS/PROJET-ECommerce/ecommerce-frontend-mobile/ecommerce-frontend-mobile/node_modules/.bin/grunt/package.json
+59 verbose already installed skipping grunt-contrib-clean@~0.5 /home/ben/FormationDTA/COURS/PROJET-ECommerce/ecommerce-frontend-mobile/ecommerce-frontend-mobile
+60 verbose already installed skipping grunt-contrib-connect@~0.6 /home/ben/FormationDTA/COURS/PROJET-ECommerce/ecommerce-frontend-mobile/ecommerce-frontend-mobile
+61 verbose already installed skipping grunt-contrib-jshint@~0.9 /home/ben/FormationDTA/COURS/PROJET-ECommerce/ecommerce-frontend-mobile/ecommerce-frontend-mobile
+62 verbose already installed skipping grunt-contrib-less@~0.8 /home/ben/FormationDTA/COURS/PROJET-ECommerce/ecommerce-frontend-mobile/ecommerce-frontend-mobile
+63 verbose already installed skipping grunt-contrib-copy@~0.8 /home/ben/FormationDTA/COURS/PROJET-ECommerce/ecommerce-frontend-mobile/ecommerce-frontend-mobile
+64 verbose already installed skipping grunt-contrib-watch@~0.6 /home/ben/FormationDTA/COURS/PROJET-ECommerce/ecommerce-frontend-mobile/ecommerce-frontend-mobile
+65 verbose already installed skipping grunt-dom-munger@~3.4 /home/ben/FormationDTA/COURS/PROJET-ECommerce/ecommerce-frontend-mobile/ecommerce-frontend-mobile
+66 verbose already installed skipping grunt-karma@~0.8.3 /home/ben/FormationDTA/COURS/PROJET-ECommerce/ecommerce-frontend-mobile/ecommerce-frontend-mobile
+67 verbose already installed skipping jasmine-core@^2.3.4 /home/ben/FormationDTA/COURS/PROJET-ECommerce/ecommerce-frontend-mobile/ecommerce-frontend-mobile
+68 verbose already installed skipping karma@~0.12.6 /home/ben/FormationDTA/COURS/PROJET-ECommerce/ecommerce-frontend-mobile/ecommerce-frontend-mobile
+69 verbose already installed skipping karma-chrome-launcher@~0.1.3 /home/ben/FormationDTA/COURS/PROJET-ECommerce/ecommerce-frontend-mobile/ecommerce-frontend-mobile
+70 verbose already installed skipping karma-firefox-launcher@~0.1.3 /home/ben/FormationDTA/COURS/PROJET-ECommerce/ecommerce-frontend-mobile/ecommerce-frontend-mobile
+71 verbose already installed skipping karma-jasmine@~0.3 /home/ben/FormationDTA/COURS/PROJET-ECommerce/ecommerce-frontend-mobile/ecommerce-frontend-mobile
+72 verbose already installed skipping karma-mocha-reporter@~0.2.5 /home/ben/FormationDTA/COURS/PROJET-ECommerce/ecommerce-frontend-mobile/ecommerce-frontend-mobile
+73 verbose already installed skipping karma-phantomjs-launcher@~0.1.4 /home/ben/FormationDTA/COURS/PROJET-ECommerce/ecommerce-frontend-mobile/ecommerce-frontend-mobile
+74 verbose already installed skipping load-grunt-tasks@~0.2 /home/ben/FormationDTA/COURS/PROJET-ECommerce/ecommerce-frontend-mobile/ecommerce-frontend-mobile
+75 verbose already installed skipping grunt@~0.4 /home/ben/FormationDTA/COURS/PROJET-ECommerce/ecommerce-frontend-mobile/ecommerce-frontend-mobile
+76 silly install resolved []
+77 info build /home/ben/FormationDTA/COURS/PROJET-ECommerce/ecommerce-frontend-mobile/ecommerce-frontend-mobile
+78 info linkStuff ecMobile@0.0.0
+79 silly linkStuff ecMobile@0.0.0 has /home/ben/FormationDTA/COURS/PROJET-ECommerce/ecommerce-frontend-mobile as its parent node_modules
+80 verbose linkBins ecMobile@0.0.0
+81 verbose linkMans ecMobile@0.0.0
+82 verbose rebuildBundles ecMobile@0.0.0
+83 verbose rebuildBundles [ '.bin',
+83 verbose rebuildBundles   'grunt',
+83 verbose rebuildBundles   'grunt-cli',
+83 verbose rebuildBundles   'grunt-contrib-clean',
+83 verbose rebuildBundles   'grunt-contrib-connect',
+83 verbose rebuildBundles   'grunt-contrib-copy',
+83 verbose rebuildBundles   'grunt-contrib-jshint',
+83 verbose rebuildBundles   'grunt-contrib-less',
+83 verbose rebuildBundles   'grunt-contrib-watch',
+83 verbose rebuildBundles   'grunt-dom-munger',
+83 verbose rebuildBundles   'grunt-karma',
+83 verbose rebuildBundles   'jasmine-core',
+83 verbose rebuildBundles   'karma',
+83 verbose rebuildBundles   'karma-chrome-launcher',
+83 verbose rebuildBundles   'karma-firefox-launcher',
+83 verbose rebuildBundles   'karma-jasmine',
+83 verbose rebuildBundles   'karma-mocha-reporter',
+83 verbose rebuildBundles   'karma-phantomjs-launcher',
+83 verbose rebuildBundles   'load-grunt-tasks' ]
+84 verbose rebuild bundle /home/ben/FormationDTA/COURS/PROJET-ECommerce/ecommerce-frontend-mobile/ecommerce-frontend-mobile/node_modules/grunt-cli
+85 info build /home/ben/FormationDTA/COURS/PROJET-ECommerce/ecommerce-frontend-mobile/ecommerce-frontend-mobile/node_modules/grunt-cli
+86 info preinstall grunt-cli@0.1.13
+87 info linkStuff grunt-cli@0.1.13
+88 silly linkStuff grunt-cli@0.1.13 has /home/ben/FormationDTA/COURS/PROJET-ECommerce/ecommerce-frontend-mobile/ecommerce-frontend-mobile/node_modules as its parent node_modules
+89 verbose linkBins grunt-cli@0.1.13
+90 verbose link bins [ { grunt: 'bin/grunt' },
+90 verbose link bins   '/home/ben/FormationDTA/COURS/PROJET-ECommerce/ecommerce-frontend-mobile/ecommerce-frontend-mobile/node_modules/.bin',
+90 verbose link bins   false ]
+91 verbose linkMans grunt-cli@0.1.13
+92 verbose rebuildBundles grunt-cli@0.1.13
+93 verbose rebuildBundles [ '.bin', 'findup-sync', 'nopt', 'resolve' ]
+94 silly gentlyRm /home/ben/FormationDTA/COURS/PROJET-ECommerce/ecommerce-frontend-mobile/ecommerce-frontend-mobile/node_modules/.bin/grunt is being purged
+95 verbose gentlyRm don't care about contents; nuking /home/ben/FormationDTA/COURS/PROJET-ECommerce/ecommerce-frontend-mobile/ecommerce-frontend-mobile/node_modules/.bin/grunt
+96 silly vacuum-fs purging /home/ben/FormationDTA/COURS/PROJET-ECommerce/ecommerce-frontend-mobile/ecommerce-frontend-mobile/node_modules/.bin/grunt
+97 verbose stack Error: EACCES, unlink '/home/ben/FormationDTA/COURS/PROJET-ECommerce/ecommerce-frontend-mobile/ecommerce-frontend-mobile/node_modules/.bin/grunt'
+97 verbose stack     at Error (native)
+98 verbose cwd /home/ben/FormationDTA/COURS/PROJET-ECommerce/ecommerce-frontend-mobile/ecommerce-frontend-mobile
+99 error Linux 4.1.3-1-ARCH
+100 error argv "node" "/usr/bin/npm" "install"
+101 error node v0.12.7
+102 error npm  v2.13.2
+103 error path /home/ben/FormationDTA/COURS/PROJET-ECommerce/ecommerce-frontend-mobile/ecommerce-frontend-mobile/node_modules/.bin/grunt
+104 error code EACCES
+105 error errno -13
+106 error Error: EACCES, unlink '/home/ben/FormationDTA/COURS/PROJET-ECommerce/ecommerce-frontend-mobile/ecommerce-frontend-mobile/node_modules/.bin/grunt'
+106 error     at Error (native)
+106 error  { [Error: EACCES, unlink '/home/ben/FormationDTA/COURS/PROJET-ECommerce/ecommerce-frontend-mobile/ecommerce-frontend-mobile/node_modules/.bin/grunt']
+106 error   errno: -13,
+106 error   code: 'EACCES',
+106 error   path: '/home/ben/FormationDTA/COURS/PROJET-ECommerce/ecommerce-frontend-mobile/ecommerce-frontend-mobile/node_modules/.bin/grunt' }
+107 error Please try running this command again as root/Administrator.
+108 verbose exit [ -13, true ]

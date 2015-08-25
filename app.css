@@ -29,3 +29,7 @@ body{
 	position:fixed;
 	top:0;
 }
+
+.messagePaiementNonConnecte{
+	color:red;
+}
