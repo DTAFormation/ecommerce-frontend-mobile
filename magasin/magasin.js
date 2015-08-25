@@ -65,8 +65,6 @@ angular.module('ecMobileApp.magasin').controller('magasinCtrl', function(userSer
 			magasinCtrl.produitSelectionne = result;
 		});
 	};
-
-	magasinCtrl.getDetailsProduit();
 });
 
 
