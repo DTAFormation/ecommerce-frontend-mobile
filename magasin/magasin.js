@@ -66,6 +66,8 @@ angular.module('ecMobileApp.magasin').controller('magasinCtrl', function(userSer
 			magasinCtrl.produitSelectionne = result;
 		});
 	};
+
+	//magasinCtrl.getDetailsProduit();
 });
 
 
@@ -75,6 +77,12 @@ angular.module('ecMobileApp.magasin').controller('panierCtrl', function(userServ
 
 	panierCtrl.totalPrix = 0;
 
+	panierCtrl.updateTotalPanier = function(){
+		panierCtrl.totalPrix = 0;
+		panierCtrl.panier.forEach(function(produit){
+			panierCtrl.totalPrix = panierCtrl.totalPrix + (produit.prix * produit.quantite);
+		});
+	};
 
 	panierCtrl.getPanier = function(){
 		panierService.getPanier().then(function (result){
@@ -84,13 +92,6 @@ angular.module('ecMobileApp.magasin').controller('panierCtrl', function(userServ
 	};
 
 	panierCtrl.getPanier();
-
-	panierCtrl.updateTotalPanier = function(){
-		panierCtrl.totalPrix = 0;
-		panierCtrl.panier.forEach(function(produit){
-			panierCtrl.totalPrix = panierCtrl.totalPrix + (produit.prix * produit.quantite);
-		});
-	};
 
 	panierCtrl.diminuerQuantite = function(id_produit){
 		panierCtrl.panier.forEach(function(produit){
