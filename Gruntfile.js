@@ -37,6 +37,7 @@ module.exports = function (grunt) {
                     '**/*.html',
                     '**/*.css',
                     '**/*.json',
+                    '**/*.png',
                     '!**/node_modules/**',
                     '!**/*-spec.js',
                     '!**/Gruntfile.js',

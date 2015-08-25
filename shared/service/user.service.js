@@ -25,8 +25,8 @@ angular.module('ecMobileApp.shared').service('userService', function($http, $loc
                 }
                 $localStorage.infosUser=result.data;
             })
-            .catch(function(){
-
+            .catch(function(error){
+                console.log("Erreur de login : ", error);
             });
     };
 
@@ -35,7 +35,7 @@ angular.module('ecMobileApp.shared').service('userService', function($http, $loc
         delete $localStorage.infosUser;
     };
 
-    this.getInfoUser = function(){
+    this.getInfosUser = function(){
         return $localStorage.infosUser;
     };
 
