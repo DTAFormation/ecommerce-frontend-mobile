@@ -39,19 +39,29 @@ angular.module('ecMobileApp.shared').factory('panierService', function ($http, $
                 $localStorage.panier = {};
             }
 
-            // Objectif -> passer du panier { "1" : 2, "2" : 3 } à "1&2&3" pour envoyer une liste d'id en paramètre de requete
-            var ids = [];
-            Object.keys($localStorage.panier).forEach(function (key){
-                ids.push(key);
-            });
+            if(Object.keys($localStorage.panier).length === 0){
+                return {
+                    then : function(fn) {
+                        fn([]);
+                    }
+                };
+            } else{
+                // Objectif -> passer du panier { "1" : 2, "2" : 3 } à "1,2,3" pour envoyer une liste d'id en paramètre de requete
 
-            return $http.get(apiRestUrl + "/produit/byIds/" + ids)
-            .then(function (result){
-                result.data.forEach(function (produit){
-                    produit.quantite = Object.getOwnPropertyDescriptor($localStorage.panier, JSON.stringify(produit.id)).value;
+                var ids = [];
+                Object.keys($localStorage.panier).forEach(function (key){
+                    ids.push(key);
                 });
-                return result.data;
-            });
+
+                // quand on met le tableau [1,2,3,5] dans une chaine de caractère il s'écrit -> 1,2,3,5
+                return $http.get(apiRestUrl + "/produit/byIds/" + ids)
+                .then(function (result){
+                    result.data.forEach(function (produit){
+                        produit.quantite = Object.getOwnPropertyDescriptor($localStorage.panier, JSON.stringify(produit.id)).value;
+                    });
+                    return result.data;
+                });
+            }
         },
 
         CalculQte : function(){

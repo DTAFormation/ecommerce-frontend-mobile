@@ -2,10 +2,10 @@
 <br>
 	<input type="text" ng-model="searchProduct" placeholder="Chercher dans la liste" style="float:right" autofocus>
 
-	<select  name="orderByKey" ng-model="orderByKey" onchange="action()">
+	<select  name="orderByKey" ng-model="orderByKey">
 		     <option value="libelle" >Trier par nom</option>
 		     <option value="prix">Trier par prix</option>
-		     <option value="categorie">Trier par categorie</option>
+		     <option value="categorie">Trier par catégorie</option>
 
 	</select>
 
@@ -24,7 +24,7 @@
 					</div>
 					<h4>{{produit.libelle }}</h4>
 					<h4>{{produit.prix}} €</h4>
-					<button class="btn btn-primary" ng-click="magasinCtrl.addToPanier(produit.id)">Ajouter au panier</button>
+					<button class="btn btn-primary" id="ajoutPanier" ng-click="magasinCtrl.addToPanier(produit.id)">Ajouter au panier</button>
 					<button class="btn btn-warning" ng-click="magasinCtrl.detailsProduit(produit.id)">Voir détails</button>
 				</td>
 			</tr>
