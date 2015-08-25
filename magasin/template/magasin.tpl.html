@@ -2,7 +2,8 @@
 	<h2>Liste des produits</h2>
 	<table class="table table-bordered">
 		<tbody>
-			<tr ng-repeat="produit in magasinCtrl.listProduits | orderBy : 'id'">
+			<myLigneProduit produits="magasinCtrl.listProduits | orderBy : 'id'"></myLigneProduit>
+
 				<td class="text-center">
 					<div class="miniatureContainer">
 						<img ng-src="{{produit.image}}" class="imgMini"/>
