@@ -47,6 +47,7 @@ angular.module('ecMobileApp.magasin').controller('magasinCtrl', function(userSer
 	};
 
 	magasinCtrl.getProduits();
+	console.log(magasinCtrl.getProduits());
 
 	magasinCtrl.addToPanier = function(idProduit) {
 		panierService.addToPanier(idProduit, 1);
@@ -65,6 +66,8 @@ angular.module('ecMobileApp.magasin').controller('magasinCtrl', function(userSer
 			magasinCtrl.produitSelectionne = result;
 		});
 	};
+
+	//magasinCtrl.getDetailsProduit();
 });
 
 
@@ -74,6 +77,12 @@ angular.module('ecMobileApp.magasin').controller('panierCtrl', function(userServ
 
 	panierCtrl.totalPrix = 0;
 
+	panierCtrl.updateTotalPanier = function(){
+		panierCtrl.totalPrix = 0;
+		panierCtrl.panier.forEach(function(produit){
+			panierCtrl.totalPrix = panierCtrl.totalPrix + (produit.prix * produit.quantite);
+		});
+	};
 
 	panierCtrl.getPanier = function(){
 		panierService.getPanier().then(function (result){
@@ -84,17 +93,10 @@ angular.module('ecMobileApp.magasin').controller('panierCtrl', function(userServ
 
 	panierCtrl.getPanier();
 
-	panierCtrl.updateTotalPanier = function(){
-		panierCtrl.totalPrix = 0;
-		panierCtrl.panier.forEach(function(produit){
-			panierCtrl.totalPrix = panierCtrl.totalPrix + (produit.prix * produit.quantite);
-		});
-	};
-
 	panierCtrl.diminuerQuantite = function(id_produit){
 		panierCtrl.panier.forEach(function(produit){
 			if(produit.id === id_produit){
-				if(produit.quantite > 0){
+				if(produit.quantite > 1){
 					produit.quantite -= 1;
 					panierService.addToPanier(produit.id, -1);
 				}
@@ -134,7 +136,7 @@ angular.module('ecMobileApp.magasin').controller('payerCtrl', function(userServi
 	payerCtrl.totalPrix = payerService.getTotalPrix();
 	var typeCard = "CB";
 	var typeCheque = "Chèque";
-	payerCtrl.userInfos = userService.getInfoUser(); // pour recuperer les infos utilisateur stockees dans le localStorage
+	payerCtrl.userInfos = userService.getInfosUser(); // pour recuperer les infos utilisateur stockees dans le localStorage
 	
 
 	console.log(payerCtrl.userInfos); // test de recup des donnees

@@ -1,0 +1,13 @@
+<div class="miniatureContainer">
+	<img ng-src="{{produit.image}}" class="imgMini"/>
+</div>
+<button class="btn btn-danger removeButton" id="removeButtonPanier">
+	<span class="glyphicon glyphicon-remove" aria-hidden="true" ng-click="panierCtrl.removeFromPanier(produit.id)"></span>
+</button>
+<h4>{{produit.libelle}}</h4>
+<h4>{{produit.prix}} €</h4>
+<div class="btn-group">
+	<button class="btn btn-default" id="diminuerQuantitePanier" ng-click="panierCtrl.diminuerQuantite(produit.id)">-</button>
+	<span class="btn">{{produit.quantite}}</span>
+	<button class="btn btn-default" id="augmenterQuantitePanier" ng-click="panierCtrl.augmenterQuantite(produit.id)">+</button>
+</div>
