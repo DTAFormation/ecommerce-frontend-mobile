@@ -91,11 +91,19 @@ module.exports = function (grunt) {
       during_watch: {
         browsers: ['PhantomJS']
       },
+    },
+    protractor: {
+      local: {
+        options: {
+          configFile: "protractor.conf.js"
+        }
+      }
     }
   });
 
   grunt.registerTask('serve', ['dom_munger:read','jshint','connect', 'watch']);
   grunt.registerTask('test',['dom_munger:read','karma:all_tests']);
+  grunt.registerTask('test-e2e',['dom_munger:read','connect', 'protractor:local']);
   grunt.registerTask('cp',['clean','copy']);
 
   grunt.event.on('watch', function(action, filepath) {

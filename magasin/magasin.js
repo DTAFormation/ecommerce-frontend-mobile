@@ -40,7 +40,8 @@ angular.module('ecMobileApp.magasin').controller('magasinCtrl', function(userSer
 	magasinCtrl.listProduits = [];
 
 	magasinCtrl.getProduits = function(){
-		magasinService.getProduits().then(function (result){
+		magasinService.getProduits()
+		.then(function (result){
 			magasinCtrl.listProduits = result;
 		});
 	};
@@ -64,8 +65,6 @@ angular.module('ecMobileApp.magasin').controller('magasinCtrl', function(userSer
 			magasinCtrl.produitSelectionne = result;
 		});
 	};
-
-	magasinCtrl.getDetailsProduit();
 });
 
 
@@ -130,14 +129,19 @@ angular.module('ecMobileApp.magasin').controller('panierCtrl', function(userServ
 	};
 });
 
-angular.module('ecMobileApp.magasin').controller('payerCtrl', function(userService, panierService, payerService,$location,$modal,$log) {
+angular.module('ecMobileApp.magasin').controller('payerCtrl', function(userService, panierService, payerService, $localStorage, $location,$modal,$log) {
 	var payerCtrl = this;
 	payerCtrl.totalPrix = payerService.getTotalPrix();
 	var typeCard = "CB";
 	var typeCheque = "Chèque";
+	payerCtrl.userInfos = userService.getInfosUser(); // pour recuperer les infos utilisateur stockees dans le localStorage
+	
+
+	console.log(payerCtrl.userInfos); // test de recup des donnees
 
 	function getPanier (){
-		panierService.getPanier().then(function (result){
+		panierService.getPanier()
+		.then(function (result){
 			payerCtrl.panier = result;
 		});
 	}
@@ -147,7 +151,7 @@ angular.module('ecMobileApp.magasin').controller('payerCtrl', function(userServi
 	payerCtrl.modal = function(){
 		var modalInstance = $modal.open({
 				animation : payerCtrl.animationsEnabled,
-				templateUrl : '/magasin/template/modalValidation.html',
+				templateUrl : 'magasin/template/modalValidation.html',
 				controller : 'modalCtrl',
 				controllerAs : 'modalCtrl',
 			});
@@ -178,7 +182,7 @@ angular.module('ecMobileApp.magasin').controller('payerCtrl', function(userServi
 
 		var modalInstance = $modal.open({
 			animation : payerCtrl.animationsEnabled,
-			templateUrl : '/magasin/template/modal.html',
+			templateUrl : 'magasin/template/modal.html',
 			controller : 'modal2Ctrl',
 			controllerAs : 'modal2Ctrl',
 			size: size

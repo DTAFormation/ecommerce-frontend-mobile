@@ -11,7 +11,7 @@
 		</thead>
 		<tbody>
 			<tr ng-repeat="produit in payerCtrl.panier | orderBy : 'id'">
-				<td><img src="{{produit.image}}"></td>
+				<td><img ng-src="{{produit.image}}" class="imgMini"></td>
 				<td>{{produit.libelle}}</td>
 				<td>{{produit.prix}}</td>
 				<td>{{produit.quantite}}</td>
@@ -60,5 +60,12 @@
 				</form>
 			</fieldset>
 		</accordion-group>  
-	</accordion>  
+	</accordion>
+
+	<h2>Adresse de livraison</h2>
+	<!-- affichage des adresses du client connecté -->
+    <select ng-model="adresse_selection" ng-options="adresse.numero+' '+adresse.rue+' '+adresse.ville for adresse in payerCtrl.userInfos.adresses" data-native-menu="true">
+		<option value="">Sélectionnez une adresse</option>
+	</select>
+
 </div>
