@@ -11,20 +11,17 @@ angular.module('ecMobileApp', [
 ]);
 
 angular.module('ecMobileApp').config(function($routeProvider) {
-    $routeProvider.otherwise({redirectTo:'/magasin'});
 
+    $routeProvider.otherwise({redirectTo:'/'});
 });
 
-angular.module('ecMobileApp').run(function($rootScope, $location, userService) {
+angular.module('ecMobileApp').run(function($rootScope, $location, userService,/*$scope*/ panierService) {
     // register listener to watch route changes
-    $rootScope.$on( "$routeChangeStart", function(event, next, current) {
-        //console.log("routeChange");
+    $rootScope.$on("$routeChangeStart", function(event, next, current) {
+    
         var url=next.$$route.originalPath;
-        //console.log("url "+url);
         var regExp=new RegExp("/secure/*");
         if(regExp.test(url)){
-            //console.log("reg exp match");
-            //if ( $rootScope.loggedUser == null ) {
             if ( !userService.isConnected() ) {
                 // no logged user, we should be going to #login
                 if ( next.templateUrl === "connexion/template/connexion.tpl.html" ) {
@@ -35,13 +32,13 @@ angular.module('ecMobileApp').run(function($rootScope, $location, userService) {
                 }
             }
         }
-    });
-    /*$rootScope.$on('$routeChangeStart', function (ev, next, curr) {
-        if (next.$$route) {
-            var user = $rootScope.user;
-            var auth = next.$$route.auth;
-            if (auth && !auth(user)) { $location.path('/'); }
+        var regExp2=new RegExp("/connexion");
+        if(regExp2.test(url) && userService.isConnected()){
+            $location.path("/");
         }
+    });
+   /* $rootScope.$on("MyEvent",function(event){
+        $scope.quantiteTotale = panierService.CalculQte();
     });*/
 });
 
@@ -49,26 +46,22 @@ angular.module('ecMobileApp').run(function($rootScope, $location, userService) {
 
 // Contrôleur qui pilote globalement l'application
 angular.module('ecMobileApp').controller("ecMobileCtrl", function(userService,panierService,$localStorage) {
-    this.title = "ECommerce Mobile";
-    this.quantiteTotale = 0;
+    var ecMobileCtrl = this;
+    var quantiteTotale =0;
 
-    this.isConnected=function(){
+    ecMobileCtrl.title = "ECommerce Mobile";
+    ecMobileCtrl.quantiteTotale = 0;
+
+    ecMobileCtrl.isConnected=function(){
         return userService.isConnected();
     };
 
-    this.getInfosUser=function(){
-        return userService.getInfosUser();
-    };
-
-    this.logout=function(){
+    ecMobileCtrl.logout=function(){
         userService.logout();
     };
-
-
-     this.CalculQte = function(){
-        for(var i = 0; i < $localStorage.panier.length; i++){
-            this.quantiteTotale = this.quantiteTotale + $localStorage.panier[i].quantite;
-        }
+    ecMobileCtrl.CalculQte = function(){
+        ecMobileCtrl.quantiteTotale  = panierService.CalculQte();
     };
-    this.CalculQte();
+
+    ecMobileCtrl.CalculQte();
 });

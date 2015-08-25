@@ -1,8 +1,8 @@
 [
 	{
-		"id":1,
-		"libelle":"Produit 1",
-		"prix":150,
+		"id":39,
+		"libelle":"Vélo",
+		"prix":4,
 		"image":"http://lorempixel.com/120/120"
 	}
 ]

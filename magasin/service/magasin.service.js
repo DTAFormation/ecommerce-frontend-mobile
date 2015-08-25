@@ -2,14 +2,14 @@ angular.module('ecMobileApp.magasin')
 
 .factory('magasinService', function ($http, $localStorage) {
 
-	var apiRestUrl = "bouchons/produits";
-	var api = "http://localhost:3000/0";
+	var apiRestUrl = "http://5.196.89.85:9080/ec-backend/api";
+
 	var detailsProduit=[];
 
 	return {
 
 		getProduits : function (){
-			return $http.get(apiRestUrl + "/all.json")
+			return $http.get(apiRestUrl + "/produit")
 			.then(function (result){
 				return result.data;
 			});
@@ -17,11 +17,9 @@ angular.module('ecMobileApp.magasin')
 
 		/*TODO : Tester avec un bouchon le renvoie du get et la transmission de result*/
 		getDetailsProduit : function(id){
-			//console.log("magasin service getDetailsProduit");
-			/*return $http.get(""+"/detailsProduit/"+id)*/
-			return $http.get(apiRestUrl+"/produit1.json")
+			return $http.get(apiRestUrl + "/produit/" + id)
 			.then(function (result){
-				return result.data[0];
+				return result.data;
 			});
 		}
 

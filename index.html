@@ -1,18 +1,63 @@
 <!DOCTYPE html>
 <html ng-app="ecMobileApp" ng-controller="ecMobileCtrl as ecMobileCtrl">
-<head>
-  <title ng-bind="ecMobileCtrl.title"></title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta charset="utf-8">
+  <head>
+    <title ng-bind="ecMobileCtrl.title"></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
 
-  <link href="app.css" type="text/css" rel="stylesheet">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
-</head>
+    <link href="app.css" type="text/css" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+  </head>
 
 
-<body>
-  <div id="content" class="container">
+  <body>
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation" >
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse" ng-init="navCollapsed = true" ng-click="navCollapsed = !navCollapsed">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <span class="navbar-brand text-uppercase">ECommerce Mobile</span>
+      </div>
+      <div collapse="navCollapsed" class="collapse navbar-collapse" >
+        <ul class="nav navbar-nav" > 
+          <li><a href="#/" ng-click ="navCollapsed = true">Accueil</a></li>
+          <li><a href="#/magasin" ng-click ="navCollapsed = true">Magasin</a></li>
+          <li ng-show="!ecMobileCtrl.isConnected()" ng-click ="navCollapsed = true"><a href="#/connexion">Connexion</a></li>
+          <li ng-show="!ecMobileCtrl.isConnected()" ng-click ="navCollapsed = true"><a href="#/compteClient/new">Création Compte</a></li>
+          <li ng-show="ecMobileCtrl.isConnected()" class="dropdown" dropdown is-open="status.isopen">
+            <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" dropdown-toggle ng-disabled="disabled">Compte<span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li role="menuitem"><a href="#/" ng-click="ecMobileCtrl.logout();navCollapsed = true">Déconnexion</a></li>
+              <li role="menuitem"><a href="#/parametres" ng-click ="navCollapsed = true">Paramètres</a></li>
+              <li role="menuitem"><a href="#/commandes" ng-click ="navCollapsed = true">Commandes</a></li>
+            </ul>
+          </li>
+          <li><a href="#/panier" ng-click ="navCollapsed = true">Panier ({{ecMobileCtrl.quantiteTotale}})</a></li> 
+        </ul>
+      </div>
+    </nav>
+
+    <div id="content" class="container">
+      <header>
+        <ng-include src="'home/template/header.html'"></ng-include>
+      </header>
+      <div class="row">
+
+        <div ng-view></div>
+
+      </div>      
+    </div>
+
+    <footer class="panel-footer myFooter">
+        <ng-include src="'home/template/footer.html'"></ng-include>
+    </footer>
+
+        
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 
 
     <!-- Livereload script for development only (stripped during dist build) -->
@@ -46,51 +91,6 @@
     <script src="connexion/controller/modalInstanceConnexionController.js"></script>
     <script src="app.js"></script>
     <!-- Add New Component JS Above -->
-    <header>
-      <ng-include src="'home/template/header.html'"></ng-include>
-    </header>
-    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation" >
-      <div class="container">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse" ng-init="navCollapsed = true" ng-click="navCollapsed = !navCollapsed">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <span class="navbar-brand text-uppercase">ECommerce Mobile</span>
-        </div>
-        <div collapse="navCollapsed" class="collapse navbar-collapse" >
-          <ul class="nav navbar-nav" > 
-            <li><a href="#/magasin" ng-click ="navCollapsed = true">Magasin</a></li>
-            <li ng-show="!ecMobileCtrl.isConnected()" ng-click ="navCollapsed = true"><a href="#/connexion">Connexion</a></li>
-            <li ng-show="!ecMobileCtrl.isConnected()" ng-click ="navCollapsed = true"><a href="#/compteClient/new">Création Compte</a></li>
-            <li ng-show="ecMobileCtrl.isConnected()" class="dropdown" dropdown is-open="status.isopen">
-              <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" dropdown-toggle ng-disabled="disabled">Compte<span class="caret"></span></a>
-              <ul class="dropdown-menu">
-                <li role="menuitem"><a href="#/" ng-click="ecMobileCtrl.logout();navCollapsed = true">Déconnexion</a></li>
-                <li role="menuitem"><a href="#/parametres" ng-click ="navCollapsed = true">Paramètres</a></li>
-                <li role="menuitem"><a href="#/commandes" ng-click ="navCollapsed = true">Commandes</a></li>
-              </ul>
-            </li>
-            <li><a href="#/panier" ng-click ="navCollapsed = true">Panier ({{ecMobileCtrl.quantiteTotale}})</a></li> 
-          </ul>
-        </div>
-      </div>
-    </nav>
-    <div class="row">
 
-      <div ng-view></div>
-
-    </div>
-
-    <footer>
-      <ng-include src="'home/template/footer.html'"></ng-include>
-    </footer>
-  </div>
-
-      
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-
-</body>
+  </body>
 </html>

@@ -1,9 +1,9 @@
 // Déclaration du module 'magasin'
 angular.module('ecMobileApp.magasin', [
-    'ngRoute',
-    'ngStorage',
-    'ecMobileApp.shared'
-]);
+	'ngRoute',
+	'ngStorage',
+	'ecMobileApp.shared'
+	]);
 
 // Configuration du module 'magasin'
 angular.module('ecMobileApp.magasin').config(function($routeProvider) {
@@ -25,7 +25,7 @@ angular.module('ecMobileApp.magasin').config(function($routeProvider) {
 		controllerAs: "magasinCtrl"
 	})
 	.when("/secure/effectuerPaiement", {
-		templateUrl: "/magasin/template/effectuerPaiement.tpl.html",
+		templateUrl: "magasin/template/effectuerPaiement.tpl.html",
 		controller: "payerCtrl",
 		controllerAs: "payerCtrl"
 	});
@@ -35,22 +35,22 @@ angular.module('ecMobileApp.magasin').config(function($routeProvider) {
 // Usage de la syntaxe 'controller as', pas besoin du '$scope'
 angular.module('ecMobileApp.magasin').controller('magasinCtrl', function(userService, magasinService, panierService, $routeParams, $location) {
 
-    var magasinCtrl = this;
+	var magasinCtrl = this;
 
-    magasinCtrl.listProduits = [];
+	magasinCtrl.listProduits = [];
 
 	magasinCtrl.getProduits = function(){
-		magasinService.getProduits().then(function (result){
-			//console.log("magasinCtrl.listProduits = result; " + result);
+		magasinService.getProduits()
+		.then(function (result){
 			magasinCtrl.listProduits = result;
 		});
 	};
 
 	magasinCtrl.getProduits();
 
-    magasinCtrl.addToPanier = function(idProduit) {
-        panierService.addToPanier(idProduit, 1);
-    };
+	magasinCtrl.addToPanier = function(idProduit) {
+		panierService.addToPanier(idProduit, 1);
+	};
 
 
 
@@ -62,18 +62,13 @@ angular.module('ecMobileApp.magasin').controller('magasinCtrl', function(userSer
 
 	magasinCtrl.getDetailsProduit = function(){
 		magasinService.getDetailsProduit($routeParams.id).then(function (result){
-		//	console.log("dans magasin.js getDetailsProduit : "+$routeParams.id);
-			//console.log(result);
-			magasinCtrl.detailsProduit = result;
+			magasinCtrl.produitSelectionne = result;
 		});
 	};
-
-	magasinCtrl.getDetailsProduit();
-	//console.log("Dans magasisCtrl après le get :"+magasinCtrl.detailsProduit);
 });
 
 
-angular.module('ecMobileApp.magasin').controller('panierCtrl', function(userService, panierService,payerService,$location) {
+angular.module('ecMobileApp.magasin').controller('panierCtrl', function(userService, panierService,payerService,$location,$route) {
 
 	var panierCtrl = this;
 
@@ -118,47 +113,54 @@ angular.module('ecMobileApp.magasin').controller('panierCtrl', function(userServ
 		panierCtrl.updateTotalPanier();
 	};
 
+
     panierCtrl.removeFromPanier = function(idProduit) {
         panierService.removeFromPanier(idProduit);
         panierCtrl.getPanier();
     };
 
-    panierCtrl.effectuerPaiement = function(totalPrix){
+	panierCtrl.effectuerPaiement = function(totalPrix){
 		payerService.setTotalPrix(totalPrix);
-		$location.path("/effectuerPaiement");
+		$location.path("/secure/effectuerPaiement");
 	};
 
 	this.isConnected=function(){
-        return userService.isConnected();
-    };
+		return userService.isConnected();
+	};
 });
 
-angular.module('ecMobileApp.magasin').controller('payerCtrl', function(userService, panierService, payerService,$location,$modal,$log) {
+angular.module('ecMobileApp.magasin').controller('payerCtrl', function(userService, panierService, payerService, $localStorage, $location,$modal,$log) {
 	var payerCtrl = this;
 	payerCtrl.totalPrix = payerService.getTotalPrix();
 	var typeCard = "CB";
 	var typeCheque = "Chèque";
+	payerCtrl.userInfos = userService.getInfosUser(); // pour recuperer les infos utilisateur stockees dans le localStorage
+	
+
+	console.log(payerCtrl.userInfos); // test de recup des donnees
 
 	function getPanier (){
-		panierService.getPanier().then(function (result){
+		panierService.getPanier()
+		.then(function (result){
 			payerCtrl.panier = result;
-			updateTotalPanier();
 		});
 	}
 
 	getPanier();
-
-	function updateTotalPanier(){
-		payerCtrl.totalPrix = 0;
-		for(var i = 0; i < payerCtrl.panier.length; i++){
-			payerCtrl.totalPrix = payerCtrl.totalPrix + (payerCtrl.panier[i].prix * payerCtrl.panier[i].quantite);
-		}
-	}
+	
+	payerCtrl.modal = function(){
+		var modalInstance = $modal.open({
+				animation : payerCtrl.animationsEnabled,
+				templateUrl : 'magasin/template/modalValidation.html',
+				controller : 'modalCtrl',
+				controllerAs : 'modalCtrl',
+			});
+	};
 
 	payerCtrl.payerByCheque = function(){
 		payerService.payerByCheque(userService.getInfosUser(),payerCtrl.totalPrix,payerCtrl.panier,typeCheque)
 		.then(function(){
-			$location.path("/");
+			payerCtrl.modal();
 		});
 	};
 
@@ -166,7 +168,7 @@ angular.module('ecMobileApp.magasin').controller('payerCtrl', function(userServi
 		if (form.$invalid) {return;}
 		payerService.save(userService.getInfosUser(),payerCtrl.commande,payerCtrl.totalPrix,payerCtrl.panier,typeCard)
 		.then(function(){
-			$location.path("/");
+			payerCtrl.modal();
 		});
 	};
 
@@ -180,22 +182,27 @@ angular.module('ecMobileApp.magasin').controller('payerCtrl', function(userServi
 
 		var modalInstance = $modal.open({
 			animation : payerCtrl.animationsEnabled,
-			templateUrl : '/magasin/template/modal.html',
-			controller : 'modalCtrl',
-			controllerAs : 'modalCtrl',
+			templateUrl : 'magasin/template/modal.html',
+			controller : 'modal2Ctrl',
+			controllerAs : 'modal2Ctrl',
 			size: size
-		});
-		modalInstance.result.then(function(){
-			$log.info('Modal dismissed at : ' + new Date());
 		});
 	};
 
 });
 
-angular.module('ecMobileApp.magasin').controller('modalCtrl', function( userService,payerService,$modalInstance) {
+angular.module('ecMobileApp.magasin').controller('modalCtrl', function( userService,payerService,$modalInstance,$location) {
 	var modalCtrl = this;
 	modalCtrl.ok = function(){
-		console.log("modal close");
+		$modalInstance.close();
+		$location.path("/");
+
+	};
+});
+
+angular.module('ecMobileApp.magasin').controller('modal2Ctrl', function( userService,payerService,$modalInstance,$location) {
+	var modal2Ctrl = this;
+	modal2Ctrl.ok = function(){
 		$modalInstance.close();
 	};
 });

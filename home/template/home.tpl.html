@@ -1,53 +1,87 @@
+
+<div class="container">
+
+
+<div class="jumbotron myHeader">
+	<div class="container-fluid">
+		<h2>Bienvenue sur ECommerce Mobile</h2>
+	</div>
+</div>
+
 <div class="container-fluid">
 	<label>ECommerce vous informe : </label> Livraison sous 48h et gratuite à partir de 30 euros <br><br>
-	<h2>Les offres :</h2>
+	
+	<h2 class="text-center">Les offres :</h2>
+	<div style="overflow-x:auto;white-space:nowrap">
+		<table id="promotion" class="table table-bordered" style="text-align:center">
+			<tr style="width:10em;height:10em;">
+				<td style="position:relative">
+					<img src="http://lorempixel.com/120/120/">
+					<div style="width:200px;text-align:center;position:absolute;top:25px;left:-60px;font-size:1.5em;background-color:red;-webkit-transform:rotate(-45deg)">
+						Promotion
+					</div>
+				</td>
+				<td style="position:relative;overflow:hidden">
+					<img src="http://lorempixel.com/120/120/">
+					<div style="width:200px;text-align:center;position:absolute;top:25px;left:-60px;font-size:1.5em;background-color:red;-webkit-transform:rotate(-45deg)">
+						Promotion
+					</div>
+				</td>
+				<td style="position:relative;overflow:hidden">
+					<img src="http://lorempixel.com/120/120/">
+					<div style="width:200px;text-align:center;position:absolute;top:25px;left:-60px;font-size:1.5em;background-color:red;-webkit-transform:rotate(-45deg)">
+						Promotion
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td class='product'>Produit 1</td>
+				<td class='product'>Produit 2</td>
+				<td class='product'>Produit 3</td>
+			</tr>
+		</table>
+	</div>
+	<h2 class="text-center">A découvrir : <a href="#/magasin" style="font-size:0.5em">voir plus</a></h2>
+	<div style="overflow-x:auto;white-space:nowrap">
+		<table id="nouveau" class="table table-bordered" style="text-align:center">
+			<tr style="width:10em;height:10em;">
+				<td style="position:relative">
+					<img src="http://lorempixel.com/120/120/">
+					<div style="width:200px;text-align:center;position:absolute;top:25px;left:-60px;font-size:1.5em;background-color:yellow;-webkit-transform:rotate(-45deg)">
+						Nouveau
+					</div>
+				</td>
+				<td style="position:relative;overflow:hidden">
+					<img src="http://lorempixel.com/120/120/">
+					<div style="width:200px;text-align:center;position:absolute;top:25px;left:-60px;font-size:1.5em;background-color:yellow;-webkit-transform:rotate(-45deg)">
+						Nouveau
+					</div>
+				</td>
+				<td style="position:relative;overflow:hidden">
+					<img src="http://lorempixel.com/120/120/">
+					<div style="width:200px;text-align:center;position:absolute;top:25px;left:-60px;font-size:1.5em;background-color:yellow;-webkit-transform:rotate(-45deg)">
+						Nouveau
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td>Produit 1</td>
+				<td>Produit 2</td>
+				<td>Produit 3</td>
+			</tr>
+		</table>
+  
+    <!-- évolution possible
 
-	<table class="table table-bordered" style="text-align:center">
-		<tr style="height:10em;">
-			<td>
-				<div style="position:absolute;z-index:1">
-					<img src="http://lorempixel.com/120/120/">
-				</div>
-				<div style="position:absolute;z-index:2;font-size:1.5em;background-color:red;-webkit-transform:rotate(-20deg)">
-					Promotion
-				</div> 
-			</td>
-			<td>
-				<div style="position:absolute;z-index:1">
-					<img src="http://lorempixel.com/120/120/">
-				</div>
-				<div style="position:absolute;z-index:2;font-size:1.5em;background-color:red;-webkit-transform:rotate(-20deg)">
-					Promotion
-				</div> 
-			</td>
-			<td>
-				<div style="position:absolute;z-index:1">
-					<img src="http://lorempixel.com/120/120/">
-				</div>
-				<div style="position:absolute;z-index:2;font-size:1.5em;background-color:red;-webkit-transform:rotate(-20deg)">
-					Promotion
-				</div> 
-			</td>
-		</tr>
-		<tr>
-			<td>Produit 1</td>
-			<td>Produit 2</td>
-			<td>Produit 3</td>
-		</tr>
-	</table>
-	<h2>A découvrir : <a href="#/magasin" style="font-size:0.5em">voir plus</a></h2>
-	<table class="table table-bordered" style="text-align:center">
-		<tr>
-			<td><img src="http://lorempixel.com/120/120/"></td>
-			<td><img src="http://lorempixel.com/120/120/"></td>
-			<td><img src="http://lorempixel.com/120/120/"></td>
-		</tr>
-		<tr>
-			<td>Produit 1</td>
-			<td>Produit 2</td>
-			<td>Produit 3</td>
-		</tr>
-	</table>
+    <carousel interval="homeCtrl.myInterval" no-wrap="homeCtrl.noWrapSlides">
+      <slide ng-repeat="slide in homeCtrl.slides" active="slide.active">
+        <img ng-src="{{slide.image}}" style="margin:auto;">
+        <div class="carousel-caption">
+          <h4>Produit {{$index}}</h4>
+        </div>
+      </slide>
+    </carousel> -->
+
 </div>
 
 
