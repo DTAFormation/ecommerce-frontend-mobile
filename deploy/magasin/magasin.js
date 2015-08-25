@@ -134,7 +134,7 @@ angular.module('ecMobileApp.magasin').controller('payerCtrl', function(userServi
 	payerCtrl.totalPrix = payerService.getTotalPrix();
 	var typeCard = "CB";
 	var typeCheque = "Chèque";
-	payerCtrl.userInfos = userService.getInfoUser(); // pour recuperer les infos utilisateur stockees dans le localStorage
+	payerCtrl.userInfos = userService.getInfosUser(); // pour recuperer les infos utilisateur stockees dans le localStorage
 	
 
 	console.log(payerCtrl.userInfos); // test de recup des donnees
