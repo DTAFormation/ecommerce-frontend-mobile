@@ -26,21 +26,21 @@ describe("Test du magasinService", function() {
 	}));
 
 
-	var mockProduit1 = [{id : 1, 
+	var mockProduit1 = {id : 1, 
 		libelle:"Produit 1",
 		prix:150,
-		image:"http://lorempixel.com/120/120" }];
+		image:"http://lorempixel.com/120/120" };
 
 	it("Afficher détail d'un produit", inject(function(magasinService, $httpBackend){
 
-		$httpBackend.expectGET(apiUrl+'/'+mockProduit1[0].id).respond(200, mockProduit1);
+		$httpBackend.expectGET(apiUrl+'/'+mockProduit1.id).respond(200, mockProduit1);
 
 		magasinService.getDetailsProduit(1)
 		.then(function(result){
-			expect(result.id).toBe(mockProduit1[0].id);
-			expect(result.libelle).toBe(mockProduit1[0].libelle);
-			expect(result.prix).toBe(mockProduit1[0].prix);
-			expect(result.image).toBe(mockProduit1[0].image);
+			expect(result.id).toBe(mockProduit1.id);
+			expect(result.libelle).toBe(mockProduit1.libelle);
+			expect(result.prix).toBe(mockProduit1.prix);
+			expect(result.image).toBe(mockProduit1.image);
 
 			expect(result.id===2).toBe(false);
 			expect(result.libelle==="Produit 2").toBe(false);
