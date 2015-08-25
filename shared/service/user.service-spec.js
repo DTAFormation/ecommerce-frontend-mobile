@@ -6,7 +6,7 @@ describe('userServiceTest', function() {
         module("ecMobileApp.shared");
     });
 
-    it("Connecte un utilisateur", inject(function(userService, $httpBackend, $controller){
+    it("Connecte un utilisateur", inject(function(userService, $httpBackend){
 		
 		$httpBackend.when('POST', 'http://localhost:8080/ecommerce-backend/api/personne/connect',
 			function(postdata){
