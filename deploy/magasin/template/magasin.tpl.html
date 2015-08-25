@@ -1,13 +1,28 @@
 <div class="container">
+<br>
+	<input type="text" ng-model="searchProduct" placeholder="Chercher dans la liste" style="float:right" autofocus>
+
+	<select  name="orderByKey" ng-model="orderByKey" onchange="action()">
+		     <option value="libelle" >Trier par nom</option>
+		     <option value="prix">Trier par prix</option>
+		     <option value="categorie">Trier par categorie</option>
+
+	</select>
+
+	<label>Asc</label>
+	<input type="radio" name="orderIn" ng-model="orderIn" />
+	<label>Desc</label>
+	<input type="radio" name="OrderIn" ng-model="orderIn" value="reverse" />
+
 	<h2>Liste des produits</h2>
 	<table class="table table-bordered">
 		<tbody>
-			<tr ng-repeat="produit in magasinCtrl.listProduits | orderBy : 'id'">
+			<tr ng-repeat="produit in magasinCtrl.listProduits | filter:{libelle:searchProduct}|orderBy: orderByKey: orderIn" >
 				<td class="text-center">
 					<div class="miniatureContainer">
 						<img ng-src="{{produit.image}}" class="imgMini"/>
 					</div>
-					<h4>{{produit.libelle}}</h4>
+					<h4>{{produit.libelle }}</h4>
 					<h4>{{produit.prix}} €</h4>
 					<button class="btn btn-primary" ng-click="magasinCtrl.addToPanier(produit.id)">Ajouter au panier</button>
 					<button class="btn btn-warning" ng-click="magasinCtrl.detailsProduit(produit.id)">Voir détails</button>
@@ -16,3 +31,6 @@
 		</tbody>
 	</table>
 </div>
+
+
+
