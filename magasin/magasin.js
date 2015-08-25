@@ -95,7 +95,7 @@ angular.module('ecMobileApp.magasin').controller('panierCtrl', function(userServ
 	panierCtrl.diminuerQuantite = function(id_produit){
 		panierCtrl.panier.forEach(function(produit){
 			if(produit.id === id_produit){
-				if(produit.quantite > 0){
+				if(produit.quantite > 1){
 					produit.quantite -= 1;
 					panierService.addToPanier(produit.id, -1);
 				}
