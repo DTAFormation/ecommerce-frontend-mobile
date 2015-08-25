@@ -1,0 +1,7 @@
+<div class="miniatureContainer">
+	<img ng-src="{{produit.image}}" class="imgMini"/>
+</div>
+	<h4>{{produit.libelle}}</h4>
+	<h4>{{produit.prix}} €</h4>
+	<button class="btn btn-primary" ng-click="addToPanier(produit.id)">Ajouter au panier</button>
+	<button class="btn btn-warning" ng-click="detailsProduit(produit.id)">Voir détails</button>
