@@ -10,8 +10,8 @@
 					<div class="miniatureContainer">
 						<img ng-src="{{produit.image}}" class="imgMini"/>
 					</div>
-					<button class="btn btn-danger removeButton">
-						<span class="glyphicon glyphicon-remove" aria-hidden="true" ng-click="panierCtrl.removeFromPanier(produit.id)"></span>
+					<button class="btn btn-danger removeButton" ng-click="panierCtrl.removeFromPanier(produit.id)">
+						<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
 					</button>
 					<h4>{{produit.libelle}}</h4>
 					<h4>{{produit.prix}} €</h4>
