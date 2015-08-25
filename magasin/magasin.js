@@ -47,6 +47,7 @@ angular.module('ecMobileApp.magasin').controller('magasinCtrl', function(userSer
 	};
 
 	magasinCtrl.getProduits();
+	console.log(magasinCtrl.getProduits());
 
 	magasinCtrl.addToPanier = function(idProduit) {
 		panierService.addToPanier(idProduit, 1);
