@@ -38,6 +38,7 @@ angular.module('ecMobileApp.magasin').controller('magasinCtrl', function(userSer
     var magasinCtrl = this;
     magasinCtrl.minPrice = 0;
     magasinCtrl.maxPrice = Number.MAX_VALUE;
+
     magasinCtrl.listProduits = [];
 
     magasinCtrl.getProduits = function(){
@@ -52,8 +53,6 @@ angular.module('ecMobileApp.magasin').controller('magasinCtrl', function(userSer
     magasinCtrl.addToPanier = function(idProduit) {
         panierService.addToPanier(idProduit, 1);
     };
-
-
 
     magasinCtrl.detailsProduit = function(idProduit){
         $location.path("/detailsProduit/" +idProduit);
@@ -221,4 +220,5 @@ angular.module('ecMobileApp.magasin').filter('filterByPriceMinAndMax', function(
 
   }
   return filter;
+
 });
