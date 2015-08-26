@@ -136,8 +136,10 @@ angular.module('ecMobileApp.magasin').controller('payerCtrl', function(userServi
 	var typeCheque = "Chèque";
 	payerCtrl.userInfos = userService.getInfosUser(); // pour recuperer les infos utilisateur stockees dans le localStorage
 	
-
-	console.log(payerCtrl.userInfos); // test de recup des donnees
+	// test de recup des donnees
+	//console.log("payerCtrl.userInfos:"payerCtrl.userInfos);
+	//console.log(payerCtrl.userInfos);
+	////////////////////////////
 
 	function getPanier (){
 		panierService.getPanier()
@@ -158,15 +160,25 @@ angular.module('ecMobileApp.magasin').controller('payerCtrl', function(userServi
 	};
 
 	payerCtrl.payerByCheque = function(){
-		payerService.payerByCheque(userService.getInfosUser(),payerCtrl.totalPrix,payerCtrl.panier,typeCheque)
+		//console.log("testPayerByCheque:");
+		//console.log(userService.getInfosUser());
+		//console.log(this);
+		payerService.payerByCheque(userService.getInfosUser(),payerService.getTotalPrix(),payerCtrl.panier,typeCheque,payerCtrl.optionSelected)
 		.then(function(){
 			payerCtrl.modal();
 		});
 	};
 
+	payerCtrl.selected = function(item){
+		//console.log(item);
+		payerCtrl.optionSelected = item;
+	};
+
 	payerCtrl.save = function(form){
+		//console.log("testPayerByCB:");
+		//console.log(userService.getInfosUser());
 		if (form.$invalid) {return;}
-		payerService.save(userService.getInfosUser(),payerCtrl.commande,payerCtrl.totalPrix,payerCtrl.panier,typeCard)
+		payerService.save(userService.getInfosUser(),payerCtrl.commande,payerService.getTotalPrix(),payerCtrl.panier,typeCard,payerCtrl.optionSelected)
 		.then(function(){
 			payerCtrl.modal();
 		});

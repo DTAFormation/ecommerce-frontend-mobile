@@ -56,6 +56,9 @@
 							<a ng-click="payerCtrl.open()">plus d'information</a>
 						</div>
 					</div>
+
+					
+
 					<button class="btn btn-warning" ng-click="payerCtrl.annuler()">Annuler le paiement</button>  <button class="btn btn-success" type = "submit">Valider</button>
 				</form>
 			</fieldset>
@@ -64,8 +67,8 @@
 
 	<h2>Adresse de livraison</h2>
 	<!-- affichage des adresses du client connecté -->
-    <select ng-model="adresse_selection" ng-options="adresse.numero+' '+adresse.rue+' '+adresse.ville for adresse in payerCtrl.userInfos.adresses" data-native-menu="true">
-		<option value="">Sélectionnez une adresse</option>
+    <select class="form-group" ng-model="adresse_selection" data-native-menu="true" ng-change="payerCtrl.selected(adresse_selection)">
+		<option ng-repeat="adresse in payerCtrl.userInfos.adresses" value="{{adresse.id}}">{{adresse.numero}} {{adresse.rue}} {{adresse.ville}}</option>
 	</select>
 
 </div>
