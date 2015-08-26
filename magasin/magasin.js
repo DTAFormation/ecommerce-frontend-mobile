@@ -21,8 +21,8 @@ angular.module('ecMobileApp.magasin').config(function($routeProvider) {
 	})
 	.when("/detailsProduit/:id", {
 		templateUrl: "magasin/template/detailsProduit.tpl.html",
-		controller: "magasinCtrl",
-		controllerAs: "magasinCtrl"
+		controller: "detailsProduitsCtrl",
+		controllerAs: "detailsProduitsCtrl"
 	})
 	.when("/secure/effectuerPaiement", {
 		templateUrl: "magasin/template/effectuerPaiement.tpl.html",
@@ -59,15 +59,25 @@ angular.module('ecMobileApp.magasin').controller('magasinCtrl', function(userSer
 		$location.path("/detailsProduit/" +idProduit);
 	};
 
-	//TODO : vérifier retour des données depuis le service
+});
 
-	magasinCtrl.getDetailsProduit = function(){
+// Contrôleur principal du module 'magasin'
+// Usage de la syntaxe 'controller as', pas besoin du '$scope'
+angular.module('ecMobileApp.magasin').controller('detailsProduitsCtrl', function(magasinService, panierService, $routeParams) {
+
+	var self = this;
+
+	self.addToPanier = function(idProduit) {
+		panierService.addToPanier(idProduit, 1);
+	};
+
+	self.getDetailsProduit = function(){
 		magasinService.getDetailsProduit($routeParams.id).then(function (result){
-			magasinCtrl.produitSelectionne = result;
+			self.produitSelectionne = result;
 		});
 	};
 
-	//magasinCtrl.getDetailsProduit();
+	self.getDetailsProduit();
 });
 
 

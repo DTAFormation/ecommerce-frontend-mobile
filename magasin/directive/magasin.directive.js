@@ -1,11 +1,19 @@
 angular.module('ecMobileApp.magasin')
-	
-	.directive('myTab',function(){
-		return{
-			replace: true,
-			transclude: true,
-			templateUrl: 'myTab.html',
 
-		}
+    .directive('ecLigneProduit', function(panierService,$location) {
+        return {
+            restrict:'E',
+            templateUrl : 'magasin/directive/ecLigneProduit.tpl.html',
+           
+            link: function(scope, iElement, iAttrs, ctrl) {
+                var produit = scope.$eval(iAttrs.ngProduit);
+                scope.produit = produit;
+            },
+            controller: function($scope){
+                // /!\ Attention, pas de syntaxe controllerAs ici
+                // donc bien utiliser $scope pour enregistrer les
+                // variables et les fonctions
 
-	})
+            }
+        };
+    });
