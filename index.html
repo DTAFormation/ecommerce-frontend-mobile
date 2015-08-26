@@ -25,7 +25,7 @@
       <div collapse="navCollapsed" class="collapse navbar-collapse" >
         <ul class="nav navbar-nav" > 
           <li><a href="#/" ng-click ="navCollapsed = true">Accueil</a></li>
-          <li><a href="#/magasin" ng-click ="navCollapsed = true" id="magasin">Magasin</a></li>
+          <li><a href="#/magasin" ng-click ="navCollapsed = true" id="magasin"   onclick='location.reload(true); return false;'>Magasin</a></li>
           <li ng-show="!ecMobileCtrl.isConnected()" ng-click ="navCollapsed = true"><a href="#/connexion">Connexion</a></li>
           <li ng-show="!ecMobileCtrl.isConnected()" ng-click ="navCollapsed = true"><a href="#/compteClient/new">Création Compte</a></li>
           <li ng-show="ecMobileCtrl.isConnected()" class="dropdown" dropdown is-open="status.isopen">

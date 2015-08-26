@@ -1,23 +1,33 @@
 <div class="container">
 <br>
 	<input type="text" ng-model="searchProduct" placeholder="Chercher dans la liste" style="float:right" autofocus>
-
+<label>tri</label>
 	<select  name="orderByKey" ng-model="orderByKey">
 		     <option value="libelle" >Trier par nom</option>
 		     <option value="prix">Trier par prix</option>
 		     <option value="categorie">Trier par catégorie</option>
 
 	</select>
+    
 
 	<label>Asc</label>
 	<input type="radio" name="orderIn" ng-model="orderIn" />
 	<label>Desc</label>
 	<input type="radio" name="orderIn" ng-model="orderIn" value="reverse" />
+	<a href='#' onclick='location.reload(true); return false;'>Retour magasin</a>
+<ul>
+	<li><a  ng-click="magasinCtrl.minPrice = 0; magasinCtrl.maxPrice = 49.99">Prix inférieur à 100</a></li>
+	<li><a  ng-click="magasinCtrl.minPrice = 50; magasinCtrl.maxPrice =150">Prix entre 100 et 150</a></li>
+	<li><a  ng-click="magasinCtrl.minPrice = 151; magasinCtrl.maxPrice = 999999">Prix supérieur 150</a></li>
+</ul>
 
 	<h2>Liste des produits</h2>
 	<table class="table table-bordered">
 		<tbody>
-			<tr ng-repeat="produit in magasinCtrl.listProduits | filter:{libelle:searchProduct}|orderBy: orderByKey: orderIn" >
+			<tr ng-repeat="produit in magasinCtrl.listProduits 
+			| filter:{libelle:searchProduct}
+			| filterByPriceMinAndMax:magasinCtrl.minPrice:magasinCtrl.maxPrice 
+			| orderBy: orderByKey: orderIn" >
 				<td class="text-center">
 					<div class="miniatureContainer">
 						<img ng-src="{{produit.image}}" class="imgMini"/>
@@ -30,7 +40,9 @@
 			</tr>
 		</tbody>
 	</table>
+
 </div>
+
 
 
 
