@@ -5,7 +5,7 @@ describe('E2E : Test Protractor panier',function(){
 		element(by.id('magasin')).click(); //on clique sur l'élément qui a l'id magasin, dans notre cas le lien vers magasin
 		expect(browser.getLocationAbsUrl()).toEqual('/magasin'); //on verifie que l'url soit celle attendue
 		
-	/* Chemin pour afficher les clients */
+		/* Chemin pour afficher les clients */
         var tableMagasin = element(by.css("table")); // le tableau des produits du magasin
         expect(tableMagasin.isPresent()).toBeTruthy(); //verifie qu'il y a un tableau
 
