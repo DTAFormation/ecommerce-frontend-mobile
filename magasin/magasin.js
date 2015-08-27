@@ -226,23 +226,23 @@ angular.module('ecMobileApp.magasin').controller('payerCtrl', function(userServi
 			controllerAs : 'modal2Ctrl',
 			size: size
 		});
-
-	payerCtrl.choix = {
-        name: 'Envoi classique'
-      };
-
-      payerCtrl.prixlivraison=function(choix){
-          var classique;
-          var colissimo;
-          var Fedex;
-          var prixlivraison;
-          if(payerCtrl.choix===classique){return prixlivraison=0.0;}
-          if(payerCtrl.choix===colissimo){return prixlivraison=9.60;}
-          if(payerCtrl.choix===Fedex){return prixlivraison=14.20;}
-      };
-
-
 	};
+
+	payerCtrl.confLivraison = {
+		classique: {
+			name: 'Envoi classique',
+			prix: 0.0
+		},
+		colissimo: {
+			name: "Colissimo",
+			prix: 9.60
+		},
+		Fedex: {
+			name: "Fedex",
+			prix: 14.20
+		}
+        // TODO fedex
+   };
 
 });
 
