@@ -22,7 +22,7 @@
 	<h2>Choix du mode de livraison</h2>
 	<form name="myForm">
 		<ul>
-			<li ng-repeat="(cleLivraison, livraison) in payerCtrl.confLivraison"><input type="radio" ng-model="payerCtrl.nomLivraison" value="{{cleLivraison}}">{{livraison.name}}, prix : {{livraison.prix}} €</li>
+			<li ng-repeat="(cleLivraison, livraison) in payerCtrl.confLivraison"><input type="radio" ng-model="payerCtrl.nomLivraison" value="{{cleLivraison}}">Livraison : {{livraison.name}}, prix : {{livraison.prix}} €</li>
 		</ul>
 
 		<tt>choix = {{payerCtrl.nomLivraison}}</tt><br/>

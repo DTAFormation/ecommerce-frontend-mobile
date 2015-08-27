@@ -197,6 +197,8 @@ angular.module('ecMobileApp.magasin').controller('payerCtrl', function(userServi
 	};
 
 	payerCtrl.payerByCheque = function(){
+		payerService.setFraisLivraison(payerCtrl.confLivraison[payerCtrl.nomLivraison].prix);
+
 		payerService.payerByCheque(userService.getInfosUser(),payerCtrl.totalPrix,payerCtrl.panier,typeCheque)
 		.then(function(){
 			payerCtrl.modal();
@@ -241,8 +243,10 @@ angular.module('ecMobileApp.magasin').controller('payerCtrl', function(userServi
 			name: "Fedex",
 			prix: 14.20
 		}
-        // TODO fedex
+
    };
+
+
 
 });
 

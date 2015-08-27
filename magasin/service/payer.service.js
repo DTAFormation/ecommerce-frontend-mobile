@@ -4,7 +4,7 @@ angular.module('ecMobileApp.magasin')
 	var apiRestUrl = "http://localhost:3000/commande";
 	var api = "http://5.196.89.85:9080/ec-backend/api/client/";
 	var totalPrix = 0;
-	var fraisLivraison = 5;
+	var frais= 0;
 	return {
 		
 		save : function(user,commande,prix,panier,type_card){
@@ -13,16 +13,20 @@ angular.module('ecMobileApp.magasin')
 			},
 
 		setTotalPrix : function(total){
-				totalPrix = total + fraisLivraison;
+				totalPrix = total;
 			},
 
 		getTotalPrix : function(){
-			return totalPrix;
+			return totalPrix + frais;
 		},
 
 		payerByCheque : function(user,prix,panier,typeCheque){
 			var commande_total = {"user_id":user.id,"prix_total": prix,"panier":panier,"type_paiement":typeCheque};
 			return $http.post(api+user.id+"/commande",commande_total);
+		},
+
+		setFraisLivraison : function(fraisLivraison){
+			frais = fraisLivraison;
 		}
 	};
 });
