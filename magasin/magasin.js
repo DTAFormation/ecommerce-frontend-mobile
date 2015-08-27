@@ -8,6 +8,28 @@ angular.module('ecMobileApp.magasin', [
 // Configuration du module 'magasin'
 angular.module('ecMobileApp.magasin').config(function($routeProvider) {
 
+    $routeProvider
+    .when("/magasin", {
+        templateUrl: "magasin/template/magasin.tpl.html",
+        controller: "magasinCtrl",
+        controllerAs: "magasinCtrl"
+    })
+    .when("/panier", {
+        templateUrl: "magasin/template/panier.tpl.html",
+        controller: "panierCtrl",
+        controllerAs: "panierCtrl"
+    })
+    .when("/detailsProduit/:id", {
+        templateUrl: "magasin/template/detailsProduit.tpl.html",
+        controller: "magasinCtrl",
+        controllerAs: "magasinCtrl"
+    })
+    .when("/secure/effectuerPaiement", {
+        templateUrl: "magasin/template/effectuerPaiement.tpl.html",
+        controller: "payerCtrl",
+        controllerAs: "payerCtrl"
+    });
+
 	$routeProvider
 	.when("/magasin", {
 		templateUrl: "magasin/template/magasin.tpl.html",
@@ -35,30 +57,42 @@ angular.module('ecMobileApp.magasin').config(function($routeProvider) {
 // Usage de la syntaxe 'controller as', pas besoin du '$scope'
 angular.module('ecMobileApp.magasin').controller('magasinCtrl', function(userService, magasinService, panierService, $routeParams, $location) {
 
-	var magasinCtrl = this;
+    var magasinCtrl = this;
+    magasinCtrl.minPrice = 0;
+    magasinCtrl.maxPrice = Number.MAX_VALUE;
 
-	magasinCtrl.listProduits = [];
+    magasinCtrl.listProduits = [];
 
-	magasinCtrl.getProduits = function(){
-		magasinService.getProduits()
-		.then(function (result){
-			magasinCtrl.listProduits = result;
-		});
-	};
+    magasinCtrl.getProduits = function(){
+        magasinService.getProduits()
+        .then(function (result){
+            magasinCtrl.listProduits = result;
+        });
+    };
 
-	magasinCtrl.getProduits();
-	console.log(magasinCtrl.getProduits());
+    magasinCtrl.getProduits();
 
-	magasinCtrl.addToPanier = function(idProduit) {
-		panierService.addToPanier(idProduit, 1);
-	};
+    magasinCtrl.addToPanier = function(idProduit) {
+        panierService.addToPanier(idProduit, 1);
+    };
 
+    magasinCtrl.detailsProduit = function(idProduit){
+        $location.path("/detailsProduit/" +idProduit);
+    };
 
+    //TODO : vérifier retour des données depuis le service
 
-	magasinCtrl.detailsProduit = function(idProduit){
-		$location.path("/detailsProduit/" +idProduit);
-	};
+    magasinCtrl.getDetailsProduit = function(){
+        magasinService.getDetailsProduit($routeParams.id).then(function (result){
+            magasinCtrl.produitSelectionne = result;
+        });
+    };
+  
+});
 
+angular.module('ecMobileApp.magasin').controller('panierCtrl', function(userService, panierService,payerService,$location,$route) {
+
+    var panierCtrl = this;
 });
 
 // Contrôleur principal du module 'magasin'
@@ -80,10 +114,19 @@ angular.module('ecMobileApp.magasin').controller('detailsProduitsCtrl', function
 	self.getDetailsProduit();
 });
 
-
 angular.module('ecMobileApp.magasin').controller('panierCtrl', function(userService, panierService,payerService,$location,$route) {
 
-	var panierCtrl = this;
+    var panierCtrl = this;
+
+    panierCtrl.augmenterQuantite = function(id_produit){
+        panierCtrl.panier.forEach(function(produit){
+            if(produit.id === id_produit){
+                produit.quantite += 1;
+                panierService.addToPanier(produit.id, 1);
+            }
+        });
+        panierCtrl.updateTotalPanier();
+    };
 
 	panierCtrl.totalPrix = 0;
 
@@ -124,7 +167,6 @@ angular.module('ecMobileApp.magasin').controller('panierCtrl', function(userServ
 		});
 		panierCtrl.updateTotalPanier();
 	};
-
 
     panierCtrl.removeFromPanier = function(idProduit) {
         panierService.removeFromPanier(idProduit);
@@ -213,8 +255,24 @@ angular.module('ecMobileApp.magasin').controller('modalCtrl', function( userServ
 });
 
 angular.module('ecMobileApp.magasin').controller('modal2Ctrl', function( userService,payerService,$modalInstance,$location) {
-	var modal2Ctrl = this;
-	modal2Ctrl.ok = function(){
-		$modalInstance.close();
-	};
+    var modal2Ctrl = this;
+    modal2Ctrl.ok = function(){
+        $modalInstance.close();
+    };
+});
+
+angular.module('ecMobileApp.magasin').filter('filterByPriceMinAndMax', function() {
+  function filter(produits, min, max) {
+    console.log("Min Price:", min);
+    console.log("Max Price:", max);
+    
+    var produitsFiltres = produits.filter(function(produit) {
+        return (produit.prix > min && produit.prix < max);  
+    });
+
+    return produitsFiltres;
+
+  }
+  return filter;
+
 });

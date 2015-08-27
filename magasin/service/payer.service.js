@@ -21,7 +21,7 @@ angular.module('ecMobileApp.magasin')
 
 		payerByCheque : function(user,prix,panier,typeCheque){
 			var commande_total = {"user_id":user.id,"prix_total": prix,"panier":panier,"type_paiement":typeCheque};
-					return $http.post(apiRestUrl,commande_total);
+			return $http.post(api+user.id+"/commande",commande_total);
 		}
 	};
 });
