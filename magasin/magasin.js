@@ -71,7 +71,7 @@ angular.module('ecMobileApp.magasin').controller('magasinCtrl', function(userSer
             magasinCtrl.produitSelectionne = result;
         });
     };
-  
+
 });
 
 // Contrôleur principal du module 'magasin'
@@ -161,7 +161,7 @@ angular.module('ecMobileApp.magasin').controller('payerCtrl', function(userServi
 	var typeCard = "CB";
 	var typeCheque = "Chèque";
 	payerCtrl.userInfos = userService.getInfosUser(); // pour recuperer les infos utilisateur stockees dans le localStorage
-	
+
 
 	console.log(payerCtrl.userInfos); // test de recup des donnees
 
@@ -173,7 +173,7 @@ angular.module('ecMobileApp.magasin').controller('payerCtrl', function(userServi
 	}
 
 	getPanier();
-	
+
 	payerCtrl.modal = function(){
 		var modalInstance = $modal.open({
 				animation : payerCtrl.animationsEnabled,
@@ -224,11 +224,10 @@ angular.module('ecMobileApp.magasin').controller('payerCtrl', function(userServi
 			name: "Colissimo",
 			prix: 9.60
 		},
-		Fedex: {
+		fedex: {
 			name: "Fedex",
 			prix: 14.20
 		}
-        // TODO fedex
    };
 
 });
@@ -256,9 +255,9 @@ angular.module('ecMobileApp.magasin').filter('filterByPriceMinAndMax', function(
   function filter(produits, min, max) {
     //console.log("Min Price:", min);
     //console.log("Max Price:", max);
-    
+
     var produitsFiltres = produits.filter(function(produit) {
-        return (produit.prix > min && produit.prix < max);  
+        return (produit.prix > min && produit.prix < max);
     });
 
     return produitsFiltres;

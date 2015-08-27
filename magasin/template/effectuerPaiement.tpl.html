@@ -25,8 +25,10 @@
 			<li ng-repeat="(cleLivraison, livraison) in payerCtrl.confLivraison"><input type="radio" ng-model="payerCtrl.nomLivraison" value="{{cleLivraison}}">{{livraison.name}}, prix : {{livraison.prix}} €</li>
 		</ul>
 
-		<tt>choix = {{payerCtrl.nomLivraison}}</tt><br/>
-		<tt>prix = <span ng-bind="payerCtrl.confLivraison[payerCtrl.nomLivraison].prix"></span></tt>
+    <h3>Votre choix</h3>
+
+		Choix du mode livraison : {{payerCtrl.nomLivraison}}<br/>
+        Frais de livraison : <span ng-bind="payerCtrl.confLivraison[payerCtrl.nomLivraison].prix"> €</span>
 	<h2>Paiement</h2>
 	<accordion close-others="true">
 		<accordion-group heading="Paiement par chèque" is-open="false">
@@ -37,7 +39,7 @@
 				<p>44800 Saint Herblain</p>
 			</Adresse>
 			<button class="btn btn-warning" ng-click="payerCtrl.annuler()">Annuler le paiement</button>  <button class="btn btn-success" ng-click="payerCtrl.payerByCheque()">Valider</button>
-		</accordion-group>    
+		</accordion-group>
 		<accordion-group heading="Paiement par CB" is-open="false">
 			<fieldset>
 				<legend>Données de paiement</legend>
@@ -67,7 +69,7 @@
 					<button class="btn btn-warning" ng-click="payerCtrl.annuler()">Annuler le paiement</button>  <button class="btn btn-success" type = "submit">Valider</button>
 				</form>
 			</fieldset>
-		</accordion-group>  
+		</accordion-group>
 	</accordion>
 
 	<h2>Adresse de livraison</h2>
@@ -75,5 +77,5 @@
     <select ng-model="adresse_selection" ng-options="adresse.numero+' '+adresse.rue+' '+adresse.ville for adresse in payerCtrl.userInfos.adresses" data-native-menu="true">
 		<option value="">Sélectionnez une adresse</option>
 	</select>
-	</form>	
+	</form>
 </div>
