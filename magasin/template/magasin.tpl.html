@@ -16,10 +16,11 @@
 	<input type="radio" name="orderIn" ng-model="orderIn" value="reverse" />
 	<!--<a href='#' onclick='location.reload(true); return false;'>Retour magasin</a>-->
 <ul>
-	<li><a  ng-click="magasinCtrl.minPrice = 0; magasinCtrl.maxPrice = 49.99">Prix inférieur à 100</a></li>
-	<li><a  ng-click="magasinCtrl.minPrice = 50; magasinCtrl.maxPrice =150">Prix entre 100 et 150</a></li>
-	<li><a  ng-click="magasinCtrl.minPrice = 151; magasinCtrl.maxPrice = 999999">Prix supérieur 150</a></li>
-	<li><a  ng-click="magasinCtrl.minPrice = 0; magasinCtrl.maxPrice = 150000">Tous les produits</a></li>
+	<li><a  ng-click="magasinCtrl.minPrice = 0; magasinCtrl.maxPrice = magasinCtrl.borne1">Prix inférieur à {{magasinCtrl.borne1}}</a></li>
+	<li><a  ng-click="magasinCtrl.minPrice = magasinCtrl.borne1; magasinCtrl.maxPrice = magasinCtrl.borne2">Prix entre {{magasinCtrl.borne1}} et {{magasinCtrl.borne2}}</a></li>
+	<li><a  ng-click="magasinCtrl.minPrice = magasinCtrl.borne2; magasinCtrl.maxPrice = magasinCtrl.borne3">Prix entre {{magasinCtrl.borne2}} et {{magasinCtrl.borne3}}</a></li>
+	<li><a  ng-click="magasinCtrl.minPrice = magasinCtrl.borne3; magasinCtrl.maxPrice = magasinCtrl.borne4">Prix supérieur à {{magasinCtrl.borne3}}</a></li>
+	<li><a  ng-click="magasinCtrl.minPrice = 0; magasinCtrl.maxPrice = magasinCtrl.borne4">Tous les produits</a></li>
 </ul>
 
 	<h2>Liste des produits</h2>

@@ -21,45 +21,29 @@ angular.module('ecMobileApp.magasin').config(function($routeProvider) {
     })
     .when("/detailsProduit/:id", {
         templateUrl: "magasin/template/detailsProduit.tpl.html",
-        controller: "magasinCtrl",
-        controllerAs: "magasinCtrl"
+        controller: "detailsProduitsCtrl",
+        controllerAs: "detailsProduitsCtrl"
     })
     .when("/secure/effectuerPaiement", {
         templateUrl: "magasin/template/effectuerPaiement.tpl.html",
         controller: "payerCtrl",
         controllerAs: "payerCtrl"
     });
-
-	$routeProvider
-	.when("/magasin", {
-		templateUrl: "magasin/template/magasin.tpl.html",
-		controller: "magasinCtrl",
-		controllerAs: "magasinCtrl"
-	})
-	.when("/panier", {
-		templateUrl: "magasin/template/panier.tpl.html",
-		controller: "panierCtrl",
-		controllerAs: "panierCtrl"
-	})
-	.when("/detailsProduit/:id", {
-		templateUrl: "magasin/template/detailsProduit.tpl.html",
-		controller: "detailsProduitsCtrl",
-		controllerAs: "detailsProduitsCtrl"
-	})
-	.when("/secure/effectuerPaiement", {
-		templateUrl: "magasin/template/effectuerPaiement.tpl.html",
-		controller: "payerCtrl",
-		controllerAs: "payerCtrl"
-	});
 });
 
 // Contrôleur principal du module 'magasin'
 // Usage de la syntaxe 'controller as', pas besoin du '$scope'
-angular.module('ecMobileApp.magasin').controller('magasinCtrl', function(userService, magasinService, panierService, $routeParams, $location) {
+angular.module('ecMobileApp.magasin').controller('magasinCtrl', function(userService, magasinService, panierService, $routeParams, $location, BORNES_PRIX_PRODUITS) {
 
     var magasinCtrl = this;
     magasinCtrl.minPrice = 0;
     magasinCtrl.maxPrice = Number.MAX_VALUE;
+
+    magasinCtrl.borne1 = BORNES_PRIX_PRODUITS[0];
+    magasinCtrl.borne2 = BORNES_PRIX_PRODUITS[1];
+    magasinCtrl.borne3 = BORNES_PRIX_PRODUITS[2];
+    magasinCtrl.borne4 = BORNES_PRIX_PRODUITS[3];
+
 
     magasinCtrl.listProduits = [];
 
@@ -87,12 +71,7 @@ angular.module('ecMobileApp.magasin').controller('magasinCtrl', function(userSer
             magasinCtrl.produitSelectionne = result;
         });
     };
-  
-});
 
-angular.module('ecMobileApp.magasin').controller('panierCtrl', function(userService, panierService,payerService,$location,$route) {
-
-    var panierCtrl = this;
 });
 
 // Contrôleur principal du module 'magasin'
@@ -114,6 +93,8 @@ angular.module('ecMobileApp.magasin').controller('detailsProduitsCtrl', function
 	self.getDetailsProduit();
 });
 
+// Contrôleur principal du module 'panier'
+// Usage de la syntaxe 'controller as', pas besoin du '$scope'
 angular.module('ecMobileApp.magasin').controller('panierCtrl', function(userService, panierService,payerService,$location,$route) {
 
     var panierCtrl = this;
@@ -121,8 +102,8 @@ angular.module('ecMobileApp.magasin').controller('panierCtrl', function(userServ
     panierCtrl.augmenterQuantite = function(id_produit){
         panierCtrl.panier.forEach(function(produit){
             if(produit.id === id_produit){
-                produit.quantite += 1;
-                panierService.addToPanier(produit.id, 1);
+                produit.quantite += 1; //augmentation de la quantite du produit du controller
+                panierService.addToPanier(produit.id, 1); //augmentation de la quantite du produit du $localStorage
             }
         });
         panierCtrl.updateTotalPanier();
@@ -158,16 +139,6 @@ angular.module('ecMobileApp.magasin').controller('panierCtrl', function(userServ
 		panierCtrl.updateTotalPanier();
 	};
 
-	panierCtrl.augmenterQuantite = function(id_produit){
-		panierCtrl.panier.forEach(function(produit){
-			if(produit.id === id_produit){
-				produit.quantite += 1;
-				panierService.addToPanier(produit.id, 1);
-			}
-		});
-		panierCtrl.updateTotalPanier();
-	};
-
     panierCtrl.removeFromPanier = function(idProduit) {
         panierService.removeFromPanier(idProduit);
         panierCtrl.getPanier();
@@ -183,13 +154,14 @@ angular.module('ecMobileApp.magasin').controller('panierCtrl', function(userServ
 	};
 });
 
+
 angular.module('ecMobileApp.magasin').controller('payerCtrl', function(userService, panierService, payerService, $localStorage, $location,$modal,$log) {
 	var payerCtrl = this;
 	payerCtrl.totalPrix = payerService.getTotalPrix();
 	var typeCard = "CB";
 	var typeCheque = "Chèque";
 	payerCtrl.userInfos = userService.getInfosUser(); // pour recuperer les infos utilisateur stockees dans le localStorage
-	
+
 
 	console.log(payerCtrl.userInfos); // test de recup des donnees
 
@@ -201,7 +173,7 @@ angular.module('ecMobileApp.magasin').controller('payerCtrl', function(userServi
 	}
 
 	getPanier();
-	
+
 	payerCtrl.modal = function(){
 		var modalInstance = $modal.open({
 				animation : payerCtrl.animationsEnabled,
@@ -211,20 +183,25 @@ angular.module('ecMobileApp.magasin').controller('payerCtrl', function(userServi
 			});
 	};
 
-	payerCtrl.payerByCheque = function(){
-		payerService.payerByCheque(userService.getInfosUser(),payerCtrl.totalPrix,payerCtrl.panier,typeCheque)
-		.then(function(){
-			payerCtrl.modal();
-		});
+    payerCtrl.payer = function(form, typePaiement) {
+        // TODO : activer la validation
+//        if (form.$invalid) {return;}
+
+        // TODO : passer l'adresse de facuration à la place de 2 fois l'adresse
+        // de livraison
+        payerService.payer(payerCtrl.adresseLivraison, payerCtrl.adresseLivraison, typePaiement)
+        .then(function(){
+            payerCtrl.modal();
+        });
+    };
+
+	payerCtrl.payerByCheque = function(form) {
+        payerCtrl.payer(form, "Par chèque");
 	};
 
-	payerCtrl.save = function(form){
-		if (form.$invalid) {return;}
-		payerService.save(userService.getInfosUser(),payerCtrl.commande,payerCtrl.totalPrix,payerCtrl.panier,typeCard)
-		.then(function(){
-			payerCtrl.modal();
-		});
-	};
+    payerCtrl.payerByCB = function(form) {
+        payerCtrl.payer(form, "Par CB");
+    };
 
 	payerCtrl.annuler = function(){
 		$location.path("/magasin");
@@ -243,6 +220,21 @@ angular.module('ecMobileApp.magasin').controller('payerCtrl', function(userServi
 		});
 	};
 
+	payerCtrl.confLivraison = {
+		classique: {
+			name: 'Envoi classique',
+			prix: 0.0
+		},
+		colissimo: {
+			name: "Colissimo",
+			prix: 9.60
+		},
+		fedex: {
+			name: "Fedex",
+			prix: 14.20
+		}
+   };
+
 });
 
 angular.module('ecMobileApp.magasin').controller('modalCtrl', function( userService,payerService,$modalInstance,$location) {
@@ -255,19 +247,19 @@ angular.module('ecMobileApp.magasin').controller('modalCtrl', function( userServ
 });
 
 angular.module('ecMobileApp.magasin').controller('modal2Ctrl', function( userService,payerService,$modalInstance,$location) {
-    var modal2Ctrl = this;
-    modal2Ctrl.ok = function(){
-        $modalInstance.close();
-    };
+
+	var modal2Ctrl = this;
+	modal2Ctrl.ok = function(){
+		$modalInstance.close();
+	};
 });
+
+
 
 angular.module('ecMobileApp.magasin').filter('filterByPriceMinAndMax', function() {
   function filter(produits, min, max) {
-    console.log("Min Price:", min);
-    console.log("Max Price:", max);
-    
     var produitsFiltres = produits.filter(function(produit) {
-        return (produit.prix > min && produit.prix < max);  
+        return (produit.prix > min && produit.prix < max);
     });
 
     return produitsFiltres;
@@ -276,3 +268,7 @@ angular.module('ecMobileApp.magasin').filter('filterByPriceMinAndMax', function(
   return filter;
 
 });
+
+
+
+
