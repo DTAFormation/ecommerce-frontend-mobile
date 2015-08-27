@@ -14,5 +14,11 @@ angular.module('ecMobileApp.compteClient')
       return $http.post(apiPost,compteCLient);
     };
 
-
+    cpteCliService.getCommandes = function(idClient){
+      console.log("cpteCliService.getCommandes");
+      console.log(idClient);
+      //return("cpteCliService.getCommandes");
+      return $http.get(apiRestUrl+"/user/"+idClient+"/commandes");
+    };
+    
   });
