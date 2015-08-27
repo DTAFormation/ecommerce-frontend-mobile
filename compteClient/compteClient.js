@@ -127,7 +127,7 @@ angular.module('ecMobileApp.compteClient').controller('updateClientCtrl', functi
 
     updatectrl.update = function(form){
       compteClientService.updateClient(updatectrl.client)
-      .then(function(sucess){
+      .then(function(success){
         $location.path("#/");
       }, function(fail){
         console.log("Echec de la mise à jour du client");
