@@ -61,7 +61,9 @@ angular.module('ecMobileApp').controller("ecMobileCtrl", function(userService,pa
     };
     ecMobileCtrl.CalculQte = function(){
         ecMobileCtrl.quantiteTotale  = panierService.CalculQte();
+        console.log("calculQte ecmobileCtrl");
     };
 
+    
     ecMobileCtrl.CalculQte();
 });
