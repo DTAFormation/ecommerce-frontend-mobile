@@ -4,6 +4,7 @@ angular.module('ecMobileApp.magasin')
 	var apiRestUrl = "http://localhost:3000/commande";
 	var api = "http://5.196.89.85:9080/ec-backend/api/client/";
 	var totalPrix = 0;
+	var fraisLivraison = 5;
 	return {
 		
 		save : function(user,commande,prix,panier,type_card){
@@ -12,7 +13,7 @@ angular.module('ecMobileApp.magasin')
 			},
 
 		setTotalPrix : function(total){
-				totalPrix = total;
+				totalPrix = total + fraisLivraison;
 			},
 
 		getTotalPrix : function(){
