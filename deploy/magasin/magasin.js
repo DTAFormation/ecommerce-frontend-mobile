@@ -29,28 +29,6 @@ angular.module('ecMobileApp.magasin').config(function($routeProvider) {
         controller: "payerCtrl",
         controllerAs: "payerCtrl"
     });
-
-	$routeProvider
-	.when("/magasin", {
-		templateUrl: "magasin/template/magasin.tpl.html",
-		controller: "magasinCtrl",
-		controllerAs: "magasinCtrl"
-	})
-	.when("/panier", {
-		templateUrl: "magasin/template/panier.tpl.html",
-		controller: "panierCtrl",
-		controllerAs: "panierCtrl"
-	})
-	.when("/detailsProduit/:id", {
-		templateUrl: "magasin/template/detailsProduit.tpl.html",
-		controller: "detailsProduitsCtrl",
-		controllerAs: "detailsProduitsCtrl"
-	})
-	.when("/secure/effectuerPaiement", {
-		templateUrl: "magasin/template/effectuerPaiement.tpl.html",
-		controller: "payerCtrl",
-		controllerAs: "payerCtrl"
-	});
 });
 
 // Contrôleur principal du module 'magasin'
@@ -189,6 +167,7 @@ angular.module('ecMobileApp.magasin').controller('panierCtrl', function(userServ
 	};
 });
 
+
 angular.module('ecMobileApp.magasin').controller('payerCtrl', function(userService, panierService, payerService, $localStorage, $location,$modal,$log) {
 	var payerCtrl = this;
 	payerCtrl.totalPrix = payerService.getTotalPrix();
@@ -249,6 +228,22 @@ angular.module('ecMobileApp.magasin').controller('payerCtrl', function(userServi
 		});
 	};
 
+	payerCtrl.confLivraison = {
+		classique: {
+			name: 'Envoi classique',
+			prix: 0.0
+		},
+		colissimo: {
+			name: "Colissimo",
+			prix: 9.60
+		},
+		Fedex: {
+			name: "Fedex",
+			prix: 14.20
+		}
+        // TODO fedex
+   };
+
 });
 
 angular.module('ecMobileApp.magasin').controller('modalCtrl', function( userService,payerService,$modalInstance,$location) {
@@ -261,11 +256,14 @@ angular.module('ecMobileApp.magasin').controller('modalCtrl', function( userServ
 });
 
 angular.module('ecMobileApp.magasin').controller('modal2Ctrl', function( userService,payerService,$modalInstance,$location) {
-    var modal2Ctrl = this;
-    modal2Ctrl.ok = function(){
-        $modalInstance.close();
-    };
+
+	var modal2Ctrl = this;
+	modal2Ctrl.ok = function(){
+		$modalInstance.close();
+	};
 });
+
+
 
 angular.module('ecMobileApp.magasin').filter('filterByPriceMinAndMax', function() {
   function filter(produits, min, max) {
@@ -282,3 +280,7 @@ angular.module('ecMobileApp.magasin').filter('filterByPriceMinAndMax', function(
   return filter;
 
 });
+
+
+
+
