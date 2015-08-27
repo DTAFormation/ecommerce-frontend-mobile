@@ -1,7 +1,6 @@
 angular.module('ecMobileApp.shared').factory('panierService', function ($http, $localStorage,$rootScope) {
 
     var apiRestUrl = "http://5.196.89.85:9080/ec-backend/api";
-    var quantiteTotale = 0;
 
     return {
         addToPanier: function(idProduit, quantite) { //modifie la quantite de l'article dans le panier du $localStorage
@@ -73,7 +72,7 @@ angular.module('ecMobileApp.shared').factory('panierService', function ($http, $
         },
 
         CalculQte : function(){ //calcul la quantite totale des produits dans le panier
-
+            var quantiteTotale = 0;
             if($localStorage.panier){
                 Object.keys($localStorage.panier).forEach(function(key){
                     quantiteTotale = quantiteTotale + Object.getOwnPropertyDescriptor($localStorage.panier, key).value;

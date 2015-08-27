@@ -153,7 +153,6 @@ angular.module('ecMobileApp.magasin').controller('panierCtrl', function(userServ
 			}
 		});
 		panierCtrl.updateTotalPanier();
-
 	};
 
     panierCtrl.removeFromPanier = function(idProduit) {
