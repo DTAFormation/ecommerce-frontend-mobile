@@ -17,7 +17,14 @@ angular.module('ecMobileApp.compteClient').config(function($routeProvider) {
       templateUrl: "compteClient/template/newCompteClient.html",
       controller: "newCompteClientCtrl",
       controllerAs: "newcpteCliCtrl"
+    })
+
+    .when("/compteClient/update",{
+      templateUrl : "compteClient/template/updateClient.html",
+      controller: "updateClientCtrl",
+      controllerAs: 'updCliCtrl'
     });
+
 
 });
 
@@ -105,6 +112,26 @@ angular.module('ecMobileApp.compteClient').controller('ModalInstanceCtrl', funct
   mdlInstCtrl.ok = function () {
     $modalInstance.close();
   };
+});
 
+angular.module('ecMobileApp.compteClient').controller('updateClientCtrl', function(compteClientService,$location){
+    var updatectrl = this;
+
+    compteClientService.getById()
+    .then(function(client){
+      updatectrl.client = client;
+      console.log(updatectrl.client);
+    });
+
+    compteClientService.getById();
+
+    updatectrl.update = function(form){
+      compteClientService.updateClient(updatectrl.client)
+      .then(function(sucess){
+        $location.path("#/");
+      }, function(fail){
+        console.log("Echec de la mise à jour du client");
+      });
+    };
 
 });

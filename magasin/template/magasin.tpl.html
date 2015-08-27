@@ -30,20 +30,10 @@
 			| filter:{libelle:searchProduct}
 			| filterByPriceMinAndMax:magasinCtrl.minPrice:magasinCtrl.maxPrice 
 			| orderBy: orderByKey: orderIn" >
-
-<<<<<<< HEAD
-			<tr ng-repeat="produit in magasinCtrl.listProduits | orderBy : 'id'">
-					
-=======
->>>>>>> 020cd2e63e570a223b736e6b205dbcdcb7875d70
 				<td class="text-center">
 					<ec-ligne-produit ng-produit="{{produit}}"></ec-ligne-produit>
 				</td>
 			</tr>
-<<<<<<< HEAD
-			
-=======
->>>>>>> 020cd2e63e570a223b736e6b205dbcdcb7875d70
 		</tbody>
 	</table>
 

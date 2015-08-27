@@ -1,5 +1,5 @@
 angular.module('ecMobileApp.compteClient')
-  .service('compteClientService', function($http){
+  .service('compteClientService', function($http,$localStorage){
 
     var cpteCliService = this;
 
@@ -12,6 +12,19 @@ angular.module('ecMobileApp.compteClient')
     cpteCliService.postClient = function(compteCLient){
       var apiPost = apiRestUrl+"/user";
       return $http.post(apiPost,compteCLient);
+    };
+
+    //Recherche du client par ID
+    this.getById = function(id){
+      return $http.get(apiRestUrl+"/user" + "/" + $localStorage.infosUser.id)
+      .then(function(result){
+        return result.data
+      });
+    };
+
+    //Mettre à jour les données d'un client
+    this.updateClient = function(client){
+      return $http.put(apiRestUrl, client);
     };
 
 
