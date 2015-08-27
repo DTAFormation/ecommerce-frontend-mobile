@@ -4,10 +4,10 @@ angular.module('ecMobileApp.magasin')
 		restrict : 'E',
 		templateUrl: 'magasin/directive/myPanier.tpl.html',
 		link: function(scope, element, attributes) {
-			scope.produit = scope.$eval(attributes.ngProduit); //attributes contient les données de {{produit}}
+			//console.log("chagement qte");
 		},
 		controller: function($scope) {
-			console.log("controller");
+			//console.log("controller");
 		}
 	};
 

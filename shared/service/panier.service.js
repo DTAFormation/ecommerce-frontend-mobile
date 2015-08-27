@@ -4,17 +4,25 @@ angular.module('ecMobileApp.shared').factory('panierService', function ($http, $
     var quantiteTotale = 0;
 
     return {
-        addToPanier: function(idProduit, quantite) {
+        addToPanier: function(idProduit, quantite) { //modifie la quantite de l'article dans le panier du $localStorage
             var newQuantite = quantite;
 
             if (!$localStorage.panier) {
                 $localStorage.panier = {};
             }
-
+            /*Object.getOwnPropertyDescriptor(obj, prop)
+            obj =L'objet sur lequel on cherche la propriété.
+            prop=Le nom de la propriété dont on souhaite avoir la description.*/
             if(Object.getOwnPropertyDescriptor($localStorage.panier, JSON.stringify(idProduit))){
+                //si l'objet est deja present dans le panier on calcule sa nouvelle quantite
                 newQuantite = newQuantite + Object.getOwnPropertyDescriptor($localStorage.panier, JSON.stringify(idProduit)).value;
             }
 
+            /*Object.defineProperty(obj, prop, descripteur)
+            obj=L'objet sur lequel on souhaite définir ou modifier une propriété.
+            prop=Le nom de la propriété qu'on définit ou qu'on modifie.
+            descripteur=Le descripteur de la propriété qu'on définit ou qu'on modifie.
+            */
             Object.defineProperty($localStorage.panier, JSON.stringify(idProduit), {value : newQuantite, writable : true, enumerable : true, configurable : true});
 
             return;
@@ -64,7 +72,7 @@ angular.module('ecMobileApp.shared').factory('panierService', function ($http, $
             }
         },
 
-        CalculQte : function(){
+        CalculQte : function(){ //calcul la quantite totale des produits dans le panier
 
             if($localStorage.panier){
                 Object.keys($localStorage.panier).forEach(function(key){
