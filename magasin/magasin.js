@@ -141,6 +141,7 @@ angular.module('ecMobileApp.magasin').controller('panierCtrl', function(userServ
 	};
 });
 
+
 angular.module('ecMobileApp.magasin').controller('payerCtrl', function(userService, panierService, payerService, $localStorage, $location,$modal,$log) {
 	var payerCtrl = this;
 	payerCtrl.totalPrix = payerService.getTotalPrix();
@@ -218,3 +219,22 @@ angular.module('ecMobileApp.magasin').controller('modal2Ctrl', function( userSer
 		$modalInstance.close();
 	};
 });
+
+
+angular.module('radioCommande', [])
+    .controller('RadioCommande', ['$scope', function($scope) {
+      $scope.choix = {
+        name: 'Envoi classique'
+      };
+      $scope.specialValue = {
+        "id": "2",
+        "value": "Envoi colissimo",
+        "prix" : "6.20"
+      };
+      $scope.specialValuebis = {
+        "id": "3",
+        "value": "Envoi fedex",
+        "prix" : "9.80"
+      };
+}]);
+
