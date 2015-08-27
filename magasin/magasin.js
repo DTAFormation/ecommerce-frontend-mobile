@@ -1,14 +1,13 @@
 // Déclaration du module 'magasin'
 angular.module('ecMobileApp.magasin', [
-    'ngRoute',
-    'ngStorage',
-    'ecMobileApp.shared'
-    ]);
+	'ngRoute',
+	'ngStorage',
+	'ecMobileApp.shared'
+	]);
 
 // Configuration du module 'magasin'
 angular.module('ecMobileApp.magasin').config(function($routeProvider) {
 
-<<<<<<< HEAD
     $routeProvider
     .when("/magasin", {
         templateUrl: "magasin/template/magasin.tpl.html",
@@ -30,7 +29,7 @@ angular.module('ecMobileApp.magasin').config(function($routeProvider) {
         controller: "payerCtrl",
         controllerAs: "payerCtrl"
     });
-=======
+
 	$routeProvider
 	.when("/magasin", {
 		templateUrl: "magasin/template/magasin.tpl.html",
@@ -52,7 +51,6 @@ angular.module('ecMobileApp.magasin').config(function($routeProvider) {
 		controller: "payerCtrl",
 		controllerAs: "payerCtrl"
 	});
->>>>>>> 76bccdb8617abcf36baaf1ef500b5f704fc9af58
 });
 
 // Contrôleur principal du module 'magasin'
@@ -92,11 +90,9 @@ angular.module('ecMobileApp.magasin').controller('magasinCtrl', function(userSer
   
 });
 
-<<<<<<< HEAD
 angular.module('ecMobileApp.magasin').controller('panierCtrl', function(userService, panierService,payerService,$location,$route) {
 
     var panierCtrl = this;
-=======
 });
 
 // Contrôleur principal du module 'magasin'
@@ -117,39 +113,10 @@ angular.module('ecMobileApp.magasin').controller('detailsProduitsCtrl', function
 
 	self.getDetailsProduit();
 });
->>>>>>> 76bccdb8617abcf36baaf1ef500b5f704fc9af58
 
-    panierCtrl.totalPrix = 0;
+angular.module('ecMobileApp.magasin').controller('panierCtrl', function(userService, panierService,payerService,$location,$route) {
 
-
-<<<<<<< HEAD
-    panierCtrl.getPanier = function(){
-        panierService.getPanier().then(function (result){
-            panierCtrl.panier = result;
-            panierCtrl.updateTotalPanier();
-        });
-    };
-
-    panierCtrl.getPanier();
-
-    panierCtrl.updateTotalPanier = function(){
-        panierCtrl.totalPrix = 0;
-        panierCtrl.panier.forEach(function(produit){
-            panierCtrl.totalPrix = panierCtrl.totalPrix + (produit.prix * produit.quantite);
-        });
-    };
-
-    panierCtrl.diminuerQuantite = function(id_produit){
-        panierCtrl.panier.forEach(function(produit){
-            if(produit.id === id_produit){
-                if(produit.quantite > 0){
-                    produit.quantite -= 1;
-                    panierService.addToPanier(produit.id, -1);
-                }
-            }
-        });
-        panierCtrl.updateTotalPanier();
-    };
+    var panierCtrl = this;
 
     panierCtrl.augmenterQuantite = function(id_produit){
         panierCtrl.panier.forEach(function(produit){
@@ -160,8 +127,6 @@ angular.module('ecMobileApp.magasin').controller('detailsProduitsCtrl', function
         });
         panierCtrl.updateTotalPanier();
     };
-=======
-	var panierCtrl = this;
 
 	panierCtrl.totalPrix = 0;
 
@@ -202,93 +167,91 @@ angular.module('ecMobileApp.magasin').controller('detailsProduitsCtrl', function
 		});
 		panierCtrl.updateTotalPanier();
 	};
->>>>>>> 76bccdb8617abcf36baaf1ef500b5f704fc9af58
-
 
     panierCtrl.removeFromPanier = function(idProduit) {
         panierService.removeFromPanier(idProduit);
         panierCtrl.getPanier();
     };
 
-    panierCtrl.effectuerPaiement = function(totalPrix){
-        payerService.setTotalPrix(totalPrix);
-        $location.path("/secure/effectuerPaiement");
-    };
+	panierCtrl.effectuerPaiement = function(totalPrix){
+		payerService.setTotalPrix(totalPrix);
+		$location.path("/secure/effectuerPaiement");
+	};
 
-    this.isConnected=function(){
-        return userService.isConnected();
-    };
+	this.isConnected=function(){
+		return userService.isConnected();
+	};
 });
 
 angular.module('ecMobileApp.magasin').controller('payerCtrl', function(userService, panierService, payerService, $localStorage, $location,$modal,$log) {
-    var payerCtrl = this;
-    payerCtrl.totalPrix = payerService.getTotalPrix();
-    var typeCard = "CB";
-    var typeCheque = "Chèque";
-    payerCtrl.userInfos = userService.getInfosUser(); // pour recuperer les infos utilisateur stockees dans le localStorage
-    
+	var payerCtrl = this;
+	payerCtrl.totalPrix = payerService.getTotalPrix();
+	var typeCard = "CB";
+	var typeCheque = "Chèque";
+	payerCtrl.userInfos = userService.getInfosUser(); // pour recuperer les infos utilisateur stockees dans le localStorage
+	
 
-    console.log(payerCtrl.userInfos); // test de recup des donnees
+	console.log(payerCtrl.userInfos); // test de recup des donnees
 
-    function getPanier (){
-        panierService.getPanier()
-        .then(function (result){
-            payerCtrl.panier = result;
-        });
-    }
+	function getPanier (){
+		panierService.getPanier()
+		.then(function (result){
+			payerCtrl.panier = result;
+		});
+	}
 
-    getPanier();
-    
-    payerCtrl.modal = function(){
-        var modalInstance = $modal.open({
-                animation : payerCtrl.animationsEnabled,
-                templateUrl : 'magasin/template/modalValidation.html',
-                controller : 'modalCtrl',
-                controllerAs : 'modalCtrl',
-            });
-    };
+	getPanier();
+	
+	payerCtrl.modal = function(){
+		var modalInstance = $modal.open({
+				animation : payerCtrl.animationsEnabled,
+				templateUrl : 'magasin/template/modalValidation.html',
+				controller : 'modalCtrl',
+				controllerAs : 'modalCtrl',
+			});
+	};
 
-    payerCtrl.payerByCheque = function(){
-        payerService.payerByCheque(userService.getInfosUser(),payerCtrl.totalPrix,payerCtrl.panier,typeCheque)
-        .then(function(){
-            payerCtrl.modal();
-        });
-    };
+	payerCtrl.payerByCheque = function(){
+		payerService.payerByCheque(userService.getInfosUser(),payerCtrl.totalPrix,payerCtrl.panier,typeCheque)
+		.then(function(){
+			payerCtrl.modal();
+		});
+	};
 
-    payerCtrl.save = function(form){
-        if (form.$invalid) {return;}
-        payerService.save(userService.getInfosUser(),payerCtrl.commande,payerCtrl.totalPrix,payerCtrl.panier,typeCard)
-        .then(function(){
-            payerCtrl.modal();
-        });
-    };
+	payerCtrl.save = function(form){
+		if (form.$invalid) {return;}
+		payerService.save(userService.getInfosUser(),payerCtrl.commande,payerCtrl.totalPrix,payerCtrl.panier,typeCard)
+		.then(function(){
+			payerCtrl.modal();
+		});
+	};
 
-    payerCtrl.annuler = function(){
-        $location.path("/magasin");
-    };
+	payerCtrl.annuler = function(){
+		$location.path("/magasin");
+	};
 
-    payerCtrl.animationsEnabled = true;
+	payerCtrl.animationsEnabled = true;
 
-    payerCtrl.open = function(size){
+	payerCtrl.open = function(size){
 
-        var modalInstance = $modal.open({
-            animation : payerCtrl.animationsEnabled,
-            templateUrl : 'magasin/template/modal.html',
-            controller : 'modal2Ctrl',
-            controllerAs : 'modal2Ctrl',
-            size: size
-        });
-    };
+		var modalInstance = $modal.open({
+			animation : payerCtrl.animationsEnabled,
+			templateUrl : 'magasin/template/modal.html',
+			controller : 'modal2Ctrl',
+			controllerAs : 'modal2Ctrl',
+			size: size
+		});
+	};
 
 });
 
 angular.module('ecMobileApp.magasin').controller('modalCtrl', function( userService,payerService,$modalInstance,$location) {
-    var modalCtrl = this;
-    modalCtrl.ok = function(){
-        $modalInstance.close();
-        $location.path("/");
+	var modalCtrl = this;
+	modalCtrl.ok = function(){
+		$modalInstance.close();
+		$location.path("/");
 
-    };
+	};
 });
 
 angular.module('ecMobileApp.magasin').controller('modal2Ctrl', function( userService,payerService,$modalInstance,$location) {
