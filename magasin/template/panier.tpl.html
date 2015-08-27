@@ -7,19 +7,7 @@
 		<tbody>
 			<tr ng-repeat="produit in panierCtrl.panier | orderBy : 'id'">
 				<td class="text-center">
-					<div class="miniatureContainer">
-						<img ng-src="{{produit.image}}" class="imgMini"/>
-					</div>
-					<button class="btn btn-danger removeButton" id="removeButtonPanier" ng-click="panierCtrl.removeFromPanier(produit.id)">
-						<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-					</button>
-					<h4>{{produit.libelle}}</h4>
-					<h4>{{produit.prix}} €</h4>
-					<div class="btn-group">
-						<button class="btn btn-default" id="diminuerQuantitePanier" ng-click="panierCtrl.diminuerQuantite(produit.id)">-</button>
-						<span class="btn">{{produit.quantite}}</span>
-						<button class="btn btn-default" id="augmenterQuantitePanier" ng-click="panierCtrl.augmenterQuantite(produit.id)">+</button>
-					</div>
+					<ec-directive-panier ng-produit="{{produit}}"></my-directive-panier> <!--appel de la directive-->
 				</td>
 			</tr>
 		</tbody>
@@ -28,3 +16,5 @@
 	<button ng-show="panierCtrl.isConnected()" class="btn btn-success" ng-click="panierCtrl.effectuerPaiement(panierCtrl.totalPrix)">Payer</button>
 	{{panierCtrl.quantiteTotale}}
 </div>
+
+<!-- '<ec-directive-panier...'' est equivalent à '<div ec-directive-panier...' or on ne peut pas mettre de div entre un 'tr' et un 'td', c'est pour cela qu'il faut mettre la directive directement apres un tr-->
