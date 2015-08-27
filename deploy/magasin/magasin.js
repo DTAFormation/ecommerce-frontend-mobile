@@ -55,11 +55,17 @@ angular.module('ecMobileApp.magasin').config(function($routeProvider) {
 
 // Contrôleur principal du module 'magasin'
 // Usage de la syntaxe 'controller as', pas besoin du '$scope'
-angular.module('ecMobileApp.magasin').controller('magasinCtrl', function(userService, magasinService, panierService, $routeParams, $location) {
+angular.module('ecMobileApp.magasin').controller('magasinCtrl', function(userService, magasinService, panierService, $routeParams, $location, BORNES_PRIX_PRODUITS) {
 
     var magasinCtrl = this;
     magasinCtrl.minPrice = 0;
     magasinCtrl.maxPrice = Number.MAX_VALUE;
+
+    magasinCtrl.borne1 = BORNES_PRIX_PRODUITS[0];
+    magasinCtrl.borne2 = BORNES_PRIX_PRODUITS[1];
+    magasinCtrl.borne3 = BORNES_PRIX_PRODUITS[2];
+    magasinCtrl.borne4 = BORNES_PRIX_PRODUITS[3];
+
 
     magasinCtrl.listProduits = [];
 
