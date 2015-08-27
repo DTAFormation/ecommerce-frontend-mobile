@@ -183,20 +183,25 @@ angular.module('ecMobileApp.magasin').controller('payerCtrl', function(userServi
 			});
 	};
 
-	payerCtrl.payerByCheque = function(){
-		payerService.payerByCheque(userService.getInfosUser(),payerCtrl.totalPrix,payerCtrl.panier,typeCheque)
-		.then(function(){
-			payerCtrl.modal();
-		});
+    payerCtrl.payer = function(form, typePaiement) {
+        // TODO : activer la validation
+//        if (form.$invalid) {return;}
+
+        // TODO : passer l'adresse de facuration à la place de 2 fois l'adresse
+        // de livraison
+        payerService.payer(payerCtrl.adresseLivraison, payerCtrl.adresseLivraison, typePaiement)
+        .then(function(){
+            payerCtrl.modal();
+        });
+    };
+
+	payerCtrl.payerByCheque = function(form) {
+        payerCtrl.payer(form, "Par chèque");
 	};
 
-	payerCtrl.save = function(form){
-		if (form.$invalid) {return;}
-		payerService.save(userService.getInfosUser(),payerCtrl.commande,payerCtrl.totalPrix,payerCtrl.panier,typeCard)
-		.then(function(){
-			payerCtrl.modal();
-		});
-	};
+    payerCtrl.payerByCB = function(form) {
+        payerCtrl.payer(form, "Par CB");
+    };
 
 	payerCtrl.annuler = function(){
 		$location.path("/magasin");
@@ -253,9 +258,6 @@ angular.module('ecMobileApp.magasin').controller('modal2Ctrl', function( userSer
 
 angular.module('ecMobileApp.magasin').filter('filterByPriceMinAndMax', function() {
   function filter(produits, min, max) {
-    //console.log("Min Price:", min);
-    //console.log("Max Price:", max);
-
     var produitsFiltres = produits.filter(function(produit) {
         return (produit.prix > min && produit.prix < max);
     });

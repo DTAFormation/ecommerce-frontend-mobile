@@ -25,15 +25,20 @@
 			<li ng-repeat="(cleLivraison, livraison) in payerCtrl.confLivraison"><input type="radio" ng-model="payerCtrl.nomLivraison" value="{{cleLivraison}}">{{livraison.name}}, prix : {{livraison.prix}} €</li>
 		</ul>
 
-    <h3>Votre choix</h3>
-
-		Choix du mode livraison : {{payerCtrl.nomLivraison}}<br/>
+        Choix du mode livraison : {{payerCtrl.nomLivraison}}<br/>
         Frais de livraison : <span ng-bind="payerCtrl.confLivraison[payerCtrl.nomLivraison].prix"> €</span>
+
+    <h2>Adresse de livraison</h2>
+    <!-- affichage des adresses du client connecté -->
+    <select ng-model="payerCtrl.adresseLivraison" ng-options="adresse.numero+' '+adresse.rue+' '+adresse.ville for adresse in payerCtrl.userInfos.adresses" data-native-menu="true">
+        <option value="">Sélectionnez une adresse</option>
+    </select>
+
 	<h2>Paiement</h2>
 	<accordion close-others="true">
 		<accordion-group heading="Paiement par chèque" is-open="false">
 			<Adresse>
-				<p><strong>Adresse d'envoie :</strong></p>
+				<p><strong>Adresse d'envoi :</strong></p>
 				<p>DTA Ingénierie</p>
 				<p>4 rue Edith Piaf</p>
 				<p>44800 Saint Herblain</p>
@@ -66,7 +71,7 @@
 							<a ng-click="payerCtrl.open()">plus d'information</a>
 						</div>
 					</div>
-					<button class="btn btn-warning" ng-click="payerCtrl.annuler()">Annuler le paiement</button>  <button class="btn btn-success" type = "submit">Valider</button>
+					<button class="btn btn-warning" ng-click="payerCtrl.annuler()">Annuler le paiement</button>  <button class="btn btn-success" ng-click="payerCtrl.payerByCB()">Valider</button>
 				</form>
 			</fieldset>
 		</accordion-group>
