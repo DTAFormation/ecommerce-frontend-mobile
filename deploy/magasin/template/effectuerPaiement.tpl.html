@@ -13,12 +13,12 @@
 			<tr ng-repeat="produit in payerCtrl.panier | orderBy : 'id'">
 				<td><img ng-src="{{produit.image}}" class="imgMini"></td>
 				<td>{{produit.libelle}}</td>
-				<td>{{produit.prix}}</td>
+				<td>{{produit.prix | currency : '' }} €</td>
 				<td>{{produit.quantite}}</td>
 			</tr>
 		</tbody>
 	</table>
-	<label ng-model ="payerCtrl.commande.prixTotal" name="prixTotal" value="payerCtrl.totalPrix" >Prix total : {{payerCtrl.totalPrix}} euros </label>
+	<label ng-model ="payerCtrl.commande.prixTotal" name="prixTotal" value="payerCtrl.totalPrix" >Prix total : {{payerCtrl.totalPrix | currency : '' }} € </label>
 	<h2>Choix du mode de livraison</h2>
 	<form name="myForm">
 		<ul>
