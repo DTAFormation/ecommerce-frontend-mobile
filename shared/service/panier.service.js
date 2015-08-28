@@ -72,6 +72,18 @@ angular.module('ecMobileApp.shared').factory('panierService', function ($http, $
             }
         },
 
+        calculerMontant: function() {
+            return this.getPanier()
+                .then(function (result) {
+                    var panier = result;
+                    var montant = 0;
+                    panier.forEach(function(produit){
+                        montant += (produit.prix * produit.quantite);
+                    });
+                    return montant;
+            });
+        },
+
         CalculQte : function(scope){ //calcul la quantite totale des produits dans le panier
             var quantiteTotale = 0;
             if($localStorage.panier){
