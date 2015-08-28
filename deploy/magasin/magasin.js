@@ -194,9 +194,20 @@ angular.module('ecMobileApp.magasin').controller('payerCtrl', function(userServi
 			});
 	};
 
+
+	payerCtrl.payerByCheque = function(){
+		payerService.setFraisLivraison(payerCtrl.confLivraison[payerCtrl.nomLivraison].prix);
+
+		payerService.payerByCheque(userService.getInfosUser(),payerCtrl.totalPrix,payerCtrl.panier,typeCheque)
+		.then(function(){
+			payerCtrl.modal();
+		});
+	};
+
     payerCtrl.payer = function(form, typePaiement) {
         // TODO : activer la validation
 //        if (form.$invalid) {return;}
+
 
         // TODO : passer l'adresse de facuration à la place de 2 fois l'adresse
         // de livraison
@@ -244,7 +255,10 @@ angular.module('ecMobileApp.magasin').controller('payerCtrl', function(userServi
 			name: "Fedex",
 			prix: 14.20
 		}
+
    };
+
+
 
 });
 
