@@ -183,7 +183,10 @@ angular.module('ecMobileApp.magasin').controller('payerCtrl', function(userServi
 	getPanier();
 
     payerCtrl.displayMontant = function() {
-        payerCtrl.montant = payerService.getTotalPrix();
+        panierService.calculerMontant().then(function(montant) {
+            payerService.setTotalPrix(montant);
+            payerCtrl.montant = payerService.getTotalPrix();
+        });
     };
 
     payerCtrl.displayMontant();
