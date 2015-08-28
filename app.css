@@ -29,3 +29,16 @@ body{
 	position:fixed;
 	top:0;
 }
+
+.containerTableOverflow{
+	overflow-x:auto;
+	white-space:nowrap;
+}
+
+.tableProduits{
+	margin-bottom:10px;
+}
+
+.tableAdresses{
+	margin-top:10px;
+}

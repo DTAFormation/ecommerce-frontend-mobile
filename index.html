@@ -5,9 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="utf-8">
 
-    <link href="app.css" type="text/css" rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+    <link href="app.css" type="text/css" rel="stylesheet">
   </head>
 
 
@@ -26,14 +26,14 @@
         <ul class="nav navbar-nav" > 
           <li><a href="#/" ng-click ="navCollapsed = true">Accueil</a></li>
           <li><a href="#/magasin" ng-click ="navCollapsed = true" id="magasin">Magasin</a></li>
-          <li ng-show="!ecMobileCtrl.isConnected()" ng-click ="navCollapsed = true"><a href="#/connexion">Connexion</a></li>
+          <li ng-show="!ecMobileCtrl.isConnected()" ng-click ="navCollapsed = true" id="connexion"><a href="#/connexion">Connexion</a></li>
           <li ng-show="!ecMobileCtrl.isConnected()" ng-click ="navCollapsed = true"><a href="#/compteClient/new">Création Compte</a></li>
           <li ng-show="ecMobileCtrl.isConnected()" class="dropdown" dropdown is-open="status.isopen">
-            <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" dropdown-toggle ng-disabled="disabled">Compte<span class="caret"></span></a>
+            <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" dropdown-toggle ng-disabled="disabled" id="compte">Compte<span class="caret"></span></a>
             <ul class="dropdown-menu">
               <li role="menuitem"><a href="#/" ng-click="ecMobileCtrl.logout();navCollapsed = true">Déconnexion</a></li>
               <li role="menuitem"><a href="#/compteClient/update" ng-click ="navCollapsed = true">Paramètres</a></li>
-              <li role="menuitem"><a href="#/compteClient/commandes" ng-click ="navCollapsed = true">Commandes</a></li>
+              <li role="menuitem"><a href="#/compteClient/commandes" ng-click ="navCollapsed = true" id="commandes">Commandes</a></li>
             </ul>
           </li>
           <li><a href="#/panier" ng-click ="navCollapsed = true" id="panier">Panier ({{ecMobileCtrl.quantiteTotale}})</a></li> 
