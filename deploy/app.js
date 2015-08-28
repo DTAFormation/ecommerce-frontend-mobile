@@ -45,7 +45,7 @@ angular.module('ecMobileApp').run(function($rootScope, $location, userService,/*
 
 
 // Contrôleur qui pilote globalement l'application
-angular.module('ecMobileApp').controller("ecMobileCtrl", function(userService,panierService,$localStorage) {
+angular.module('ecMobileApp').controller("ecMobileCtrl", function(userService,panierService, $scope, $localStorage) {
     var ecMobileCtrl = this;
     var quantiteTotale =0;
 
@@ -59,11 +59,12 @@ angular.module('ecMobileApp').controller("ecMobileCtrl", function(userService,pa
     ecMobileCtrl.logout=function(){
         userService.logout();
     };
-    ecMobileCtrl.CalculQte = function(){
-        ecMobileCtrl.quantiteTotale  = panierService.CalculQte();
-        console.log("calculQte ecmobileCtrl");
-    };
 
-    
-    ecMobileCtrl.CalculQte();
+    ecMobileCtrl.quantiteTotale  = panierService.CalculQte();
+
+    $scope.$on('eventName', function (event, args) {
+        ecMobileCtrl.quantiteTotale = args.message;
+    });
+
+
 });
