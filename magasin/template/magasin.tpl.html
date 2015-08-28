@@ -31,7 +31,6 @@
 			| filter:{libelle:searchProduct}
 			| filterByPriceMinAndMax:magasinCtrl.minPrice:magasinCtrl.maxPrice 
 			| orderBy: orderByKey: orderIn" >
-
 				<td class="text-center">
 					<ec-ligne-produit ng-produit="{{produit}}"></ec-ligne-produit>
 				</td>

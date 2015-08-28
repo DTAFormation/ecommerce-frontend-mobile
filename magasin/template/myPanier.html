@@ -6,7 +6,7 @@
 		<span class="glyphicon glyphicon-remove" aria-hidden="true" ng-click="panierCtrl.removeFromPanier(produit.id)"></span>
 	</button>
 	<h4>{{produit.libelle}}</h4>
-	<h4>{{produit.prix}} €</h4>
+	<h4>{{produit.prix | currency }}</h4>
 	<div class="btn-group">
 		<button class="btn btn-default" id="diminuerQuantitePanier" ng-click="panierCtrl.diminuerQuantite(produit.id)">-</button>
 		<span class="btn">{{produit.quantite}}</span>

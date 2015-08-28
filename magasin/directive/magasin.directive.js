@@ -4,6 +4,7 @@ angular.module('ecMobileApp.magasin')
         return {
             restrict:'E',
             templateUrl : 'magasin/directive/ecLigneProduit.tpl.html',
+            scope: true,
            
             link: function(scope, iElement, iAttrs, ctrl) {
                 var produit = scope.$eval(iAttrs.ngProduit);

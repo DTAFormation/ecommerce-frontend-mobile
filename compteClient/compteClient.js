@@ -17,6 +17,11 @@ angular.module('ecMobileApp.compteClient').config(function($routeProvider) {
       templateUrl: "compteClient/template/newCompteClient.html",
       controller: "newCompteClientCtrl",
       controllerAs: "newcpteCliCtrl"
+    })
+    .when ("/compteClient/commandes", {
+      templateUrl: "compteClient/template/afficherCommandes.html",
+      controller: "DisplayCommandesCtrl",
+      controllerAs: "dispCommsCtrl"
     });
 
 });
@@ -97,6 +102,7 @@ angular.module('ecMobileApp.compteClient').controller('newCompteClientCtrl', fun
     };
 
 });
+
 angular.module('ecMobileApp.compteClient').controller('ModalInstanceCtrl', function ($modalInstance, info) {
   var mdlInstCtrl = this;
 
@@ -106,5 +112,21 @@ angular.module('ecMobileApp.compteClient').controller('ModalInstanceCtrl', funct
     $modalInstance.close();
   };
 
+
+});
+
+angular.module('ecMobileApp.compteClient').controller('DisplayCommandesCtrl', function (compteClientService,userService) {
+  var dispCommsCtrl = this;
+  //console.log("chargement controller");
+  //console.log(userService.getInfosUser());
+
+  dispCommsCtrl.getCommandesClient = function () {
+    compteClientService.getCommandes(userService.getInfosUser().id)
+        .then(function (result){
+        dispCommsCtrl.commandes = result.data;
+      });
+  };
+
+  dispCommsCtrl.getCommandesClient();
 
 });

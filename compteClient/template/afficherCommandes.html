@@ -1,0 +1,55 @@
+		<table ng-repeat="commande in dispCommsCtrl.commandes">
+			<caption>Commande {{commande.id}}</caption>
+			<thead>
+				<tr>
+					<th>Libellé</th>
+					<th>Image</th>
+					<th>Détail</th>
+					<th>Prix</th>
+					<th>Quantité</th>
+				</tr>
+			</thead>
+			<tfoot>
+				<tr>
+					<td>
+						Adresse de livraison:
+					</td>
+					<td>
+						{{commande.facture.adresseLivraison.numero}} {{commande.facture.adresseLivraison.rue}} {{commande.facture.adresseLivraison.ville}}
+					</td>
+				</tr>
+				<tr>
+					<td>
+						Adresse de facturation:
+					</td>
+					<td>
+						{{commande.facture.adresseFacturation.numero}} {{commande.facture.adresseLivraison.rue}} {{commande.facture.adresseLivraison.ville}}
+					</td>
+				</tr>
+				<tr>
+					<td>
+						Mode de paiement:
+					</td>
+					<td>
+						{{commande.facture.modePaiement}}
+					</td>
+				</tr>
+			</tfoot>
+			<tbody ng-repeat="typeProduit in commande.commandeProduits">
+					<tr>
+						<td>{{typeProduit.produit.libelle}}</td>
+						<td>
+							<div>
+								<img src="{{typeProduit.produit.image}}" class="imgMini"/>
+							</div>
+						</td>
+						<td><a href="#/detailsProduit/{{typeProduit.produit.id}}">Détail</a></td>
+						<td>{{typeProduit.produit.prix}} €</td>
+						<td>(x{{typeProduit.quantite}})</td>
+					</tr>
+			</tbody>
+		</table>
+
+		
+
+

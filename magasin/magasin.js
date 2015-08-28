@@ -21,8 +21,8 @@ angular.module('ecMobileApp.magasin').config(function($routeProvider) {
     })
     .when("/detailsProduit/:id", {
         templateUrl: "magasin/template/detailsProduit.tpl.html",
-        controller: "magasinCtrl",
-        controllerAs: "magasinCtrl"
+        controller: "detailsProduitsCtrl",
+        controllerAs: "detailsProduitsCtrl"
     })
     .when("/secure/effectuerPaiement", {
         templateUrl: "magasin/template/effectuerPaiement.tpl.html",
