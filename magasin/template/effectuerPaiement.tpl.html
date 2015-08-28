@@ -76,11 +76,5 @@
 			</fieldset>
 		</accordion-group>
 	</accordion>
-
-	<h2>Adresse de livraison</h2>
-	<!-- affichage des adresses du client connecté -->
-    <select ng-model="adresse_selection" ng-options="adresse.numero+' '+adresse.rue+' '+adresse.ville for adresse in payerCtrl.userInfos.adresses" data-native-menu="true">
-		<option value="">Sélectionnez une adresse</option>
-	</select>
 	</form>
 </div>

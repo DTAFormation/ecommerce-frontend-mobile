@@ -273,7 +273,7 @@ angular.module('ecMobileApp.magasin').controller('modal2Ctrl', function( userSer
 angular.module('ecMobileApp.magasin').filter('filterByPriceMinAndMax', function() {
   function filter(produits, min, max) {
     var produitsFiltres = produits.filter(function(produit) {
-        return (produit.prix > min && produit.prix < max);
+        return (produit.prix >= min && produit.prix <= max);
     });
 
     return produitsFiltres;
