@@ -7,6 +7,8 @@ angular.module('ecMobileApp.magasin')
 
 	var frais= 0;
 
+	var fraisLivraison;
+
 	return {
 
 		setTotalPrix : function(total){
