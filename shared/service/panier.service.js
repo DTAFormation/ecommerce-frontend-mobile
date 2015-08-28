@@ -72,13 +72,18 @@ angular.module('ecMobileApp.shared').factory('panierService', function ($http, $
             }
         },
 
-        CalculQte : function(){ //calcul la quantite totale des produits dans le panier
+        CalculQte : function(scope){ //calcul la quantite totale des produits dans le panier
             var quantiteTotale = 0;
             if($localStorage.panier){
                 Object.keys($localStorage.panier).forEach(function(key){
                     quantiteTotale = quantiteTotale + Object.getOwnPropertyDescriptor($localStorage.panier, key).value;
                 });
             }
+
+            if (scope) {
+                scope.$emit('eventName', { message: quantiteTotale });
+            }
+            
             return quantiteTotale;
 /*
             $rootScope.$emit("MyEvent",function(event){

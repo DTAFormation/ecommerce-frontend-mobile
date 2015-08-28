@@ -33,7 +33,7 @@ angular.module('ecMobileApp.magasin').config(function($routeProvider) {
 
 // Contrôleur principal du module 'magasin'
 // Usage de la syntaxe 'controller as', pas besoin du '$scope'
-angular.module('ecMobileApp.magasin').controller('magasinCtrl', function(userService, magasinService, panierService, $routeParams, $location, BORNES_PRIX_PRODUITS) {
+angular.module('ecMobileApp.magasin').controller('magasinCtrl', function(userService, magasinService, panierService, $scope, $routeParams, $location, BORNES_PRIX_PRODUITS) {
 
     var magasinCtrl = this;
     magasinCtrl.minPrice = 0;
@@ -58,6 +58,7 @@ angular.module('ecMobileApp.magasin').controller('magasinCtrl', function(userSer
 
     magasinCtrl.addToPanier = function(idProduit) {
         panierService.addToPanier(idProduit, 1);
+        panierService.CalculQte($scope);
     };
 
     magasinCtrl.detailsProduit = function(idProduit){
@@ -76,12 +77,13 @@ angular.module('ecMobileApp.magasin').controller('magasinCtrl', function(userSer
 
 // Contrôleur principal du module 'magasin'
 // Usage de la syntaxe 'controller as', pas besoin du '$scope'
-angular.module('ecMobileApp.magasin').controller('detailsProduitsCtrl', function(magasinService, panierService, $routeParams) {
+angular.module('ecMobileApp.magasin').controller('detailsProduitsCtrl', function(magasinService, panierService, $scope, $routeParams) {
 
 	var self = this;
 
 	self.addToPanier = function(idProduit) {
 		panierService.addToPanier(idProduit, 1);
+		panierService.CalculQte($scope);
 	};
 
 	self.getDetailsProduit = function(){
@@ -95,9 +97,13 @@ angular.module('ecMobileApp.magasin').controller('detailsProduitsCtrl', function
 
 // Contrôleur principal du module 'panier'
 // Usage de la syntaxe 'controller as', pas besoin du '$scope'
-angular.module('ecMobileApp.magasin').controller('panierCtrl', function(userService, panierService,payerService,$location,$route) {
+angular.module('ecMobileApp.magasin').controller('panierCtrl', function(userService, panierService, payerService,$scope, $location,$route) {
 
     var panierCtrl = this;
+
+    /*$scope.handleClick = function (msg) {
+		$scope.$emit('eventName', { message: msg });
+	};*/
 
     panierCtrl.augmenterQuantite = function(id_produit){
         panierCtrl.panier.forEach(function(produit){
@@ -107,6 +113,7 @@ angular.module('ecMobileApp.magasin').controller('panierCtrl', function(userServ
             }
         });
         panierCtrl.updateTotalPanier();
+        panierService.CalculQte($scope);
     };
 
 	panierCtrl.totalPrix = 0;
@@ -137,11 +144,13 @@ angular.module('ecMobileApp.magasin').controller('panierCtrl', function(userServ
 			}
 		});
 		panierCtrl.updateTotalPanier();
+		panierService.CalculQte($scope);
 	};
 
     panierCtrl.removeFromPanier = function(idProduit) {
         panierService.removeFromPanier(idProduit);
         panierCtrl.getPanier();
+		panierService.CalculQte($scope);
     };
 
 	panierCtrl.effectuerPaiement = function(totalPrix){
