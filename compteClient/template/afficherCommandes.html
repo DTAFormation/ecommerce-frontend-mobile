@@ -1,5 +1,5 @@
 		<table ng-repeat="commande in dispCommsCtrl.commandes">
-			<caption>Commande {{commande.id}}</caption>
+			<caption><h1>Commande {{commande.id}}</h1></caption>
 			<thead>
 				<tr>
 					<th>Libellé</th>
@@ -12,7 +12,7 @@
 			<tfoot>
 				<tr>
 					<td>
-						Adresse de livraison:
+						<h4>Adresse de livraison</h4>
 					</td>
 					<td>
 						{{commande.facture.adresseLivraison.numero}} {{commande.facture.adresseLivraison.rue}} {{commande.facture.adresseLivraison.ville}}
@@ -20,7 +20,7 @@
 				</tr>
 				<tr>
 					<td>
-						Adresse de facturation:
+						<h4>Adresse de facturation</h4>
 					</td>
 					<td>
 						{{commande.facture.adresseFacturation.numero}} {{commande.facture.adresseLivraison.rue}} {{commande.facture.adresseLivraison.ville}}
@@ -28,7 +28,7 @@
 				</tr>
 				<tr>
 					<td>
-						Mode de paiement:
+						<h4>Mode de paiement:</h4>
 					</td>
 					<td>
 						{{commande.facture.modePaiement}}
@@ -50,6 +50,6 @@
 			</tbody>
 		</table>
 
-		
+
 
 
