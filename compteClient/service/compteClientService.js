@@ -14,15 +14,14 @@ angular.module('ecMobileApp.compteClient')
       return $http.post(apiPost,compteCLient);
     };
 
-<<<<<<< HEAD
-    cpteCliService.getCommandes = function(idClient){
-      console.log("cpteCliService.getCommandes");
-      console.log(idClient);
+
+    self.getCommandes = function(idClient){
+
       //return("cpteCliService.getCommandes");
       return $http.get(apiRestUrl+"/user/"+idClient+"/commandes");
     };
     
-=======
+
     //Recherche du client par ID
     this.getById = function(id){
       return $http.get(self.getUserAPI() + "/" + userService.getInfosUser().id)
@@ -39,7 +38,7 @@ angular.module('ecMobileApp.compteClient')
     this.getUserAPI = function() {
       return apiRestUrl + "/user";
     };
+  });
  
 
->>>>>>> local
-  });
+

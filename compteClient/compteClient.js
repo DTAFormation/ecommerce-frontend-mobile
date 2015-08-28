@@ -18,22 +18,21 @@ angular.module('ecMobileApp.compteClient').config(function($routeProvider) {
       controller: "newCompteClientCtrl",
       controllerAs: "newcpteCliCtrl"
     })
-<<<<<<< HEAD
+
     .when ("/compteClient/commandes", {
       templateUrl: "compteClient/template/afficherCommandes.html",
       controller: "DisplayCommandesCtrl",
       controllerAs: "dispCommsCtrl"
-=======
+
+    })
 
     .when("/compteClient/update",{
       templateUrl : "compteClient/template/updateClient.html",
       controller: "updateClientCtrl",
       controllerAs: 'updCliCtrl'
->>>>>>> local
+
     });
-
-
-});
+  });
 
 // controller du module compteClient
 angular.module('ecMobileApp.compteClient').controller('compteClientCtrl', function(userService) {
