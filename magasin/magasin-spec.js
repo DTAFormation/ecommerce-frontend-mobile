@@ -1,5 +1,7 @@
 describe("Test des controllers du module magasin", function() {
 
+	var $scope = {};
+
 	var mockProduits = [{id : 1, libelle : "Produit 1", prix : 150, image : "http://lorempixel.com/120/120"}, {id : 2, libelle : "Produit 2", prix : 150, image : "http://lorempixel.com/120/120"}];
 
 	var mockPromise =  {
@@ -26,6 +28,8 @@ describe("Test des controllers du module magasin", function() {
 		}
 	};
 
+	var mockEmit=('eventName', { message: 12 });
+
     beforeEach(function() {
 		module("ecMobileApp.magasin");
 		//module('testUtils');
@@ -35,7 +39,7 @@ describe("Test des controllers du module magasin", function() {
 	it("magasinCtrl : Récupérer tous les produits", inject(function($controller, magasinService/*, mockUtils*/) {
 
 		//spyOn(magasinService, "getProduits").and.returnValue(mockUtils.mockPromiseProduits);
-		var magasinCtrl = $controller("magasinCtrl");
+		var magasinCtrl = $controller("magasinCtrl", { $scope: $scope });
 		spyOn(magasinService, "getProduits").and.returnValue(mockPromise);
 		magasinCtrl.getProduits();
 		expect(magasinCtrl.listProduits.length).toEqual(2);
@@ -47,7 +51,7 @@ describe("Test des controllers du module magasin", function() {
 
 		$localStorage.panier = mockLocalStorage;
 
-		var panierCtrl = $controller("panierCtrl");
+		var panierCtrl = $controller("panierCtrl", { $scope: $scope });
 		spyOn(panierService, "getPanier").and.returnValue(mockPromisePanier);
 		var totalPrix = 0;
 		panierCtrl.getPanier();
@@ -63,12 +67,13 @@ describe("Test des controllers du module magasin", function() {
 
 		$localStorage.panier = mockLocalStorage;
 
-		var panierCtrl = $controller("panierCtrl");
+		var panierCtrl = $controller("panierCtrl", { $scope: $scope });
 		spyOn(panierService, "getPanier").and.returnValue(mockPromisePanier);
 		panierCtrl.getPanier();
 		var ancienTotalPrix = panierCtrl.totalPrix;
 		var ancienneQuantite1 = panierCtrl.panier[0].quantite;
 		var ancienneQuantite2 = panierCtrl.panier[1].quantite;
+		spyOn(panierService, "CalculQte").and.returnValue(mockEmit); //mock sur le $emit
 		panierCtrl.augmenterQuantite(1);
 		panierCtrl.diminuerQuantite(2);
 		expect(panierCtrl.panier[0].quantite).toEqual(ancienneQuantite1 + 1);
@@ -80,8 +85,9 @@ describe("Test des controllers du module magasin", function() {
 
 		$localStorage.panier = mockLocalStorage;
 
-		var panierCtrl = $controller("panierCtrl");
+		var panierCtrl = $controller("panierCtrl", { $scope: $scope });
 		spyOn(panierService, "getPanier").and.returnValue(mockPromiseRemovedPanier);
+		spyOn(panierService, "CalculQte").and.returnValue(mockEmit); //mock sur le $emit
 		panierCtrl.removeFromPanier(2);
 		expect(Object.keys($localStorage.panier).length).toEqual(mockPanier.length - 1);
 		expect(panierCtrl.panier.length).toEqual(mockPanier.length - 1);
