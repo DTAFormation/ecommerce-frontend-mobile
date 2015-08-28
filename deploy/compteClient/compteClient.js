@@ -18,13 +18,21 @@ angular.module('ecMobileApp.compteClient').config(function($routeProvider) {
       controller: "newCompteClientCtrl",
       controllerAs: "newcpteCliCtrl"
     })
+
     .when ("/compteClient/commandes", {
       templateUrl: "compteClient/template/afficherCommandes.html",
       controller: "DisplayCommandesCtrl",
       controllerAs: "dispCommsCtrl"
-    });
 
-});
+    })
+
+    .when("/compteClient/update",{
+      templateUrl : "compteClient/template/updateClient.html",
+      controller: "updateClientCtrl",
+      controllerAs: 'updCliCtrl'
+
+    });
+  });
 
 // controller du module compteClient
 angular.module('ecMobileApp.compteClient').controller('compteClientCtrl', function(userService) {
@@ -111,7 +119,27 @@ angular.module('ecMobileApp.compteClient').controller('ModalInstanceCtrl', funct
   mdlInstCtrl.ok = function () {
     $modalInstance.close();
   };
+});
 
+angular.module('ecMobileApp.compteClient').controller('updateClientCtrl', function(compteClientService,$location){
+    var updatectrl = this;
+
+    compteClientService.getById()
+    .then(function(client){
+      updatectrl.client = client;
+      console.log(updatectrl.client);
+    });
+
+    compteClientService.getById();
+
+    updatectrl.update = function(form){
+      compteClientService.updateClient(updatectrl.client)
+      .then(function(success){
+        $location.path("#/");
+      }, function(fail){
+        console.log("Echec de la mise à jour du client");
+      });
+    };
 
 });
 
