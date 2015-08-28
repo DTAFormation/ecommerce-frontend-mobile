@@ -157,7 +157,6 @@ angular.module('ecMobileApp.magasin').controller('panierCtrl', function(userServ
 
 angular.module('ecMobileApp.magasin').controller('payerCtrl', function(userService, panierService, payerService, $localStorage, $location,$modal,$log) {
 	var payerCtrl = this;
-	payerCtrl.totalPrix = payerService.getTotalPrix();
 	var typeCard = "CB";
 	var typeCheque = "Chèque";
 	payerCtrl.userInfos = userService.getInfosUser(); // pour recuperer les infos utilisateur stockees dans le localStorage
@@ -173,6 +172,18 @@ angular.module('ecMobileApp.magasin').controller('payerCtrl', function(userServi
 	}
 
 	getPanier();
+
+    payerCtrl.displayMontant = function() {
+        payerCtrl.montant = payerService.getTotalPrix();
+    };
+
+    payerCtrl.displayMontant();
+
+    payerCtrl.ajouterFraisLivraison = function(frais) {
+        payerService.ajoutFraisLivraison(frais);
+        // Mise à jour du montant dans l'écran
+        payerCtrl.displayMontant();
+    };
 
 	payerCtrl.modal = function(){
 		var modalInstance = $modal.open({
