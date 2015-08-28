@@ -1,54 +1,60 @@
-		<table ng-repeat="commande in dispCommsCtrl.commandes">
-			<caption>Commande {{commande.id}}</caption>
-			<thead>
+	<div class="container">	
+		<div ng-repeat="commande in dispCommsCtrl.commandes" id="affichageCommande">
+			<div class="containerTableOverflow">
+				<table class="tableProduits table table-bordered" id="tableProduitsCommande">
+					<caption><h3>Commande {{commande.id}}</h3></caption>
+					<thead>
+						<tr>
+							<th>Libellé</th>
+							<th>Image</th>
+							<th>Détail</th>
+							<th>Prix</th>
+							<th>Quantité</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="typeProduit in commande.commandeProduits">
+							<td>{{typeProduit.produit.libelle}}</td>
+							<td>
+								<div class="miniatureContainer">
+									<img src="{{typeProduit.produit.image}}" class="imgMini"/>
+								</div>
+							</td>
+							<td><a href="#/detailsProduit/{{typeProduit.produit.id}}">Détail</a></td>
+							<td>{{typeProduit.produit.prix}} €</td>
+							<td>(x{{typeProduit.quantite}})</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<table class="table table-bordered tableAdresses">
 				<tr>
-					<th>Libellé</th>
-					<th>Image</th>
-					<th>Détail</th>
-					<th>Prix</th>
-					<th>Quantité</th>
-				</tr>
-			</thead>
-			<tfoot>
-				<tr>
-					<td>
-						Adresse de livraison:
-					</td>
+					<th>Adresse de livraison</th>
 					<td>
 						{{commande.facture.adresseLivraison.numero}} {{commande.facture.adresseLivraison.rue}} {{commande.facture.adresseLivraison.ville}}
 					</td>
 				</tr>
 				<tr>
-					<td>
-						Adresse de facturation:
-					</td>
+					<th>Adresse de facturation</th>
 					<td>
 						{{commande.facture.adresseFacturation.numero}} {{commande.facture.adresseLivraison.rue}} {{commande.facture.adresseLivraison.ville}}
 					</td>
 				</tr>
 				<tr>
-					<td>
-						Mode de paiement:
-					</td>
+					<th>Mode de paiement</th>
 					<td>
 						{{commande.facture.modePaiement}}
 					</td>
 				</tr>
-			</tfoot>
-			<tbody ng-repeat="typeProduit in commande.commandeProduits">
-					<tr>
-						<td>{{typeProduit.produit.libelle}}</td>
-						<td>
-							<div>
-								<img src="{{typeProduit.produit.image}}" class="imgMini"/>
-							</div>
-						</td>
-						<td><a href="#/detailsProduit/{{typeProduit.produit.id}}">Détail</a></td>
-						<td>{{typeProduit.produit.prix}} €</td>
-						<td>(x{{typeProduit.quantite}})</td>
-					</tr>
-			</tbody>
-		</table>
+				<tr>
+					<th>Montant</th>
+					<td>
+						{{commande.facture.montant}} €
+					</td>
+				</tr>
+			</table>
+		</div>
+	</div>
 
 		
 
