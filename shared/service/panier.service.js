@@ -35,10 +35,10 @@ angular.module('ecMobileApp.shared').factory('panierService', function ($http, $
             var panierService = this;
             var idProduits = "";
 
-            // résultat de la requete de base 
+            // résultat de la requete de base
             // liste des produits -> [{id:1, libelle:"Produit 1", prix:150, image:"http://lorempixel.com/120/120" },{id:1, libelle:"Produit 1", prix:150, image:"http://lorempixel.com/120/120" }]
 
-            // resultat attendu 
+            // resultat attendu
             // liste des produits quantifiée -> [{id:1, libelle:"Produit 1", prix:150, image:"http://lorempixel.com/120/120", quantite:3},{id:1, libelle:"Produit 1", prix:150, image:"http://lorempixel.com/120/120", quantite:5}]
 
             // si le panier n'existe pas, on en crée un vide (évite de faire un foreach sur un panier vide)
@@ -68,6 +68,7 @@ angular.module('ecMobileApp.shared').factory('panierService', function ($http, $
                     });
                     return result.data;
                 });
+
             }
         },
 
@@ -76,7 +77,7 @@ angular.module('ecMobileApp.shared').factory('panierService', function ($http, $
             if($localStorage.panier){
                 Object.keys($localStorage.panier).forEach(function(key){
                     quantiteTotale = quantiteTotale + Object.getOwnPropertyDescriptor($localStorage.panier, key).value;
-                });     
+                });
             }
             return quantiteTotale;
 /*
@@ -84,12 +85,16 @@ angular.module('ecMobileApp.shared').factory('panierService', function ($http, $
                 if($localStorage.panier){
                     Object.keys($localStorage.panier).forEach(function(key){
                         quantiteTotale = quantiteTotale + Object.getOwnPropertyDescriptor($localStorage.panier, key).value;
-                    });     
+                    });
                 }
                 return quantiteTotale;
             });*/
-            
 
+
+        },
+
+        vider: function() {
+            delete $localStorage.panier;
         }
     };
 

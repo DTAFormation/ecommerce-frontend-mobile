@@ -71,7 +71,7 @@ angular.module('ecMobileApp.magasin').controller('magasinCtrl', function(userSer
             magasinCtrl.produitSelectionne = result;
         });
     };
-  
+
 });
 
 // Contrôleur principal du module 'magasin'
@@ -161,7 +161,7 @@ angular.module('ecMobileApp.magasin').controller('payerCtrl', function(userServi
 	var typeCard = "CB";
 	var typeCheque = "Chèque";
 	payerCtrl.userInfos = userService.getInfosUser(); // pour recuperer les infos utilisateur stockees dans le localStorage
-	
+
 
 	console.log(payerCtrl.userInfos); // test de recup des donnees
 
@@ -173,7 +173,7 @@ angular.module('ecMobileApp.magasin').controller('payerCtrl', function(userServi
 	}
 
 	getPanier();
-	
+
 	payerCtrl.modal = function(){
 		var modalInstance = $modal.open({
 				animation : payerCtrl.animationsEnabled,
@@ -182,6 +182,7 @@ angular.module('ecMobileApp.magasin').controller('payerCtrl', function(userServi
 				controllerAs : 'modalCtrl',
 			});
 	};
+
 
 	payerCtrl.payerByCheque = function(){
 		payerService.setFraisLivraison(payerCtrl.confLivraison[payerCtrl.nomLivraison].prix);
@@ -192,13 +193,26 @@ angular.module('ecMobileApp.magasin').controller('payerCtrl', function(userServi
 		});
 	};
 
-	payerCtrl.save = function(form){
-		if (form.$invalid) {return;}
-		payerService.save(userService.getInfosUser(),payerCtrl.commande,payerCtrl.totalPrix,payerCtrl.panier,typeCard)
-		.then(function(){
-			payerCtrl.modal();
-		});
+    payerCtrl.payer = function(form, typePaiement) {
+        // TODO : activer la validation
+//        if (form.$invalid) {return;}
+
+
+        // TODO : passer l'adresse de facuration à la place de 2 fois l'adresse
+        // de livraison
+        payerService.payer(payerCtrl.adresseLivraison, payerCtrl.adresseLivraison, typePaiement)
+        .then(function(){
+            payerCtrl.modal();
+        });
+    };
+
+	payerCtrl.payerByCheque = function(form) {
+        payerCtrl.payer(form, "Par chèque");
 	};
+
+    payerCtrl.payerByCB = function(form) {
+        payerCtrl.payer(form, "Par CB");
+    };
 
 	payerCtrl.annuler = function(){
 		$location.path("/magasin");
@@ -226,7 +240,7 @@ angular.module('ecMobileApp.magasin').controller('payerCtrl', function(userServi
 			name: "Colissimo",
 			prix: 9.60
 		},
-		Fedex: {
+		fedex: {
 			name: "Fedex",
 			prix: 14.20
 		}
@@ -258,11 +272,8 @@ angular.module('ecMobileApp.magasin').controller('modal2Ctrl', function( userSer
 
 angular.module('ecMobileApp.magasin').filter('filterByPriceMinAndMax', function() {
   function filter(produits, min, max) {
-    //console.log("Min Price:", min);
-    //console.log("Max Price:", max);
-    
     var produitsFiltres = produits.filter(function(produit) {
-        return (produit.prix > min && produit.prix < max);  
+        return (produit.prix > min && produit.prix < max);
     });
 
     return produitsFiltres;
