@@ -14,7 +14,9 @@ angular.module('ecMobileApp.magasin')
 			},
 
 		getTotalPrix : function(){
+
 			return totalPrix + frais;
+
 		},
 
 		payerByCheque : function(user,prix,panier,typeCheque){
@@ -37,7 +39,7 @@ angular.module('ecMobileApp.magasin')
                 facture: {
                     date: new Date(),
                     modePaiement: typePaiement,
-//                    total: this.getTotalPrix(),
+                    montant: this.getTotalPrix(),
                     adresseLivraison: adresseLivraison,
                     adresseFacturation: adresseFacturation
                 }
@@ -62,6 +64,10 @@ angular.module('ecMobileApp.magasin')
                         panierService.vider();
                     });
             });
-		}
+		},
+
+        ajoutFraisLivraison: function(frais) {
+            fraisLivraison = frais;
+        }
 	};
 });

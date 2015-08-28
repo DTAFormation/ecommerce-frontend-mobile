@@ -1,5 +1,7 @@
 <div class="container">
 	<h2>Récapitulatif</h2>
+    <form name="PayerForm">
+
 	<table class="table table-bordered">
 		<thead>
 			<tr>
@@ -18,15 +20,12 @@
 			</tr>
 		</tbody>
 	</table>
-	<label ng-model ="payerCtrl.commande.prixTotal" name="prixTotal" value="payerCtrl.totalPrix" >Prix total : {{payerCtrl.totalPrix | currency : '' }} € </label>
 	<h2>Choix du mode de livraison</h2>
-	<form name="myForm">
 		<ul>
-			<li ng-repeat="(cleLivraison, livraison) in payerCtrl.confLivraison"><input type="radio" ng-model="payerCtrl.nomLivraison" value="{{cleLivraison}}">Livraison : {{livraison.name}}, prix : {{livraison.prix}} €</li>
+			<li style="list-style-type: none;" ng-repeat="(cleLivraison, livraison) in payerCtrl.confLivraison"><input type="radio" ng-model="payerCtrl.nomLivraison" value="{{cleLivraison}}" ng-click="payerCtrl.ajouterFraisLivraison(livraison.prix)">{{livraison.name}}, prix : {{livraison.prix}} €</li>
 		</ul>
 
-        Choix du mode livraison : {{payerCtrl.nomLivraison}}<br/>
-        Frais de livraison : <span ng-bind="payerCtrl.confLivraison[payerCtrl.nomLivraison].prix"> €</span>
+    <h2>Prix total : {{payerCtrl.montant | currency : '' }} € </h2>
 
     <h2>Adresse de livraison</h2>
     <!-- affichage des adresses du client connecté -->
@@ -43,12 +42,11 @@
 				<p>4 rue Edith Piaf</p>
 				<p>44800 Saint Herblain</p>
 			</Adresse>
-			<button class="btn btn-warning" ng-click="payerCtrl.annuler()">Annuler le paiement</button>  <button class="btn btn-success" ng-click="payerCtrl.payerByCheque()">Valider</button>
+			<button class="btn btn-warning" ng-click="payerCtrl.annuler()">Annuler le paiement</button>  <button class="btn btn-success" ng-click="payerCtrl.payerByCheque(PayerForm)">Valider</button>
 		</accordion-group>
 		<accordion-group heading="Paiement par CB" is-open="false">
 			<fieldset>
 				<legend>Données de paiement</legend>
-				<form ng-submit="payerCtrl.save(PayerForm)" name="PayerForm" novalidate>
 					<div class="form-group">
 						<label>Type de carte : </label>
 						<img src="images/type_carte.PNG">
@@ -71,8 +69,7 @@
 							<a ng-click="payerCtrl.open()">plus d'information</a>
 						</div>
 					</div>
-					<button class="btn btn-warning" ng-click="payerCtrl.annuler()">Annuler le paiement</button>  <button class="btn btn-success" ng-click="payerCtrl.payerByCB()">Valider</button>
-				</form>
+					<button class="btn btn-warning" ng-click="payerCtrl.annuler()">Annuler le paiement</button>  <button class="btn btn-success" ng-click="payerCtrl.payerByCB(PayerForm)">Valider</button>
 			</fieldset>
 		</accordion-group>
 	</accordion>
