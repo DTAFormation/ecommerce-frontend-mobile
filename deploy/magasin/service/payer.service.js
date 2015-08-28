@@ -8,11 +8,11 @@ angular.module('ecMobileApp.magasin')
 	return {
 
 		setTotalPrix : function(total){
-				totalPrix = total + fraisLivraison;
+				totalPrix = total;
 			},
 
 		getTotalPrix : function(){
-			return totalPrix;
+			return totalPrix + fraisLivraison;
 		},
 
 		payer : function(adresseLivraison, adresseFacturation, typePaiement) {
@@ -27,7 +27,7 @@ angular.module('ecMobileApp.magasin')
                 facture: {
                     date: new Date(),
                     modePaiement: typePaiement,
-//                    total: this.getTotalPrix(),
+                    montant: this.getTotalPrix(),
                     adresseLivraison: adresseLivraison,
                     adresseFacturation: adresseFacturation
                 }
@@ -52,6 +52,10 @@ angular.module('ecMobileApp.magasin')
                         panierService.vider();
                     });
             });
-		}
+		},
+
+        ajoutFraisLivraison: function(frais) {
+            fraisLivraison = frais;
+        }
 	};
 });
